@@ -20,6 +20,10 @@ jobs:
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
 
+      - name: Run linters
+        run: |
+          bundle exec rubocop --parallel
+
   tests:
     name: Tests
     runs-on: ubuntu-latest

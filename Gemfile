@@ -60,6 +60,12 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false
+
+  # Static analysis for Ruby code style
+  gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
