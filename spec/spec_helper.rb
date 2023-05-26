@@ -54,13 +54,13 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
 
   # Filter out secrets from cassette data
-  c.filter_sensitive_data('<IGDB_CLIENT_ID>') { ENV['IGDB_CLIENT_ID'] }
-  c.filter_sensitive_data('<IGDB_CLIENT_SECRET>') { ENV['IGDB_CLIENT_SECRET'] }
+  c.filter_sensitive_data('<IGDB_CLIENT_ID>') { ENV.fetch('IGDB_CLIENT_ID', nil) }
+  c.filter_sensitive_data('<IGDB_CLIENT_SECRET>') { ENV.fetch('IGDB_CLIENT_SECRET', nil) }
   c.filter_sensitive_data('<IGDB_TOKEN>') { Rails.cache.read('igdb_token') }
 
-  c.filter_sensitive_data('<PSN_CLIENT_ID>') { ENV['PSN_CLIENT_ID'] }
-  c.filter_sensitive_data('<PSN_BASIC>') { ENV['PSN_BASIC_TOKEN'] }
-  c.filter_sensitive_data('<PSN_NPSSO>') { ENV['PSN_NPSSO'] }
+  c.filter_sensitive_data('<PSN_CLIENT_ID>') { ENV.fetch('PSN_CLIENT_ID', nil) }
+  c.filter_sensitive_data('<PSN_BASIC>') { ENV.fetch('PSN_BASIC_TOKEN', nil) }
+  c.filter_sensitive_data('<PSN_NPSSO>') { ENV.fetch('PSN_NPSSO', nil) }
   c.filter_sensitive_data('<PSN_TOKEN>') { Rails.cache.read('psn_token') }
 
   c.filter_sensitive_data('idtoken') do |interaction|
