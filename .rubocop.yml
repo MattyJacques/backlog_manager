@@ -5,3 +5,11 @@ require:
 
 AllCops:
   NewCops: enable
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'config.ru'
+    - 'config/**/*'
+    - 'db/**/*'
