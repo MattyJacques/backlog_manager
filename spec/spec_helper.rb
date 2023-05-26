@@ -76,10 +76,10 @@ VCR.configure do |c|
 
   # PSN auth code, regex stops this being <AUTH_CODE>
   c.filter_sensitive_data('v1.Ab23CD') do |interaction|
-    if location = interaction.response.headers['Location']&.first
+    if (location = interaction.response.headers['Location']&.first)
       code = location.match(%r{\?code=([A-Za-z0-9:?_\-./=]+)})
       code[1] if code.present?
-    elsif body = interaction.response.headers['body']&.first
+    elsif (body = interaction.response.headers['body']&.first)
       code = body.match(%r{\?code=([A-Za-z0-9:?_\-./=]+)})
       code[1] if code.present?
     end
