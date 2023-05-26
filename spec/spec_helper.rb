@@ -20,7 +20,7 @@
 # otherwise it will not give proper coverage reports.
 require 'simplecov'
 SimpleCov.start do
-  load_profile "test_frameworks"
+  load_profile 'test_frameworks'
 
   add_filter %r{^/config/}
   add_filter %r{^/db/}
@@ -31,15 +31,15 @@ SimpleCov.start do
   add_filter '/app/mailers/'
   add_filter %w[app/jobs app/workers]
 
-  add_group "Controllers", "app/controllers"
+  add_group 'Controllers', 'app/controllers'
   # add_group "Channels", "app/channels"
-  add_group "Models", "app/models"
+  add_group 'Models', 'app/models'
   # add_group "Mailers", "app/mailers"
-  add_group "Helpers", "app/helpers"
+  add_group 'Helpers', 'app/helpers'
   # add_group "Jobs", %w[app/jobs app/workers]
-  add_group "Libraries", "lib"
+  add_group 'Libraries', 'lib'
 
-  track_files "{app,lib}/**/*.rb"
+  track_files '{app,lib}/**/*.rb'
 end
 
 require 'vcr'
@@ -126,7 +126,7 @@ RSpec.configure do |config|
     # Use the documentation formatter for detailed output,
     # unless a formatter has already been configured
     # (e.g. via a command-line flag).
-    config.default_formatter = "doc"
+    config.default_formatter = 'doc'
   end
 
 # The settings below are suggested to provide a good initial experience
