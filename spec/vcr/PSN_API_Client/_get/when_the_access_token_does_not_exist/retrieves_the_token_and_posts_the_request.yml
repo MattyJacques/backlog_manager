@@ -1,0 +1,158 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ca.account.sony.com/api/authz/v3/oauth/authorize?access_type=offline&client_id=<PSN_CLIENT_ID>&redirect_uri=com.scee.psxandroid.scecompcall://redirect&response_type=code&scope=psn:mobile.v2.core%20psn:clientapp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - npsso=<PSN_NPSSO>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Moved Temporarily
+    headers:
+      Server:
+      - nginx
+      Content-Length:
+      - '0'
+      X-Psn-Request-Id:
+      - b144e798f77ae9b71bc20f06a3581f11
+      X-Psn-Correlation-Id:
+      - 38803b61-1a7c-4711-b51a-29d7077accdf
+      X-Requestid:
+      - b144e798f77ae9b71bc20f06a3581f11
+      X-Correlationid:
+      - 38803b61-1a7c-4711-b51a-29d7077accdf
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Location:
+      - com.scee.psxandroid.scecompcall://redirect/?code=v1.Ab23CD&cid=38803b61-1a7c-4711-b51a-29d7077accdf
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Date:
+      - Thu, 13 Jul 2023 19:45:08 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _abck=043B7B02DEF7F3665D1375D4EBD158B7~-1~YAAQnolJFwv+KCeJAQAAZi3JUApachUyaYOMv27kjYUDunaAi1OyvTg3Yws328VxQdUa+d1FkYj04MJcjRh9c0G3rKRrFWO8XwfEYkyC+3Cxmb2KNAOBvq6FYyyohfekdU5VT0JrAUZz/4ZY1JYU5tFJ/OcRmFtsFP+ycCLjXM9H88Vej5/OEp0ZusU7uSG/jlZoWNY2juPFUlE+ctGTLBwKFMyzW5/4C0/ctLLex3pYBYCQvbOolLI0HgBusQPFDH8wLrsy3LD2uMQgnOQ3s+ltfBWlvh8dxkZm0rWRtWFPIxLQWUTN/D/QMUNHPJtEldilBn2elY17fWp6nT5a8VlbdR6e/tMoOA/LW6jL8RgR0yJyIplLuy8AcHyRVj1wZ9/JWyZsAUawyiO9uA==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Thu, 20 Jul 2023 19:45:08 GMT; Max-Age=604800;
+        Secure
+      - bm_sz=1FC66AA55CE3249B7E2A0A3971E0F20D~YAAQnolJFwz+KCeJAQAAZi3JUBQ/7NaGl1ForTgGEnWZ7wpSnMDPlySSEgrwtYeUi1S1KQZXBduqsuRFR+ZfU+xT2or/RuLaM6zesEhkdLhcdP+r6+IvLXKqBewuonyNKwrRH8wKMDXW/54yuuWvVD4PxSKxIQKsg3P6cTOGU3yHekAc2V4VNUEXk1lUxpIKSfE+MZNhYEC2OBFCG1BKkEWq/YeilTjGqnXTk72PcNy4UVTDTxgbK6HePFXc5tdUk8GN7N+fuhdu6vSMKTbaDhkZM3V/D396f5uLTEpZ1+ogDN4F+yn76wwFNxXyBIk09zKXGMk+ray7GUmkr8bYWvEZlvd0xNTNF7xK6cMbl7kzfc5rhhThg7x7qo0=~4539184~3290421;
+        Domain=.sony.com; Path=/; Expires=Thu, 13 Jul 2023 23:45:08 GMT; Max-Age=14400
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Thu, 13 Jul 2023 19:45:06 GMT
+- request:
+    method: post
+    uri: https://ca.account.sony.com/api/authz/v3/oauth/token
+    body:
+      encoding: UTF-8
+      string: code=v3.II1klu&grant_type=authorization_code&redirect_uri=com.scee.psxandroid.scecompcall%3A%2F%2Fredirect&token_format=jwt
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic <PSN_BASIC>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json;charset=UTF-8
+      X-Psn-Request-Id:
+      - 984b35c5aeb1b6f25a43bd3fe5c00b40
+      X-Psn-Correlation-Id:
+      - 77e82fc8-582f-467b-9778-9546f99ec1b5
+      X-Requestid:
+      - 984b35c5aeb1b6f25a43bd3fe5c00b40
+      X-Correlationid:
+      - 77e82fc8-582f-467b-9778-9546f99ec1b5
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '3794'
+      Date:
+      - Thu, 13 Jul 2023 19:45:09 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _abck=AE2064B0AE5E99C3B0A6BBBE7F18051F~-1~YAAQnolJFxb+KCeJAQAA0y7JUAogkpODJhkrn1gJ/zDnti1/T1E5X0sEMEQm27kvUEs6/76Q7fLcxlT2QwCoDkUWNRgXs/+/LRC933jwYZ/mOFPH9hUBF1NHFXhrhoqnT+/WEa8mch72MEPzpZxpxDaLYOTIw9ZrTVFxdGAjmEs2K8cINaPMpjWVta9RvgVHaMq51YF8ThB0dy9QtBCwXKrfSx31/nzq8Y/1saaDzPFmiFc5aXZ3r3vMnZePSUS4AdgJy4iBeLKDZOr1mOws3uhr7B4rp4TfazvBuSrC8p6UOGRLsJ8wGPCWhL4Sm46SPH3MGMrVwKCjCev6LBJ3nf8zbG3jpgyFkYKdgWMuhNmDuXdH7njW7xb/x2Kykkx9QUkfak344405925mMA==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Thu, 20 Jul 2023 19:45:09 GMT; Max-Age=604800;
+        Secure
+      - bm_sz=07A62ABF06CD301917C0C309E8A40902~YAAQnolJFxf+KCeJAQAA0y7JUBSIvFu0P3tDiXqiuWxprihQ+cMl7bU1DBtFPwGpEMYA5MZ2LrA62Mo6zyeV3hjFA1on7VKeWEiFjWfrXjjV658oS8bptJfGKRSd0WFu4a42wteugl4dphGxLo3jZ1krGbc8v6EnxGqn8O/ClUoTOWBtp4GR4GpUOiyrA1e8ymMXsHnU51EPu2P53Wyy0AqERpeX/k1MKzRHlsT4exj5xxV0jE1fi1pccaJKUJPeClTDhdDhMGPXGVY3eHIaYIeSoXX9DU8VYyDPj4F3f3re8PHLZxxOiRTJ+5HTcnszCG5z0VVlaayvjhx3B5jT3RCrR8SNkIQf/9awsmk0SSPhRf3/A2DOnm0FM+I=~4600385~3621689;
+        Domain=.sony.com; Path=/; Expires=Thu, 13 Jul 2023 23:45:09 GMT; Max-Age=14400
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"accesstoken","token_type":"bearer","expires_in":3599,"scope":"psn:mobile.v2.core
+        psn:clientapp","id_token":"idtoken","refresh_token":"refreshtoken","refresh_token_expires_in":5183999}'
+  recorded_at: Thu, 13 Jul 2023 19:45:06 GMT
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/trophySummary
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '242'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Thu, 13 Jul 2023 19:45:09 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"accountId":"6796840136244039860","trophyLevel":999,"trophyPoint":10027530,"trophyLevelBasePoint":1631340,"trophyLevelNextPoint":2147483647,"progress":0,"tier":10,"earnedTrophies":{"bronze":94856,"silver":49412,"gold":54827,"platinum":7293}}'
+  recorded_at: Thu, 13 Jul 2023 19:45:06 GMT
+recorded_with: VCR 6.1.0
