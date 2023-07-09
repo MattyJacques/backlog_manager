@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR22792_00/trophies/1?npServiceName=trophy2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '108'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Thu, 13 Jul 2023 19:45:58 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophyId":1,"earned":true,"earnedDateTime":"2021-02-02T22:21:43Z","trophyRare":1,"trophyEarnedRate":"6.0"}'
+  recorded_at: Thu, 13 Jul 2023 19:45:55 GMT
+recorded_with: VCR 6.1.0

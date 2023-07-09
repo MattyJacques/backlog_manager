@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/titles/trophyTitles?npTitleIds=PPSA07642_00
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '870'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Thu, 13 Jul 2023 19:45:57 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0aXRsZXMiOlt7Im5wVGl0bGVJZCI6IlBQU0EwNzY0Ml8wMCIsInRyb3BoeVRpdGxlcyI6W3sibnBTZXJ2aWNlTmFtZSI6InRyb3BoeTIiLCJucENvbW11bmljYXRpb25JZCI6Ik5QV1IyNjU0Nl8wMCIsInRyb3BoeVRpdGxlTmFtZSI6IlRoZSBMYXN0IG9mIFVz4oSiIFBhcnQgSSIsInRyb3BoeVRpdGxlSWNvblVybCI6Imh0dHBzOi8vcHNub2JqLnByb2QuZGwucGxheXN0YXRpb24ubmV0L3Bzbm9iai9OUFdSMjY1NDZfMDAvZGVhN2UxZTUtZjE2Ni00MGE4LWJjNDUtODc5NjY5MzJhNDc4LnBuZyIsImhhc1Ryb3BoeUdyb3VwcyI6ZmFsc2UsInJhcmVzdFRyb3BoaWVzIjpbeyJ0cm9waHlJZCI6MCwidHJvcGh5SGlkZGVuIjpmYWxzZSwidHJvcGh5VHlwZSI6InBsYXRpbnVtIiwidHJvcGh5TmFtZSI6Ikl0IENhbid0IEJlIEZvciBOb3RoaW5nIiwidHJvcGh5RGV0YWlsIjoiQ29sbGVjdCBhbGwgdHJvcGhpZXMiLCJ0cm9waHlJY29uVXJsIjoiaHR0cHM6Ly9wc25vYmoucHJvZC5kbC5wbGF5c3RhdGlvbi5uZXQvcHNub2JqL05QV1IyNjU0Nl8wMC9jNWUzYzFmMC0xMmRjLTQwZjEtOGZlNy0wNTE0ZGMwMzQwMDcucG5nIiwidHJvcGh5UmFyZSI6MSwidHJvcGh5RWFybmVkUmF0ZSI6IjYuMiIsImVhcm5lZCI6dHJ1ZSwiZWFybmVkRGF0ZVRpbWUiOiIyMDIyLTEwLTAyVDE3OjM0OjE0WiJ9XSwicHJvZ3Jlc3MiOjEwMCwiZWFybmVkVHJvcGhpZXMiOnsiYnJvbnplIjoxNCwic2lsdmVyIjo3LCJnb2xkIjo3LCJwbGF0aW51bSI6MX0sImRlZmluZWRUcm9waGllcyI6eyJicm9uemUiOjE0LCJzaWx2ZXIiOjcsImdvbGQiOjcsInBsYXRpbnVtIjoxfSwibGFzdFVwZGF0ZWREYXRlVGltZSI6IjIwMjItMTAtMDJUMTc6MzQ6MTRaIn1dfV19
+  recorded_at: Thu, 13 Jul 2023 19:45:54 GMT
+recorded_with: VCR 6.1.0

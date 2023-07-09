@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/npCommunicationIds/NPWR22792_00/trophies/0?npServiceName=trophy2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '477'
+      Server:
+      - Apache
+      Cache-Control:
+      - max-age=300
+      Vary:
+      - Accept-Language
+      Date:
+      - Thu, 13 Jul 2023 19:45:57 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophySetVersion":"01.00","trophyId":0,"trophyHidden":false,"trophyType":"platinum","trophyName":"Hall
+        of Fame","trophyDetail":"Unlock all Destruction AllStars Trophies","trophyIconUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR22792_00/22495328-c5ad-4cf1-be7c-e8be615a6c5b.png","trophyGroupId":"default","trophyRewardName":"Profile
+        Banner","trophyRewardImageUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR22792_00/3433d6c0-fa6e-43e1-a557-c4d71f7c2400.png"}'
+  recorded_at: Thu, 13 Jul 2023 19:45:54 GMT
+recorded_with: VCR 6.1.0

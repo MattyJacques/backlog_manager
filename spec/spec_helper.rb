@@ -63,6 +63,13 @@ VCR.configure do |c|
   c.filter_sensitive_data('<PSN_NPSSO>') { ENV.fetch('PSN_NPSSO', nil) }
   c.filter_sensitive_data('<PSN_TOKEN>') { Rails.cache.read('psn_token') }
 
+  c.filter_sensitive_data('accesstoken') do |interaction|
+    if interaction.response.body&.include?('access_token')
+      token = JSON.parse(interaction.response.body)
+      token['access_token'] if token.is_a?(Hash)
+    end
+  end
+
   c.filter_sensitive_data('idtoken') do |interaction|
     if interaction.response.body&.include?('id_token')
       token = JSON.parse(interaction.response.body)
