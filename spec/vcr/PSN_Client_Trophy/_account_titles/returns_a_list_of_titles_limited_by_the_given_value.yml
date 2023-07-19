@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/trophyTitles?limit=10&offset=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '5762'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Wed, 19 Jul 2023 13:19:22 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophyTitles":[{"npServiceName":"trophy","npCommunicationId":"NPWR39458_00","trophySetVersion":"01.00","trophyTitleName":"Gems
+        of War","trophyTitleDetail":"This is the trophy pack for Gems of War","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR39458_00_00B0D52086809B20D1A6F7037988158DC4112E90F3/6099E03905A7BA1E66CA10C5B9828483DD75F93D.PNG","trophyTitlePlatform":"PS4","hasTrophyGroups":true,"definedTrophies":{"bronze":1,"silver":1,"gold":0,"platinum":0},"progress":0,"earnedTrophies":{"bronze":0,"silver":0,"gold":0,"platinum":0},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-19T09:02:17Z"},{"npServiceName":"trophy2","npCommunicationId":"NPWR22810_00","trophySetVersion":"01.00","trophyTitleName":"Diablo
+        IV","trophyTitleIconUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR22810_00/5ada1d24-434d-450b-ad6f-374bc6566d46.png","trophyTitlePlatform":"PS5","hasTrophyGroups":false,"definedTrophies":{"bronze":7,"silver":12,"gold":6,"platinum":1},"progress":14,"earnedTrophies":{"bronze":4,"silver":3,"gold":0,"platinum":0},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-17T21:59:56Z"},{"npServiceName":"trophy","npCommunicationId":"NPWR00323_00","trophySetVersion":"01.00","trophyTitleName":"Battlefield:
+        Bad Company","trophyTitleDetail":"Battlefield: Bad Company","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR00323_00_00E856F909B1730BD388656CA12DD0CC936C7E7143/B0A60DEEFDA0C18DF759D7003F6169073073964D.PNG","trophyTitlePlatform":"PS3","hasTrophyGroups":false,"definedTrophies":{"bronze":42,"silver":5,"gold":3,"platinum":1},"progress":75,"earnedTrophies":{"bronze":39,"silver":4,"gold":1,"platinum":0},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-15T05:36:01Z"},{"npServiceName":"trophy","npCommunicationId":"NPWR33794_00","trophySetVersion":"01.00","trophyTitleName":"Kawaii
+        Slime Arena","trophyTitleDetail":"Kawaii Slime Arena Trophy Set","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR33794_00_0019C857CA25E82839C80C5E808C8BEEF5169D4AE6/6B86BCC124F450DC42DD51D7D075AA05D4DC64CA.PNG","trophyTitlePlatform":"PS4","hasTrophyGroups":false,"definedTrophies":{"bronze":4,"silver":9,"gold":8,"platinum":1},"progress":100,"earnedTrophies":{"bronze":4,"silver":9,"gold":8,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-13T17:34:18Z"},{"npServiceName":"trophy","npCommunicationId":"NPWR30959_00","trophySetVersion":"01.00","trophyTitleName":"Rally
+        Racing 2","trophyTitleDetail":"Default trophies in Rally Racing 2","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR30959_00_00ED926439CA2E0D09783109EA875C6C3468BCBA73/6637B10A12AD6D3D87BB65BFF52A0A80D05C72E2.PNG","trophyTitlePlatform":"PS4","hasTrophyGroups":false,"definedTrophies":{"bronze":0,"silver":2,"gold":11,"platinum":1},"progress":100,"earnedTrophies":{"bronze":0,"silver":2,"gold":11,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:39:00Z"},{"npServiceName":"trophy","npCommunicationId":"NPWR39147_00","trophySetVersion":"01.00","trophyTitleName":"The
+        Scavenger Hunt: Switzerland Trophy Set","trophyTitleDetail":"All trophies
+        from the Scavenger Hunt: Switzerland","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR39147_00_0033BBCF29D0943E4336853983F212B94950D8F26D/726293A9E1C54461ECF97321FCD3372DC4A5FE02.PNG","trophyTitlePlatform":"PS4","hasTrophyGroups":false,"definedTrophies":{"bronze":0,"silver":1,"gold":11,"platinum":1},"progress":100,"earnedTrophies":{"bronze":0,"silver":1,"gold":11,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:28:46Z"},{"npServiceName":"trophy2","npCommunicationId":"NPWR38087_00","trophySetVersion":"01.00","trophyTitleName":"Archers
+        Dream","trophyTitleIconUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR38087_00/3b7bb02c-b4ca-4d05-937e-0223cda53a7d.png","trophyTitlePlatform":"PS5","hasTrophyGroups":false,"definedTrophies":{"bronze":12,"silver":8,"gold":7,"platinum":1},"progress":100,"earnedTrophies":{"bronze":12,"silver":8,"gold":7,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:25:41Z"},{"npServiceName":"trophy2","npCommunicationId":"NPWR38147_00","trophySetVersion":"01.00","trophyTitleName":"Monster
+        Battle","trophyTitleIconUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR38147_00/3b454af1-8831-43e3-a790-4df45d2ce203.png","trophyTitlePlatform":"PS5","hasTrophyGroups":false,"definedTrophies":{"bronze":0,"silver":0,"gold":11,"platinum":1},"progress":100,"earnedTrophies":{"bronze":0,"silver":0,"gold":11,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:25:08Z"},{"npServiceName":"trophy2","npCommunicationId":"NPWR35612_00","trophySetVersion":"01.00","trophyTitleName":"Eperon
+        Defend","trophyTitleIconUrl":"https://psnobj.prod.dl.playstation.net/psnobj/NPWR35612_00/153a6981-0e58-46cb-a4be-b2b0e923e1a1.png","trophyTitlePlatform":"PS5","hasTrophyGroups":false,"definedTrophies":{"bronze":0,"silver":32,"gold":1,"platinum":1},"progress":100,"earnedTrophies":{"bronze":0,"silver":32,"gold":1,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:22:00Z"},{"npServiceName":"trophy","npCommunicationId":"NPWR38777_00","trophySetVersion":"01.00","trophyTitleName":"Rainbow
+        snake","trophyTitleDetail":"Trophy set for Rainbow snake","trophyTitleIconUrl":"https://image.api.playstation.com/trophy/np/NPWR38777_00_0036A3350900DA182C39493CC33475A0834B07BEF7/DC043AB2A156B1B4D47B669E3F3BBB7A19EFC195.PNG","trophyTitlePlatform":"PS4","hasTrophyGroups":false,"definedTrophies":{"bronze":0,"silver":14,"gold":7,"platinum":1},"progress":100,"earnedTrophies":{"bronze":0,"silver":14,"gold":7,"platinum":1},"hiddenFlag":false,"lastUpdatedDateTime":"2023-07-11T22:16:38Z"}],"nextOffset":10,"totalItemCount":8382}'
+  recorded_at: Wed, 19 Jul 2023 13:19:21 GMT
+recorded_with: VCR 6.1.0

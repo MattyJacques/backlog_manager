@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ca.account.sony.com/api/authz/v3/oauth/authorize?access_type=offline&client_id=<PSN_CLIENT_ID>&redirect_uri=com.scee.psxandroid.scecompcall://redirect&response_type=code&scope=psn:mobile.v2.core%20psn:clientapp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - npsso=<PSN_NPSSO>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Moved Temporarily
+    headers:
+      Server:
+      - nginx
+      Content-Length:
+      - '0'
+      X-Psn-Request-Id:
+      - 2f194c2016e4fd70499c6177947de214
+      X-Psn-Correlation-Id:
+      - bc585956-97ad-447a-8241-b3683af80725
+      X-Requestid:
+      - 2f194c2016e4fd70499c6177947de214
+      X-Correlationid:
+      - bc585956-97ad-447a-8241-b3683af80725
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Location:
+      - https://my.account.sony.com/central/signin/?access_type=offline&client_id=<PSN_CLIENT_ID>&redirect_uri=com.scee.psxandroid.scecompcall%3A%2F%2Fredirect&response_type=code&scope=psn%3Amobile.v2.core+psn%3Aclientapp&auth_ver=v3&error=login_required&error_code=4165&error_description=User+is+not+authenticated&no_captcha=false&cid=bc585956-97ad-447a-8241-b3683af80725
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Date:
+      - Wed, 19 Jul 2023 13:19:13 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _abck=58859FA426BBCBFE9101DA062D65D771~-1~YAAQgNERAq5ZJmuJAQAAtAJObgqX0WJf5Rt8CylTotc/UC5e+wTKmKzi3knXGAoStAmMONOJQpV4WPpCOiaxGjh1E3EB+LcDhPX7ZP6ccMoFnIxVyAk1PFLPEDeYDWa4hQ7d92SCd/aiQRDfQavESWoZ3Z/yhTBYq7SF3a83flEMtxKB2q05VsqSBR4TWWGNBbWzO6kuekeV1I5X8dgGTrnLQkUo6ZXx0xJhBEBwybS7d+Jh2tiualsMGTPkl3EGPPzJxAfHu7yA1c47mJXL6lcEnuzVytVr7MJZtqvx9g/7SmMnHlQVypXOxhf1c5MsaXwddDqP9enXHCErpr+hUPy2WRScN2lDI4lSUxwMJMUjLccO2Zg8KV3wqzjENGmZFU43Pyd3Sm+9jq687g==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Wed, 26 Jul 2023 13:19:13 GMT; Max-Age=604800;
+        Secure
+      - bm_sz=89FCD92A46F438A4DEC88F93A54B4844~YAAQgNERAq9ZJmuJAQAAtAJObhRu2Ypo60JBgrSbrlqO0Ji6RUa9/nrt6fSnL5L4kiUl5KejXaCT1bE4xALR3zxy1sPmZYBZc29+/iyKy9dDcRdWRimj76UJAycilpzgbUV7SgEqwC3XVOM9MRjCR5yv/Xrf5gmmJM08OCegn8FXgmVUZ1ObhwDY7D1vu1Tv0Vu0ja2ePEIDhzQcUxcZinDkeKb3A6Lmh+9BDowC7vmvC0SJvvt8vZIdplVf2V+hsqX06uqvqru1EkZbWjYt9zPcv8EToWBs2yuk5JrcnOrIy035ObCQymmYBrajHa9yz2im/VJvpnZ6gfTp9SCFtWQuSuE2KqWRb22SslJeZwu4LRL7xUh1Tdc430Q=~3425094~4601393;
+        Domain=.sony.com; Path=/; Expires=Wed, 19 Jul 2023 17:19:13 GMT; Max-Age=14400
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 19 Jul 2023 13:19:12 GMT
+recorded_with: VCR 6.1.0

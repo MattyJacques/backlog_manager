@@ -1,0 +1,15 @@
+class CreateTrophyLists < ActiveRecord::Migration[7.0]
+  def change
+    create_table :trophy_lists do |t|
+      t.string :name
+      t.string :detail
+      t.string :communication_id, null: false, index: { unique: true, name: 'unique PSN communication ID index' }
+      t.string :title_id, index: { unique: true, name: 'unique PSN title ID index' }
+      t.string :service, null: false
+      t.integer :region
+      t.decimal :version
+
+      t.timestamps
+    end
+  end
+end

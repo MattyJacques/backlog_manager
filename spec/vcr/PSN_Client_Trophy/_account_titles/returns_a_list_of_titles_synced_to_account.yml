@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/trophyTitles?limit=800&offset=8380
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1274'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Wed, 19 Jul 2023 13:19:17 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ0cm9waHlUaXRsZXMiOlt7Im5wU2VydmljZU5hbWUiOiJ0cm9waHkiLCJucENvbW11bmljYXRpb25JZCI6Ik5QV1IwMDQ0OV8wMCIsInRyb3BoeVNldFZlcnNpb24iOiIwMS4wMSIsInRyb3BoeVRpdGxlTmFtZSI6IlVuY2hhcnRlZDogRHJha2UncyBGb3J0dW5lIiwidHJvcGh5VGl0bGVEZXRhaWwiOiJVbmNoYXJ0ZWQ6IERyYWtlJ3MgRm9ydHVuZSIsInRyb3BoeVRpdGxlSWNvblVybCI6Imh0dHBzOi8vaW1hZ2UuYXBpLnBsYXlzdGF0aW9uLmNvbS90cm9waHkvbnAvTlBXUjAwNDQ5XzAwXzAwNzI3RkRCOEI3MUEzRDAzMDQ1QUJDQzc5ODQ4MDdCODk5MTI1NDUwOS83Q0ZGNEFGNTdFOTQ0NDU5REEzRjA3OTIwNUU5NkJFNTJFQ0NBNjYzLlBORyIsInRyb3BoeVRpdGxlUGxhdGZvcm0iOiJQUzMiLCJoYXNUcm9waHlHcm91cHMiOmZhbHNlLCJkZWZpbmVkVHJvcGhpZXMiOnsiYnJvbnplIjozNiwic2lsdmVyIjo4LCJnb2xkIjozLCJwbGF0aW51bSI6MX0sInByb2dyZXNzIjoxMDAsImVhcm5lZFRyb3BoaWVzIjp7ImJyb256ZSI6MzYsInNpbHZlciI6OCwiZ29sZCI6MywicGxhdGludW0iOjF9LCJoaWRkZW5GbGFnIjpmYWxzZSwibGFzdFVwZGF0ZWREYXRlVGltZSI6IjIwMDgtMDgtMDdUMDI6NDE6MjVaIn0seyJucFNlcnZpY2VOYW1lIjoidHJvcGh5IiwibnBDb21tdW5pY2F0aW9uSWQiOiJOUFdSMDAxMTdfMDAiLCJ0cm9waHlTZXRWZXJzaW9uIjoiMDEuMTIiLCJ0cm9waHlUaXRsZU5hbWUiOiJTVVBFUiBTVEFSRFVTVOKEoiBIRCIsInRyb3BoeVRpdGxlRGV0YWlsIjoiU1VQRVIgU1RBUkRVU1TihKIgSEQiLCJ0cm9waHlUaXRsZUljb25VcmwiOiJodHRwczovL2ltYWdlLmFwaS5wbGF5c3RhdGlvbi5jb20vdHJvcGh5L25wL05QV1IwMDExN18wMF8wMEUyRDZDMEEyQkI3NDc1QkM2QzI2NjI2RjA0NzkwQ0RBRDA1MDdFMzMvNzk3QTlGODUzRTkwQUU3MjJFRTMxNUI5QTg3NDdFMDg0MjM5MEZGMy5QTkciLCJ0cm9waHlUaXRsZVBsYXRmb3JtIjoiUFMzIiwiaGFzVHJvcGh5R3JvdXBzIjpmYWxzZSwiZGVmaW5lZFRyb3BoaWVzIjp7ImJyb256ZSI6OSwic2lsdmVyIjo2LCJnb2xkIjoyLCJwbGF0aW51bSI6MH0sInByb2dyZXNzIjoxMDAsImVhcm5lZFRyb3BoaWVzIjp7ImJyb256ZSI6OSwic2lsdmVyIjo2LCJnb2xkIjoyLCJwbGF0aW51bSI6MH0sImhpZGRlbkZsYWciOmZhbHNlLCJsYXN0VXBkYXRlZERhdGVUaW1lIjoiMjAwOC0wNy0xNlQxMDo1OTowOFoifV0sInByZXZpb3VzT2Zmc2V0Ijo4Mzc5LCJ0b3RhbEl0ZW1Db3VudCI6ODM4Mn0=
+  recorded_at: Wed, 19 Jul 2023 13:19:16 GMT
+recorded_with: VCR 6.1.0
