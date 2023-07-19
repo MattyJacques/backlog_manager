@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us-prof.np.community.playstation.net/userProfile/v1/users/Hakoom/profile2?fields=npId,onlineId,accountId,avatarUrls,plus,aboutMe,languagesUsed,trophySummary(@default,level,progress,earnedTrophies),isOfficiallyVerified,personalDetail(@default,profilePictureUrls),personalDetailSharing,personalDetailSharingRequestMessageFlag,primaryOnlineStatus,presences(@default,@titleInfo,platform,lastOnlineDate,hasBroadcastData),requestMessageFlag,blocking,friendRelation,following,consoleAvailability
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Server:
+      - Apache
+      Cache-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - Authorization, Cache-Control, Content-Type, X-Requested-With, Accept-Language,
+        If-None-Match
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 19 Jul 2023 13:19:26 GMT
+      Content-Length:
+      - '583'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"profile":{"onlineId":"Hakoom","accountId":"6796840136244039860","npId":"SGFrb29tQGEyLnVz","avatarUrls":[{"size":"l","avatarUrl":"http://static-resource.np.community.playstation.net/avatar/WWS_A/UP90001010001l.png"}],"plus":1,"aboutMe":"","languagesUsed":["en","en-GB"],"trophySummary":{"level":999,"progress":0,"earnedTrophies":{"platinum":7293,"gold":54827,"silver":49414,"bronze":94862}},"isOfficiallyVerified":false,"personalDetailSharing":"no","personalDetailSharingRequestMessageFlag":false,"friendRelation":"no","requestMessageFlag":false,"blocking":false,"following":false}}'
+  recorded_at: Wed, 19 Jul 2023 13:19:25 GMT
+recorded_with: VCR 6.1.0

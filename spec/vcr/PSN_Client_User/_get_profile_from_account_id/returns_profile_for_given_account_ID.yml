@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://m.np.playstation.com/api/userProfile/v1/internal/users/6796840136244039860/profiles
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '570'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      X-Psn-Track-Id:
+      - '0818900180357494485'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE, PATCH
+      Access-Control-Allow-Headers:
+      - Authorization, Cache-Control, Content-Type, X-Requested-With, Accept-Language,
+        Date, X-Psn-Np-Title-Id, X-Psn-Platform, X-Psn-Request-Id, X-Psn-Sampled,
+        X-Psn-Span-Id, X-Psn-Trace-Id
+      Date:
+      - Wed, 19 Jul 2023 13:19:27 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"onlineId":"Hakoom","aboutMe":"","avatars":[{"size":"s","url":"http://static-resource.np.community.playstation.net/avatar_s/WWS_A/UP90001010001s.png"},{"size":"xl","url":"http://static-resource.np.community.playstation.net/avatar_xl/WWS_A/UP90001010001_XL.png"},{"size":"l","url":"http://static-resource.np.community.playstation.net/avatar/WWS_A/UP90001010001l.png"},{"size":"m","url":"http://static-resource.np.community.playstation.net/avatar_m/WWS_A/UP90001010001m.png"}],"languages":["ar-AE","en-US","en-GB"],"isPlus":true,"isOfficiallyVerified":false,"isMe":false}'
+  recorded_at: Wed, 19 Jul 2023 13:19:26 GMT
+recorded_with: VCR 6.1.0

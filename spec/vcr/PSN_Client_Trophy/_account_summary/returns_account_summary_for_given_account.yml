@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/trophySummary
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '242'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Wed, 19 Jul 2023 13:19:16 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"accountId":"6796840136244039860","trophyLevel":999,"trophyPoint":10027680,"trophyLevelBasePoint":1631340,"trophyLevelNextPoint":2147483647,"progress":0,"tier":10,"earnedTrophies":{"bronze":94862,"silver":49414,"gold":54827,"platinum":7293}}'
+  recorded_at: Wed, 19 Jul 2023 13:19:15 GMT
+recorded_with: VCR 6.1.0

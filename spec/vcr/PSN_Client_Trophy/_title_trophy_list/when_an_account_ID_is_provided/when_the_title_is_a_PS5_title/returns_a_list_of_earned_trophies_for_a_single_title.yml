@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR22792_00/trophyGroups/all/trophies?npServiceName=trophy2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4234'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Wed, 19 Jul 2023 13:19:23 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophySetVersion":"01.00","hasTrophyGroups":false,"lastUpdatedDateTime":"2021-02-14T22:07:32Z","trophies":[{"trophyId":0,"trophyHidden":false,"earned":false,"trophyType":"platinum","trophyRare":0,"trophyEarnedRate":"0.1"},{"trophyId":1,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-02T22:21:43Z","trophyType":"bronze","trophyRare":1,"trophyEarnedRate":"5.9"},{"trophyId":2,"trophyHidden":false,"earned":false,"progress":"4","progressRate":19,"progressedDateTime":"2021-02-03T20:56:29Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"1.1"},{"trophyId":3,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-03T21:15:47Z","trophyType":"gold","trophyRare":1,"trophyEarnedRate":"14.4"},{"trophyId":4,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-02T22:50:22Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"3.9"},{"trophyId":5,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-02T22:56:32Z","trophyType":"bronze","trophyRare":1,"trophyEarnedRate":"6.7"},{"trophyId":6,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-03T20:51:27Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"3.6"},{"trophyId":7,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-02T23:05:36Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"2.3"},{"trophyId":8,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-03T20:46:23Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"3.6"},{"trophyId":9,"trophyHidden":false,"earned":false,"progress":"62","progressRate":62,"progressedDateTime":"2021-02-14T22:07:31Z","trophyType":"gold","trophyRare":1,"trophyEarnedRate":"8.0"},{"trophyId":10,"trophyHidden":true,"earned":true,"earnedDateTime":"2021-02-03T21:03:46Z","trophyType":"silver","trophyRare":2,"trophyEarnedRate":"30.2"},{"trophyId":11,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"3.6"},{"trophyId":12,"trophyHidden":true,"earned":true,"earnedDateTime":"2021-02-03T21:03:33Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"2.7"},{"trophyId":13,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.5"},{"trophyId":14,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.8"},{"trophyId":15,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.1"},{"trophyId":16,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"3.7"},{"trophyId":17,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.2"},{"trophyId":18,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.2"},{"trophyId":19,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.5"},{"trophyId":20,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.5"},{"trophyId":21,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.1"},{"trophyId":22,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"1.5"},{"trophyId":23,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"1.2"},{"trophyId":24,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.2"},{"trophyId":25,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.3"},{"trophyId":26,"trophyHidden":true,"earned":false,"trophyType":"silver","trophyRare":1,"trophyEarnedRate":"5.8"},{"trophyId":27,"trophyHidden":false,"earned":false,"progress":"8","progressRate":16,"progressedDateTime":"2021-02-05T22:31:36Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"0.3"},{"trophyId":28,"trophyHidden":false,"earned":false,"progress":"5","progressRate":31,"progressedDateTime":"2021-02-04T22:29:52Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"0.4"}],"rarestTrophies":[{"trophyId":7,"trophyHidden":false,"earned":true,"earnedDateTime":"2021-02-02T23:05:36Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"2.3"}],"totalItemCount":29}'
+  recorded_at: Wed, 19 Jul 2023 13:19:22 GMT
+recorded_with: VCR 6.1.0

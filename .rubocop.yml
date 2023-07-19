@@ -6,8 +6,19 @@ require:
 AllCops:
   NewCops: enable
 
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+  Max: 18
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+
 Metrics/MethodLength:
   Max: 15
+
+RSpec/MessageSpies:
+  Enabled: false # Some specs require have_received, some receive
 
 RSpec/MultipleExpectations:
   Max: 3
