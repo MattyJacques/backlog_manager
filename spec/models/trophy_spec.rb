@@ -15,6 +15,8 @@ RSpec.describe Trophy do
   let(:trophy_list) { TrophyList.new(communication_id: 'NPWR12345_00', service: 'trophy2') }
 
   it { is_expected.to belong_to(:trophy_list) }
+  it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }
+  it { is_expected.to have_many(:psn_accounts).through(:earned_trophies) }
 
   it do
     expect(trophy).to define_enum_for(:rank).with_values(
