@@ -18,7 +18,7 @@ Metrics/MethodLength:
   Max: 15
 
 RSpec/MessageSpies:
-  Enabled: false # Some specs require have_received, some receive
+  EnforcedStyle: receive
 
 RSpec/MultipleExpectations:
   Max: 3
