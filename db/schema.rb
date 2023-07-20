@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_15_170553) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
+  create_table "account_trophy_lists", id: false, force: :cascade do |t|
+    t.integer "psn_account_id", null: false
+    t.integer "trophy_list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["psn_account_id", "trophy_list_id"], name: "unique join account trophy lists", unique: true
+  end
+
+  create_table "earned_trophies", id: false, force: :cascade do |t|
+    t.integer "psn_account_id", null: false
+    t.integer "trophy_id", null: false
+    t.datetime "earned_timestamp"
+    t.index ["psn_account_id", "trophy_id"], name: "unique join account trophies", unique: true
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.integer "igdb_id"
@@ -56,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_170553) do
   create_table "releases", force: :cascade do |t|
     t.integer "game_id", null: false
     t.integer "platform_id", null: false
-    t.integer "region", null: false
+    t.integer "region"
     t.date "date"
     t.integer "trophy_list_id"
     t.datetime "created_at", null: false
