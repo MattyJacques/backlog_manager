@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR00117_00/trophyGroups/all/trophies?npServiceName=trophy
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2897'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Fri, 21 Jul 2023 13:01:30 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophySetVersion":"01.12","hasTrophyGroups":false,"lastUpdatedDateTime":"2008-07-16T10:59:08Z","trophies":[{"trophyId":0,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:16:12Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"38.6"},{"trophyId":1,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:31:15Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"30.0"},{"trophyId":2,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:56:07Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"23.7"},{"trophyId":3,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T14:14:20Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"16.4"},{"trophyId":4,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:39:08Z","trophyType":"bronze","trophyRare":1,"trophyEarnedRate":"12.9"},{"trophyId":5,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:41:45Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"20.6"},{"trophyId":6,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:21:21Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"18.0"},{"trophyId":7,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T13:40:48Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"4.1"},{"trophyId":8,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T23:20:59Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":9,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T03:03:28Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":10,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:21:48Z","trophyType":"silver","trophyRare":2,"trophyEarnedRate":"23.9"},{"trophyId":11,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T02:13:57Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"4.8"},{"trophyId":12,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-11T07:21:16Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"2.7"},{"trophyId":13,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-09T14:25:43Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"4.9"},{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"},{"trophyId":15,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-13T06:32:41Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"1.5"},{"trophyId":16,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-16T10:55:47Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"1.2"}],"rarestTrophies":[{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"}],"totalItemCount":17}'
+  recorded_at: Fri, 21 Jul 2023 13:01:28 GMT
+recorded_with: VCR 6.1.0

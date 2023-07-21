@@ -11,19 +11,27 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
-  create_table "account_trophy_lists", id: false, force: :cascade do |t|
+  create_table "account_trophy_lists", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["psn_account_id", "trophy_list_id"], name: "unique join account trophy lists", unique: true
+    t.index ["psn_account_id"], name: "index_account_trophy_lists_on_psn_account_id"
+    t.index ["trophy_list_id"], name: "index_account_trophy_lists_on_trophy_list_id"
   end
 
-  create_table "earned_trophies", id: false, force: :cascade do |t|
+  create_table "earned_trophies", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_id", null: false
-    t.datetime "earned_timestamp"
+    t.integer "trophy_list_id", null: false
+    t.datetime "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["psn_account_id", "trophy_id"], name: "unique join account trophies", unique: true
+    t.index ["psn_account_id"], name: "index_earned_trophies_on_psn_account_id"
+    t.index ["trophy_id"], name: "index_earned_trophies_on_trophy_id"
+    t.index ["trophy_list_id"], name: "index_earned_trophies_on_trophy_list_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -114,6 +122,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
     t.index ["title_id"], name: "unique PSN title ID index", unique: true
   end
 
+  add_foreign_key "account_trophy_lists", "psn_accounts"
+  add_foreign_key "account_trophy_lists", "trophy_lists"
+  add_foreign_key "earned_trophies", "psn_accounts"
+  add_foreign_key "earned_trophies", "trophies"
+  add_foreign_key "earned_trophies", "trophy_lists"
   add_foreign_key "platforms", "platform_families"
   add_foreign_key "releases", "games"
   add_foreign_key "releases", "platforms"

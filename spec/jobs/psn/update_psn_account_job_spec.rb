@@ -43,6 +43,7 @@ RSpec.describe PSN::UpdatePSNAccountJob do
         expect(PSN::Client::User).to receive(:get_profile_from_username)
         expect(PSNAccount).to receive(:create)
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
+        expect(PSN::Services::UpdateAccountEarnedTrophies).to receive(:update).with(account.account_id)
 
         described_class.perform_now(username)
       end

@@ -24,7 +24,7 @@ RSpec.describe PSN::Client::Auth do
 
       it 'returns a NPSSO code expired error' do
         expect(Rails.logger).to receive(:error).with('PSN authorisation failed, NPSSO code has expired')
-        
+
         expect { described_class.authenticate }.to raise_error(RuntimeError,
                                                                'PSN authorisation failed, NPSSO code has expired')
       end

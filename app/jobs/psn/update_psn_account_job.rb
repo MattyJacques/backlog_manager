@@ -7,9 +7,13 @@ module PSN
     def perform(psn_id)
       Rails.logger.info("Updating trophies for #{psn_id}")
 
-      account = import_psn_account(psn_id)
+      account = PSNAccount.find_by(psn_id:) || import_psn_account(psn_id)
 
       PSN::Services::ImportAccountDefinedTrophies.import(account.account_id)
+
+      Rails.logger.info('Updating earned trophies')
+
+      PSN::Services::UpdateAccountEarnedTrophies.update(account.account_id)
 
       Rails.logger.info("Updated trophies for #{psn_id}")
     end

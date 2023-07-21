@@ -1,0 +1,199 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR00117_00/trophyGroups/all/trophies?npServiceName=trophy
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer accesstoken
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '105'
+      Server:
+      - Apache
+      Date:
+      - Fri, 21 Jul 2023 13:18:43 GMT
+      Connection:
+      - keep-alive
+      Www-Authenticate:
+      - Bearer realm="PSN"
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"error":{"referenceId":"1d6fa61f-27c9-11ee-b97f-c921f910f5e7","code":2241025,"message":"Invalid
+        token"}}'
+  recorded_at: Fri, 21 Jul 2023 13:18:40 GMT
+- request:
+    method: get
+    uri: https://ca.account.sony.com/api/authz/v3/oauth/authorize?access_type=offline&client_id=<PSN_CLIENT_ID>&redirect_uri=com.scee.psxandroid.scecompcall://redirect&response_type=code&scope=psn:mobile.v2.core%20psn:clientapp
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - npsso=<PSN_NPSSO>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Moved Temporarily
+    headers:
+      Server:
+      - nginx
+      Content-Length:
+      - '0'
+      X-Psn-Request-Id:
+      - f97b73b1148b35df244ad417cb680dde
+      X-Psn-Correlation-Id:
+      - 50ff161b-9705-4a2c-ae6a-283a87f1e47d
+      X-Requestid:
+      - f97b73b1148b35df244ad417cb680dde
+      X-Correlationid:
+      - 50ff161b-9705-4a2c-ae6a-283a87f1e47d
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - '0'
+      Location:
+      - com.scee.psxandroid.scecompcall://redirect/?code=v1.Ab23CD&cid=50ff161b-9705-4a2c-ae6a-283a87f1e47d
+      Strict-Transport-Security:
+      - max-age=31536000 ; includeSubDomains
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Date:
+      - Fri, 21 Jul 2023 13:18:43 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _abck=F1EFC894559C040C75603D3E0DBB0C0E~-1~YAAQgNERAgbF/muJAQAAhkWaeApFaIXaVQTSFn8yxPOOe/zYGG59NSkfkIo5o7NoPziFs94c00uxyojC5F2p6gmmMqC7PBFZxLxeEpk4e679VYw/fQZFKphrh/7q/lhxR9y/DuuUH9GQzF0r/mevAwIFebaInyATrkpuYbZ4Gb2gysEZIo1KIsiNdXLatTIlc3LhCf24zNnPCKaAv6OcWX4UrDgRjkRcN3KfC+JLeWvU073TedC5k4l8nDBuLM0ssgusGfw9tOgYRG60nhmzWgI+LnjNMmOBDvHO0gDCO6+NbwVSqrpmx2H2HS5t61ImAzEBGqKYVf5ALgATBM7x+Hou3b7/6pCXUUDWnBXP/UQZ86bOmT/umomsEqCOxV9B7GP7tAGNOyd48IkRvw==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Fri, 28 Jul 2023 13:18:43 GMT; Max-Age=604800;
+        Secure
+      - bm_sz=8C03A7096CCDA00043FBC97CBE844BCB~YAAQgNERAgfF/muJAQAAhkWaeBTlLgtp8gfnpKSycXWlGaVwqppVoHUahYlmyhfWl6vFDKtdCRtH0GmEwUCwcnr/7SEcgicLdWXDeFm0MpjTsMLlYdbeo/aRujuGN4wwcb16etOVaUyJIh9GA0m5+30hRCb9pvGU55LpIOp0m8BAYnoHGyvFJmTDdAqMTN6QyyXsPrkx3MLmd29ODF85TKBCVmrupqr0pquqypDiZtIV26p9TYi3mUc2HhlAl+zRDjTa+LcVBgxaG9RdM8mpIOu0cvOOCiUWXoo+zxQ9PiBElHZ3znuuIwAhqqmwkUu69xlgA2KErk254ggpZI800pyzEawTg7yi7jF5bX3y9yelm7j0xrNjFBb6DG4=~4602165~3490373;
+        Domain=.sony.com; Path=/; Expires=Fri, 21 Jul 2023 17:18:43 GMT; Max-Age=14400
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 21 Jul 2023 13:18:40 GMT
+- request:
+    method: post
+    uri: https://ca.account.sony.com/api/authz/v3/oauth/token
+    body:
+      encoding: UTF-8
+      string: code=v3.MGL2WB&grant_type=authorization_code&redirect_uri=com.scee.psxandroid.scecompcall%3A%2F%2Fredirect&token_format=jwt
+    headers:
+      User-Agent:
+      - Faraday v2.7.4
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - Basic <PSN_BASIC>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Content-Type:
+      - application/json;charset=UTF-8
+      X-Psn-Request-Id:
+      - dab9508c32739293aff63cc288efc8d0
+      X-Psn-Correlation-Id:
+      - a3c6295b-fb6a-4b94-ace6-79a1ea5889b6
+      X-Requestid:
+      - dab9508c32739293aff63cc288efc8d0
+      X-Correlationid:
+      - a3c6295b-fb6a-4b94-ace6-79a1ea5889b6
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-store
+      Content-Length:
+      - '3885'
+      Date:
+      - Fri, 21 Jul 2023 13:18:44 GMT
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - _abck=6E6FF62312D5714DD58DFFFF7EA43BB5~-1~YAAQgNERAmLF/muJAQAALkiaeApBllE2RsSnMOeImt6IY2cT055s4CpB3R6Urq4/kZFBvjkY3VhJ+4hp3B89cBSTxZzI+Q1JlOLa+bKxcaV9RkKDZ7ge7uHsJpmf6scYcelHj/QaDFl20PzvdCFiBtzgA0dR4JKYfduuixaYWsysnrZdFoia4XLHAO33Z4rV3j6dnqqfqFZ2G0HYhemwLre5F2zbKF3HBtn18YQKHtioohJ3lxh/26XA5XzEuMLdf57EHfOL7xJcKOESXBGaFRvDaCZltRKkDSXphyo+1FoXZGUHcSQCotZXSWU3xwrzAmhV3YFW4nwEkl5PBXLrAyPjbg8SKgZtKq9nVLRSz5brxwAZYl/Zo4KsImYD3CaipV9gY/SNKkI8IKZFaA==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Fri, 28 Jul 2023 13:18:44 GMT; Max-Age=604800;
+        Secure
+      - bm_sz=54889513101994F80BDB7C64219EC7D9~YAAQgNERAmPF/muJAQAALkiaeBQ2NoRf25NUoBREC8npVWAtmZEh19YD4E8e7SPNUd4T+4iVueOFMKfc2UM0N9EXlci+RvyXKiV0XkBCWcMt1KvUN3tWkBQJ2+LR8az0SDlWuIFNJzGba+Bs2SXnhZFNPmpvJRIgS5zQkeXiw4/PzHy02gLHD9k08y3UjUXc9o5fawO0+Tg+kPc33z7e062sj3kMIJaRX7HbNIlCiIxos1Us5bxwcicYgKrzyV1U+44ekiGXnF6HrrZvXREg+Hn4hxV7BPDhuqfqrqh+I/ftonXpxPtdtlN3qv4N40kkIydxKe/6dL1GMTGz+vZe/BAZMOLgJQHgVPf/OcJpZIcQ4iUHaIE3TLbnhJE=~4602165~3490373;
+        Domain=.sony.com; Path=/; Expires=Fri, 21 Jul 2023 17:18:43 GMT; Max-Age=14399
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"accesstoken","token_type":"bearer","expires_in":3599,"scope":"psn:mobile.v2.core
+        psn:clientapp","id_token":"idtoken","refresh_token":"refreshtoken","refresh_token_expires_in":5183999}'
+  recorded_at: Fri, 21 Jul 2023 13:18:41 GMT
+- request:
+    method: get
+    uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR00117_00/trophyGroups/all/trophies?npServiceName=trophy
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <PSN_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2897'
+      Server:
+      - Apache
+      Cache-Control:
+      - private
+      Date:
+      - Fri, 21 Jul 2023 13:18:44 GMT
+      Connection:
+      - keep-alive
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+    body:
+      encoding: UTF-8
+      string: '{"trophySetVersion":"01.12","hasTrophyGroups":false,"lastUpdatedDateTime":"2008-07-16T10:59:08Z","trophies":[{"trophyId":0,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:16:12Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"38.6"},{"trophyId":1,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:31:15Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"30.0"},{"trophyId":2,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:56:07Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"23.7"},{"trophyId":3,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T14:14:20Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"16.4"},{"trophyId":4,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:39:08Z","trophyType":"bronze","trophyRare":1,"trophyEarnedRate":"12.9"},{"trophyId":5,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:41:45Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"20.6"},{"trophyId":6,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:21:21Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"18.0"},{"trophyId":7,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T13:40:48Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"4.1"},{"trophyId":8,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T23:20:59Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":9,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T03:03:28Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":10,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:21:48Z","trophyType":"silver","trophyRare":2,"trophyEarnedRate":"23.9"},{"trophyId":11,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T02:13:57Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"4.8"},{"trophyId":12,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-11T07:21:16Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"2.7"},{"trophyId":13,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-09T14:25:43Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"4.9"},{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"},{"trophyId":15,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-13T06:32:41Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"1.5"},{"trophyId":16,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-16T10:55:47Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"1.2"}],"rarestTrophies":[{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"}],"totalItemCount":17}'
+  recorded_at: Fri, 21 Jul 2023 13:18:42 GMT
+recorded_with: VCR 6.1.0
