@@ -17,11 +17,20 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 15
 
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 10
+
 RSpec/MessageSpies:
-  Enabled: false # Some specs require have_received, some receive
+  EnforcedStyle: receive
 
 RSpec/MultipleExpectations:
-  Max: 3
+  Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
 
 RSpec/NestedGroups:
   Max: 4

@@ -5,6 +5,8 @@ class TrophyList < ApplicationRecord
 
   has_many :releases, dependent: :nullify
   has_many :trophies, dependent: :destroy
+  has_many :account_trophy_lists, dependent: :destroy
+  has_many :psn_accounts, through: :account_trophy_lists
 
   validates :communication_id, presence: true,
                                format: { with: /\ANPWR[0-9]{5}_00\z/ },

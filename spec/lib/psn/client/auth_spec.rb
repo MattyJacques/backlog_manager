@@ -23,9 +23,10 @@ RSpec.describe PSN::Client::Auth do
       end
 
       it 'returns a NPSSO code expired error' do
+        expect(Rails.logger).to receive(:error).with('PSN authorisation failed, NPSSO code has expired')
+
         expect { described_class.authenticate }.to raise_error(RuntimeError,
                                                                'PSN authorisation failed, NPSSO code has expired')
-        expect(Rails.logger).to have_received(:error).with('PSN authorisation failed, NPSSO code has expired')
       end
     end
 
@@ -55,9 +56,10 @@ RSpec.describe PSN::Client::Auth do
       end
 
       it 'raises a failed to fetch PSN auth code error' do
+        expect(Rails.logger).to receive(:error).with('Failed to fetch PSN auth code, location header missing')
+
         expect { described_class.authenticate }.to raise_error(RuntimeError,
                                                                'Failed to fetch PSN auth code, location header missing')
-        expect(Rails.logger).to have_received(:error).with('Failed to fetch PSN auth code, location header missing')
       end
     end
 
@@ -79,9 +81,10 @@ RSpec.describe PSN::Client::Auth do
       end
 
       it 'returns a unhandled error error' do
+        expect(Rails.logger).to receive(:error).with('Unhandled PSN auth error (no_code_for_you)')
+
         expect { described_class.authenticate }.to raise_error(RuntimeError,
                                                                'Unhandled PSN auth error (no_code_for_you)')
-        expect(Rails.logger).to have_received(:error).with('Unhandled PSN auth error (no_code_for_you)')
       end
     end
   end
