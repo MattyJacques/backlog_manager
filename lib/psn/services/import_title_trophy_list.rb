@@ -4,16 +4,17 @@ module PSN
   module Services
     class ImportTitleTrophyList
       class << self
-        def import(name, detail, communication_id, service)
-          Rails.logger.info("Importing #{name} with npCommID #{communication_id}, using #{service} service")
+        def import(name, detail, comm_id, service, icon_url)
+          Rails.logger.info("Importing #{name} with npCommID #{comm_id}, using #{service} service")
 
-          psn_trophies = PSN::Client::Trophy.title_trophy_list(communication_id, service)
+          psn_trophies = PSN::Client::Trophy.title_trophy_list(comm_id, service)
 
           trophy_list = TrophyList.create(name:,
                                           detail:,
-                                          communication_id:,
+                                          comm_id:,
                                           service:,
-                                          version: psn_trophies['trophySetVersion'])
+                                          version: psn_trophies['trophySetVersion'],
+                                          icon_url:)
 
           psn_trophies['trophies'].each { |psn_trophy| create_trophy(trophy_list, psn_trophy) }
 

@@ -5,12 +5,12 @@ module PSN
     class Trophy
       class << self
         # Get earned trophies for a title for the given account
-        def earned_trophies_for_title(communication_id, service_name, account_id)
+        def earned_trophies_for_title(comm_id, service_name, account_id)
           Rails.logger.info(
-            "Retrieving earned trophies for title #{communication_id} for #{account_id} using #{service_name} service"
+            "Retrieving earned trophies for title #{comm_id} for #{account_id} using #{service_name} service"
           )
 
-          PSN::Client::Trophy.title_trophy_list(communication_id, service_name, account_id)['trophies']
+          PSN::Client::Trophy.title_trophy_list(comm_id, service_name, account_id)['trophies']
         end
 
         def trophy_streak(account_id)

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
   # Defines the root path route ("/")
-  # root "articles#index"
+  root 'psn_accounts#index'
+
+  resources :psn_accounts, except: %i[new edit create update destroy]
+  resources :trophy_lists, except: %i[new edit create update destroy]
 end

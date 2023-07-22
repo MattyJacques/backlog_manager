@@ -1,0 +1,31 @@
+<div>
+  <h2>Accounts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">PSN ID</th>
+        <th scope="col">Games</th>
+        <th scope="col">Total Trophies</th>
+        <th scope="col">Bronze</th>
+        <th scope="col">Silver</th>
+        <th scope="col">Gold</th>
+        <th scope="col">Platinum</th>
+        <th scope="col">Platforms</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @account_data.each do |account| %>
+        <tr>
+          <td><%= link_to(account[:psn_id], psn_account_path(account[:id]), action: 'show', class: 'nav-link') %></td>
+          <td><%= account[:game_count] %></td>
+          <td><%= account[:trophy_count] %></td>
+          <td><%= account[:bronze_count] %></td>
+          <td><%= account[:silver_count] %></td>
+          <td><%= account[:gold_count] %></td>
+          <td><%= account[:platinum_count] %></td>
+          <td><%= account[:platforms] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

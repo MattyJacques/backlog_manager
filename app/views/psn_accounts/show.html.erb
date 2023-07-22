@@ -1,0 +1,29 @@
+<div>
+  <h2><%= @account.psn_id %></h2>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">NPCommID</th>
+        <th scope="col">Progress</th>
+        <th scope="col">Bronze</th>
+        <th scope="col">Silver</th>
+        <th scope="col">Gold</th>
+        <th scope="col">Platinum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @trophy_lists.each do |list| %>
+        <tr>
+          <td><%= link_to(list[:name], trophy_list_path(list[:id]), action: 'show', class: 'nav-link') %></td>
+          <td><%= list[:comm_id] %></td>
+          <td><%= list[:progress] %></td>
+          <td><%= list[:bronze_count] %></td>
+          <td><%= list[:silver_count] %></td>
+          <td><%= list[:gold_count] %></td>
+          <td><%= list[:platinum_count] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
