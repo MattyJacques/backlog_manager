@@ -9,10 +9,10 @@ RSpec.describe Trophy do
                         detail: 'Earn it',
                         icon_url: 'image.com/trophy',
                         rank: 0,
-                        trophy_list:)
+                        trophy_list_id: trophy_list.id)
   end
 
-  let(:trophy_list) { TrophyList.new(communication_id: 'NPWR12345_00', service: 'trophy2') }
+  let(:trophy_list) { TrophyList.create!(comm_id: 'NPWR12345_00', service: 'trophy2', icon_url: 'trophyicons.com') }
 
   it { is_expected.to belong_to(:trophy_list) }
   it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }

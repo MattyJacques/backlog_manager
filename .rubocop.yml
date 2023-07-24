@@ -22,12 +22,16 @@ RSpec/AnyInstance:
 
 RSpec/ExampleLength:
   Max: 10
+  Exclude:
+    - 'spec/views/**/*'
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
 RSpec/MultipleExpectations:
   Max: 5
+  Exclude:
+    - 'spec/views/**/*'
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false

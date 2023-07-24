@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
     t.index ["game_id", "platform_id", "region"], name: "unique release index", unique: true
     t.index ["game_id"], name: "index_releases_on_game_id"
     t.index ["platform_id"], name: "index_releases_on_platform_id"
-    t.index ["trophy_list_id"], name: "unique release trophy list index", unique: true
+    t.index ["trophy_list_id"], name: "index_releases_on_trophy_list_id"
   end
 
   create_table "trophies", force: :cascade do |t|
@@ -111,14 +111,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
   create_table "trophy_lists", force: :cascade do |t|
     t.string "name"
     t.string "detail"
-    t.string "communication_id", null: false
+    t.string "comm_id", null: false
     t.string "title_id"
     t.string "service", null: false
     t.integer "region"
     t.decimal "version"
+    t.string "icon_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["communication_id"], name: "unique PSN communication ID index", unique: true
+    t.index ["comm_id"], name: "unique PSN communication ID index", unique: true
     t.index ["title_id"], name: "unique PSN title ID index", unique: true
   end
 

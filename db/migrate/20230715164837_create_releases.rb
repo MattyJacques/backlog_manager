@@ -5,7 +5,7 @@ class CreateReleases < ActiveRecord::Migration[7.0]
       t.belongs_to :platform, null: false, foreign_key: true
       t.integer :region
       t.date :date
-      t.belongs_to :trophy_list, foreign_key: true, index: { unique: true, name: 'unique release trophy list index' }
+      t.belongs_to :trophy_list, foreign_key: true
 
       t.timestamps
 

@@ -1,0 +1,33 @@
+<div>
+  <h2>Games</h2>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">NPCommID</th>
+        <th scope="col">Title ID</th>
+        <th scope="col">Region</th>
+        <th scope="col">Bronze</th>
+        <th scope="col">Silver</th>
+        <th scope="col">Gold</th>
+        <th scope="col">Platinum</th>
+        <th scope="col">Platforms</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lists.each do |list| %>
+        <tr>
+          <td><%= link_to(list.name, trophy_list_path(list.id), action: 'show', class: 'nav-link') %></td>
+          <td><%= list.comm_id %></td>
+          <td><%= list.title_id %></td>
+          <td><%= list.region %></td>
+          <td><%= list.trophies.where(rank: Trophy.ranks['bronze']).count %></td>
+          <td><%= list.trophies.where(rank: Trophy.ranks['silver']).count %></td>
+          <td><%= list.trophies.where(rank: Trophy.ranks['gold']).count %></td>
+          <td><%= list.trophies.where(rank: Trophy.ranks['platinum']).count %></td>
+          <td><%= list.platforms.map { |l|  l.abbreviation }.join(', ') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -37,7 +37,7 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
     before do
       allow(PSNAccount).to receive(:find_by!).with(account_id: account.account_id).and_return(account)
       allow(PSN::Client::Trophy).to receive(:all_account_titles).and_return(all_titles_response)
-      allow(TrophyList).to receive(:find_by!).with(communication_id: np_comm_id).and_return(trophy_list)
+      allow(TrophyList).to receive(:find_by!).with(comm_id: np_comm_id).and_return(trophy_list)
       allow(trophy_list.trophies).to receive(:find_by!).and_return(trophy)
     end
 

@@ -9,6 +9,16 @@ RSpec.describe PSN::Services::ImportPSNRelease do
     let(:trophy_list) { instance_double(TrophyList) }
     let(:ps3_platform) { instance_double(Platform, abbreviation: 'PS3') }
     let(:ps4_platform) { instance_double(Platform, abbreviation: 'PS4') }
+    let(:psn_data) do
+      {
+        'trophyTitleName' => game_name,
+        'trophyTitleDetail' => 'Play, Create, Share',
+        'npCommunicationId' => 'NPWR00160_00',
+        'npServiceName' => 'trophy',
+        'trophyTitleIconUrl' => 'trophyicons.com',
+        'trophyTitlePlatform' => 'PS3,PS4'
+      }
+    end
 
     before do
       allow(Game).to receive(:create).and_return(game)
@@ -22,7 +32,7 @@ RSpec.describe PSN::Services::ImportPSNRelease do
       expect(Release).to receive(:create).with(game:, platform: ps3_platform, trophy_list:)
       expect(Release).to receive(:create).with(game:, platform: ps4_platform, trophy_list:)
 
-      described_class.import(game_name, 'Play, Create, Share', 'NPWR00160_00', 'trophy', 'PS3,PS4')
+      described_class.import(psn_data)
     end
   end
 end

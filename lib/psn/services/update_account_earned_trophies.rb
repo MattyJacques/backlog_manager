@@ -25,7 +25,7 @@ module PSN
           earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
                                                               title['npServiceName'],
                                                               psn_account.account_id)
-          trophy_list = TrophyList.find_by!(communication_id: title['npCommunicationId'])
+          trophy_list = TrophyList.find_by!(comm_id: title['npCommunicationId'])
           account_trophy_list = AccountTrophyList.find_by(psn_account:, trophy_list:)
           list_updated_at = account_trophy_list&.updated_at
 

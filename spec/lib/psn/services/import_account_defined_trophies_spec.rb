@@ -61,9 +61,9 @@ RSpec.describe PSN::Services::ImportAccountDefinedTrophies do
       let(:trophy_list) { instance_double(TrophyList) }
 
       before do
-        allow(TrophyList).to receive(:exists?).with(communication_id: psn_response.first['npCommunicationId'])
+        allow(TrophyList).to receive(:exists?).with(comm_id: psn_response.first['npCommunicationId'])
                                               .and_return(false)
-        allow(TrophyList).to receive(:exists?).with(communication_id: psn_response.second['npCommunicationId'])
+        allow(TrophyList).to receive(:exists?).with(comm_id: psn_response.second['npCommunicationId'])
                                               .and_return(true)
       end
 

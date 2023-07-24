@@ -18,14 +18,12 @@ module PSN
 
         def import_title(title)
           ActiveRecord::Base.transaction do
-            unless TrophyList.exists?(communication_id: title['npCommunicationId'])
-              PSN::Services::ImportPSNRelease.import(title['trophyTitleName'],
-                                                     title['trophyTitleDetail'],
-                                                     title['npCommunicationId'],
-                                                     title['npServiceName'],
-                                                     title['trophyTitlePlatform'])
-            end
+            PSN::Services::ImportPSNRelease.import(title) unless list_exists?(title['npCommunicationId'])
           end
+        end
+
+        def list_exists?(comm_id)
+          TrophyList.exists?(comm_id:)
         end
       end
     end
