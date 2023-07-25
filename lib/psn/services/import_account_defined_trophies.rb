@@ -11,7 +11,10 @@ module PSN
 
           Rails.logger.info("Retrieved #{titles.count} titles")
 
-          titles&.each { |title| import_title(title) }
+          titles&.map do |title|
+            import_title(title)
+            TrophyList.find_by!(comm_id: title['npCommunicationId'])
+          end
         end
 
         private

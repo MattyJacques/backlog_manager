@@ -6,6 +6,10 @@ require:
 AllCops:
   NewCops: enable
 
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'lib/spiders/**/*'
+
 Metrics/AbcSize:
   CountRepeatedAttributes: false
   Max: 18

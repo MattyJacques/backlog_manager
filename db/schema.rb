@@ -117,6 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
     t.integer "region"
     t.decimal "version"
     t.string "icon_url", null: false
+    t.string "psnp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comm_id"], name: "unique PSN communication ID index", unique: true

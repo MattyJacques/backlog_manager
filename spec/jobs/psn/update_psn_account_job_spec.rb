@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PSN::UpdatePSNAccountJob do
   describe '#perform' do
-    let(:account) { instance_double(PSNAccount, account_id: '123456789') }
+    let(:account) { instance_double(PSNAccount, psn_id: 'Hakoom', account_id: '123456789') }
 
     context 'when the PSN account does not already exist' do
       let(:username) { 'Hakoom' }
@@ -44,8 +44,9 @@ RSpec.describe PSN::UpdatePSNAccountJob do
         expect(PSNAccount).to receive(:create)
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
         expect(PSN::Services::UpdateAccountEarnedTrophies).to receive(:update).with(account.account_id)
+        expect(PSN::ScrapePSNProfileJob).to receive(:perform_now).with(account.psn_id)
 
-        described_class.perform_now(username)
+        described_class.perform_now(username, should_scrape: true)
       end
     end
   end

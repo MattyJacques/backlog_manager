@@ -25,13 +25,13 @@ http_interactions:
       Content-Length:
       - '0'
       X-Psn-Request-Id:
-      - 3c2958a510074574cf7acae60ff2724d
+      - 7cf0de2c9a652e053789550760480ed5
       X-Psn-Correlation-Id:
-      - 7c031497-7bab-4434-8838-42ab78be5f7d
+      - a4ea60c9-df6e-4900-8a80-e29213dd2537
       X-Requestid:
-      - 3c2958a510074574cf7acae60ff2724d
+      - 7cf0de2c9a652e053789550760480ed5
       X-Correlationid:
-      - 7c031497-7bab-4434-8838-42ab78be5f7d
+      - a4ea60c9-df6e-4900-8a80-e29213dd2537
       X-Content-Type-Options:
       - nosniff
       Cache-Control:
@@ -39,7 +39,7 @@ http_interactions:
       Expires:
       - '0'
       Location:
-      - com.scee.psxandroid.scecompcall://redirect/?code=v1.Ab23CD&cid=7c031497-7bab-4434-8838-42ab78be5f7d
+      - com.scee.psxandroid.scecompcall://redirect/?code=v1.Ab23CD&cid=a4ea60c9-df6e-4900-8a80-e29213dd2537
       Strict-Transport-Security:
       - max-age=31536000 ; includeSubDomains
       X-Xss-Protection:
@@ -47,25 +47,25 @@ http_interactions:
       X-Frame-Options:
       - DENY
       Date:
-      - Fri, 21 Jul 2023 13:01:29 GMT
+      - Tue, 25 Jul 2023 10:47:53 GMT
       Connection:
       - keep-alive
       Set-Cookie:
-      - _abck=5AD0CDAC34A71CD0A2AEDF8858F648D6~-1~YAAQgNERAmmQ+2uJAQAAS3+KeAp8dmyPQnuQl/4tCVDZUe8lNl9VsxHFSuznourmNHWnBtew9P3GtuPErGFHhrCqOERFB0hY2By7fINl3j90mFI1upmc0oUI/UP+zqUx1GWe+7jnzz/ca1CsD3N1/SfalZ4IyCH5JgvHaI6hUpg1VbJ2FIuJu4adKeFoxLZA1jjjYEe8cquIY9pPUOJE9Gs4EtkFX/o1jZXl6c+WbRPhh1kbsd/30jSVjpDSKGZ322PJZjs7ry5OH7+s7NvSjn1Ktu6NXE9U/JIG7tlK9FHIQAi4zlGPrZ+JxTcEG4MaDPx3v+xqtquwvnvu2AtX6brEOtLlKu7H0iARlMf8UleNdP216dvOK/6Fo7LWI0a/Ielmq9La3/2Fx2ddNg==~-1~-1~-1;
-        Domain=.sony.com; Path=/; Expires=Fri, 28 Jul 2023 13:01:29 GMT; Max-Age=604800;
+      - _abck=5E72154B316FBD46CF4927C8589CCE72~-1~YAAQLKcQAomhqHmJAQAAhJ6pjApiBNZ1YTUYp3fxWm/Tw0/tZ7AlX3il3zyuGyPHzoCWDWh/Je974YJkLpjc4egJvRO1MySxSaDAmMwhV9vW1MTCoLVCnQn9EbiMXhEZyairFKfo6UOxFieh9ZL06Dkvzb9MvOUAdqTieIh6kmAZozKTtdRnNreYmak5fPHRF0wiAoffkZfd9L9XNXz4b97kZ+ZMZ8+A2L4F/qEJav0OcYP3FaRoLF39JIiuor2USTNTWmG2cXRBL8mcS2ysiplBTO0NTNUGBmyA+Eo1a0uQS99SE7uSFr490q0aUn31HXcmPozEpdzqwcNpkmiw+FqVakRPyTbHBzkqoAS5GE3dtKevZI0oQhZ2d6T+B9X+oSKu1ejeDFILqkO93w==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Tue, 01 Aug 2023 10:47:53 GMT; Max-Age=604800;
         Secure
-      - bm_sz=21941510D52F019346B5BC2BB8A01C66~YAAQgNERAmqQ+2uJAQAAS3+KeBRTVMepzo/Ol5+S77IEU7IKc+SnMQwTZYxjA4qOpIlQx/yfGGiEcug7hJxGNMNe4Xm+CMAcDy9Smmq0mvK/eMShpGNRJikmOme0NSoEW4NVKkI5Huf123s+oIZgAY+LpSPvOMvwHoHwIKnN7YhaPucQos01v282nOcwQoBqQ+UE8ELjm1zB+X/XYeBlmxoN0DRVndE7ro+DDVDEQlmk5UFgu1bVaJbm4Y0JJTKIOFlUUUR8bm1Lhb9O1uBEvTtEQ9Ft7fwF8Ke8j2knlrbLq+qAn+x1gCZmydAHbjt1Ci/7IRH/ucr4YWKf4GtnuycNKXL25bNZto+M+d2Fyca1v6as+yD7RvZS8Qk=~3749433~3748409;
-        Domain=.sony.com; Path=/; Expires=Fri, 21 Jul 2023 17:01:29 GMT; Max-Age=14400
+      - bm_sz=924D8EC0736B9EACB8418C18F3937BDD~YAAQLKcQAoqhqHmJAQAAhJ6pjBRifJDl079fYSA3A9YrDVIZISbDY5A789U9c8n9ohU65D2F+RdzmDdP5QuyNf0PlVbDYfDaOSnxAEZvHlvm/EYoZ4PdV+iHS4yF++iaiTj19b+4ERkoQG3NhMj5cdc3oFYjxQMkD8dRNcJhIcyACE0JFSryU/7DYZsDOOHlNjeXfQnl9jG+T2LpGguA42kiZH9kHL2CSAHecGrDG3XhTKCruLKONuFLMLw5GFo0H1c3XrkNhupSdQm7r9s40YxiIwPm2+U+J1iYBMS81CPIr/yr1vR8Abcv0J7yctJ+bHgrSTJW56ME7zRGVo2V4G+8RyHbceRpn3PljLfUES6DCncL+Jdx/KInyLI=~3753521~3622200;
+        Domain=.sony.com; Path=/; Expires=Tue, 25 Jul 2023 14:47:53 GMT; Max-Age=14400
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Fri, 21 Jul 2023 13:01:27 GMT
+  recorded_at: Tue, 25 Jul 2023 10:47:52 GMT
 - request:
     method: post
     uri: https://ca.account.sony.com/api/authz/v3/oauth/token
     body:
       encoding: UTF-8
-      string: code=v3.hBMqjb&grant_type=authorization_code&redirect_uri=com.scee.psxandroid.scecompcall%3A%2F%2Fredirect&token_format=jwt
+      string: code=v3.y6xpBz&grant_type=authorization_code&redirect_uri=com.scee.psxandroid.scecompcall%3A%2F%2Fredirect&token_format=jwt
     headers:
       User-Agent:
       - Faraday v2.7.4
@@ -87,13 +87,13 @@ http_interactions:
       Content-Type:
       - application/json;charset=UTF-8
       X-Psn-Request-Id:
-      - c8ca084119807cecb94e588dcbae8a9c
+      - d21f87239f0048a35f12aa3d5a9de718
       X-Psn-Correlation-Id:
-      - b8cc0bcd-5cc4-4574-98b2-a4c5785d1b38
+      - e7115c7c-e752-4c0d-9121-6b3ff29b58ca
       X-Requestid:
-      - c8ca084119807cecb94e588dcbae8a9c
+      - d21f87239f0048a35f12aa3d5a9de718
       X-Correlationid:
-      - b8cc0bcd-5cc4-4574-98b2-a4c5785d1b38
+      - e7115c7c-e752-4c0d-9121-6b3ff29b58ca
       X-Content-Type-Options:
       - nosniff
       Cache-Control:
@@ -101,20 +101,20 @@ http_interactions:
       Content-Length:
       - '3885'
       Date:
-      - Fri, 21 Jul 2023 13:01:30 GMT
+      - Tue, 25 Jul 2023 10:47:54 GMT
       Connection:
       - keep-alive
       Set-Cookie:
-      - _abck=3535AB4D4C038FE669B38CF1466635D0~-1~YAAQgNERApCQ+2uJAQAAjYCKeArsnWdmWpJR5bTqx7hjreDXPv3kdMMh8JHr1upcruPNvDsZNBudmGodEIs/NHxOPZcfBBMNXmktbE4y1rn/2eQe6MbkEMqRpVHirE4O4yrKJD9hIIweRAj3cK79lMdr6C3RmnGdQE1nYIoWjkZUAmZ9oByRrlzB2JkKUUQ7/Ve3XelfzagshVJbMEgDMpcNNK62ZlvTL3bBRTnv1HPFO590EBzHZ0rJOJhca6XFkH7lfERr04w/R4H9QwaWTLq2seEsH+xNoilGmXVnJ9vrUQ7bA/y0dXgMwZWDdjPmprPAKJd72rdfOAjeHbWyHqBRpM5YX/zUfxp0sAbQ8u4MI8g1/5u5RjVoXR8BfZR7LRtHJ7nrWLzhz5pe0w==~-1~-1~-1;
-        Domain=.sony.com; Path=/; Expires=Fri, 28 Jul 2023 13:01:30 GMT; Max-Age=604800;
+      - _abck=22EF9F7326477A33CA1A98379309FCC4~-1~YAAQLKcQApOhqHmJAQAA+J+pjAr1PGr5ckbk9WsTPtwgiNykoluxe4kVPg/r5tsNFUuaWiSGbC/KAWY1StYQNMt/C315jjiD+jUHKG11ucwjwId4ddX8cciUf868BINlFolIZux6P1MdQTe6EPjTUY0MCWjKw/13D+wTFdJ7laVy7NDkcJX7ku19ozzl2ujkrdaWoZyS6wneDuORwItgb8v/gJ6ri7HKP1l5FZKOZmtJAkhqCJgdYhXHmCfVAcH2DlGe5962Axle22v/AcbsSN63ZlabEan6z1MeVfjMCykeOYdWqAR6KdQ08vdhGAuwPbk2nSwNVjLxRQyW0xtSZI0WlzBy+U++nM19GQdkZXJPmYYjNHDgzWmPXf7jJsAtukIDwHgXDI0/27YsUw==~-1~-1~-1;
+        Domain=.sony.com; Path=/; Expires=Tue, 01 Aug 2023 10:47:54 GMT; Max-Age=604800;
         Secure
-      - bm_sz=B1B9D8F79FD023AE26B5494801C8A853~YAAQgNERApGQ+2uJAQAAjYCKeBTTeG1N9PddwDgWF3ueD4sr0oqMn6iIQHJyd8//pBp7Z2oL6bN4sRuETfIlK19XlGTl4ZKZkgw8xP4LHGhKy0ddJ5bi3JnS2etEEkw3AZ2wT8vJza7/Tmkp2t3XYNe79OjsTJv6u/LB8szBm4sw3LVuSfubXwGseRmhqphU1LYnYgPPr6M+J5rBBNKVykkgjETgit4bfN/3wMVbGvEDfF1LHCVjCSBh4Br0qYrhtctotuTmfJXkhw8fsGXRM3MozSJUQk7XjRaRMgkj6lvIPwJUprsvCcijIwU07o4jB/hLy10HtmiQn1rJdrnmxn3YP3ZwYI6wjPsSspiTDgwGt6y89/d20woNq6g=~3749433~3748409;
-        Domain=.sony.com; Path=/; Expires=Fri, 21 Jul 2023 17:01:29 GMT; Max-Age=14399
+      - bm_sz=933643598B3CFB5DC1243CC7C26C4E11~YAAQLKcQApShqHmJAQAA+J+pjBSLfvVn8bwsTd/xPZO7KNvucl+uFgnTvtYNTRVriZozS38QSBn6wGHjp82yuP1pUhKmlsCo6fJsC8l0ePhJCjlMwHNxWcB7CBiTCWDaLvCiRxIhBqPyk4cVCsNdHf/kSdgu6JLkoUJ7lqqTSC1o6j5MaReSUE6QszNukzGU5u+LyjMJQSuM6DHpFoaFTLS656axnK69e5urqlRzFMbEiCMe1x7W/s2niS2s71thCgdoc6MGjtstSDq+cMOC6d87vC7VPBnu3UKcBwP14LQJa5278jd4zLY5QNwlQftMGj01m49bdxPqYejEEFLagoOkexGqPPPpYa1u7fk4kmXLuBQLQW8ZYso5deo=~3753521~3622200;
+        Domain=.sony.com; Path=/; Expires=Tue, 25 Jul 2023 14:47:53 GMT; Max-Age=14399
     body:
       encoding: UTF-8
       string: '{"access_token":"accesstoken","token_type":"bearer","expires_in":3599,"scope":"psn:mobile.v2.core
         psn:clientapp","id_token":"idtoken","refresh_token":"refreshtoken","refresh_token_expires_in":5183999}'
-  recorded_at: Fri, 21 Jul 2023 13:01:27 GMT
+  recorded_at: Tue, 25 Jul 2023 10:47:53 GMT
 - request:
     method: get
     uri: https://ps5.np.playstation.net/api/trophy/v1/users/6796840136244039860/npCommunicationIds/NPWR00117_00/trophyGroups/all/trophies?npServiceName=trophy
@@ -144,7 +144,7 @@ http_interactions:
       Cache-Control:
       - private
       Date:
-      - Fri, 21 Jul 2023 13:01:30 GMT
+      - Tue, 25 Jul 2023 10:47:54 GMT
       Connection:
       - keep-alive
       Strict-Transport-Security:
@@ -154,5 +154,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"trophySetVersion":"01.12","hasTrophyGroups":false,"lastUpdatedDateTime":"2008-07-16T10:59:08Z","trophies":[{"trophyId":0,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:16:12Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"38.6"},{"trophyId":1,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:31:15Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"30.0"},{"trophyId":2,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:56:07Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"23.7"},{"trophyId":3,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T14:14:20Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"16.4"},{"trophyId":4,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:39:08Z","trophyType":"bronze","trophyRare":1,"trophyEarnedRate":"12.9"},{"trophyId":5,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:41:45Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"20.6"},{"trophyId":6,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T13:21:21Z","trophyType":"bronze","trophyRare":2,"trophyEarnedRate":"18.0"},{"trophyId":7,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T13:40:48Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"4.1"},{"trophyId":8,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T23:20:59Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":9,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T03:03:28Z","trophyType":"silver","trophyRare":1,"trophyEarnedRate":"9.0"},{"trophyId":10,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-02T22:21:48Z","trophyType":"silver","trophyRare":2,"trophyEarnedRate":"23.9"},{"trophyId":11,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-03T02:13:57Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"4.8"},{"trophyId":12,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-11T07:21:16Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"2.7"},{"trophyId":13,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-09T14:25:43Z","trophyType":"bronze","trophyRare":0,"trophyEarnedRate":"4.9"},{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"},{"trophyId":15,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-13T06:32:41Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"1.5"},{"trophyId":16,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-16T10:55:47Z","trophyType":"gold","trophyRare":0,"trophyEarnedRate":"1.2"}],"rarestTrophies":[{"trophyId":14,"trophyHidden":false,"earned":true,"earnedDateTime":"2008-07-12T16:36:10Z","trophyType":"silver","trophyRare":0,"trophyEarnedRate":"0.7"}],"totalItemCount":17}'
-  recorded_at: Fri, 21 Jul 2023 13:01:27 GMT
+  recorded_at: Tue, 25 Jul 2023 10:47:53 GMT
 recorded_with: VCR 6.1.0
