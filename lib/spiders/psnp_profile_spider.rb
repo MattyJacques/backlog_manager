@@ -1,29 +1,33 @@
 # frozen_string_literal: true
 
 module Spiders
-  class PSNProfilesSpider < Spiders::Base
-    @name = 'psn_profiles_spider'
+  class PSNPProfileSpider < Spiders::Base
+    @name = 'psn_profiles'
     @engine = :mechanize
 
     def self.process(psn_id)
       Rails.logger.info("Scraping PSNProfile for PSN ID: #{psn_id}")
 
+      parse!(:parse, url: "https://psnprofiles.com/#{psn_id}")
+    end
+
+    def parse(response, url:, data: {})
       games = []
       page_num = 1
 
       loop do
-        new_games = parse!(:parse, url: "https://psnprofiles.com/#{psn_id}?completion=all&order=last-played&pf=all&page=#{page_num}")
+        new_games = request_to(:parse_games, url: "#{url}?completion=all&order=last-played&pf=all&page=#{page_num}")
 
-        break if new_games.count == 1 # There is always at least one empty element
+        break if new_games.count < 2 # There is always at least one empty element if profile is found, 0 if not found
 
         games << new_games
         page_num += 1
       end
 
-      games.flatten!.compact!
+      games&.flatten!&.compact! || []
     end
 
-    def parse(response, url:, data: {})
+    def parse_games(response, url:, data: {})
       games = response.css('//*[@id="gamesTable"] tr')
 
       games&.map do |game|

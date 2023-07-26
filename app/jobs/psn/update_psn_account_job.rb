@@ -9,10 +9,10 @@ module PSN
 
       account = PSNAccount.find_by(psn_id:) || import_psn_account(psn_id)
 
-      list_ids = import_defined_trophies(account.account_id)
+      trophy_lists = import_defined_trophies(account.account_id)
       import_earned_trophies(account.account_id)
 
-      PSN::ScrapePSNProfileJob.perform_now(psn_id, list_ids) if should_scrape
+      PSN::ScrapeProfileJob.perform_now(psn_id, trophy_lists) if should_scrape
 
       Rails.logger.info("Updated trophies for #{psn_id}")
     end

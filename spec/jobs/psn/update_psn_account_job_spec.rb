@@ -33,10 +33,13 @@ RSpec.describe PSN::UpdatePSNAccountJob do
           'following' => false
         }
       end
+      let(:trophy_lists) { [instance_double(TrophyList), instance_double(TrophyList)] }
 
       before do
         allow(PSNAccount).to receive(:create).and_return(account)
         allow(PSN::Client::User).to receive(:get_profile_from_username).with(username).and_return(psn_response)
+        allow(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
+                                                                              .and_return(trophy_lists)
       end
 
       it 'imports the account, defined trophies and earned trophies' do
@@ -44,7 +47,7 @@ RSpec.describe PSN::UpdatePSNAccountJob do
         expect(PSNAccount).to receive(:create)
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
         expect(PSN::Services::UpdateAccountEarnedTrophies).to receive(:update).with(account.account_id)
-        expect(PSN::ScrapePSNProfileJob).to receive(:perform_now).with(account.psn_id)
+        expect(PSN::ScrapeProfileJob).to receive(:perform_now).with(account.psn_id, trophy_lists)
 
         described_class.perform_now(username, should_scrape: true)
       end

@@ -52,6 +52,7 @@ RSpec.describe PSN::Services::ImportAccountDefinedTrophies do
       it 'imports all trophies defined on the account' do
         expect(PSN::Client::Trophy).to receive(:all_account_titles)
         expect(PSN::Services::ImportPSNRelease).to receive(:import).twice
+        expect(TrophyList).to receive(:find_by!).twice
 
         described_class.import(account.account_id)
       end
@@ -70,6 +71,7 @@ RSpec.describe PSN::Services::ImportAccountDefinedTrophies do
       it 'imports all trophies defined on the account' do
         expect(PSN::Client::Trophy).to receive(:all_account_titles)
         expect(PSN::Services::ImportPSNRelease).to receive(:import)
+        expect(TrophyList).to receive(:find_by!).twice
 
         described_class.import(account.account_id)
       end

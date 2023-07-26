@@ -13,8 +13,8 @@ module Spiders
         spider.public_send(handler)
       end
     ensure
-      spider.browser.quit
-      #spider.browser&.destroy_driver!
+      # spider.browser.quit
+      spider.browser&.destroy_driver!
     end
   end
 end

@@ -14,4 +14,6 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'PSN'
   inflect.acronym 'API'
+  inflect.acronym 'PSNP'
+  inflect.acronym 'PSNTL'
 end

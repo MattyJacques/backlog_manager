@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Spiders::PSNProfilesSpider, spider_specs: true do
+RSpec.describe Spiders::PSNPProfileSpider, spider_specs: true do
   let(:expected_result) do
     [
       { name: 'Fallout 3', psnp_id: '48-fallout-3' },

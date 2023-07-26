@@ -11,7 +11,7 @@ module PSN
 
       trophy_list_ids = PSN::Services::ImportAccountDefinedTrophies.import(account_id)
 
-      PSN::ScrapePSNProfileJob.perform_now(psn_id, trophy_list_ids) if should_scrape
+      PSN::ScrapeProfileJob.perform_now(psn_id, trophy_list_ids) if should_scrape
 
       Rails.logger.info("Imported trophies from #{psn_id}")
     end
@@ -19,7 +19,7 @@ module PSN
     private
 
     def account_id_from_psn_id(psn_id)
-      PSNAccount.find_by(psn_id:) || PSN::Client::User.get_profile_from_username(psn_id)['accountId']
+      PSNAccount.find_by(psn_id:)&.account_id || PSN::Client::User.get_profile_from_username(psn_id)['accountId']
     end
   end
 end
