@@ -9,6 +9,8 @@ class CreateTrophyLists < ActiveRecord::Migration[7.0]
       t.integer :region
       t.decimal :version
       t.string :icon_url, null: false
+      t.string :psnp_id
+      t.string :psntl_id
 
       t.timestamps
     end

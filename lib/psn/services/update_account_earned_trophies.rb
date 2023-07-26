@@ -12,7 +12,7 @@ module PSN
 
           Rails.logger.info("Retrieved #{titles.count} titles")
 
-          titles&.each do |title|
+          titles&.map do |title|
             ActiveRecord::Base.transaction do
               update_title(account, title)
             end
@@ -22,9 +22,6 @@ module PSN
         private
 
         def update_title(psn_account, title)
-          earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
-                                                              title['npServiceName'],
-                                                              psn_account.account_id)
           trophy_list = TrophyList.find_by!(comm_id: title['npCommunicationId'])
           account_trophy_list = AccountTrophyList.find_by(psn_account:, trophy_list:)
           list_updated_at = account_trophy_list&.updated_at
@@ -33,6 +30,9 @@ module PSN
 
           return unless list_updated_at.nil? || list_updated_at < title['lastUpdatedDateTime'].to_datetime
 
+          earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
+                                                              title['npServiceName'],
+                                                              psn_account.account_id)
           update_earned_trophies(psn_account, trophy_list, earned_data)
         end
 

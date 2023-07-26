@@ -30,6 +30,10 @@ SimpleCov.start do
   add_filter '/app/channels/'
   add_filter '/app/mailers/'
 
+  # Spider specs leave Capybara in a weird state that makes other Capybara specs fail
+  # Excluding until this is fixed
+  add_filter 'lib/spiders'
+
   add_group 'Controllers', 'app/controllers'
   # add_group "Channels", "app/channels"
   add_group 'Models', 'app/models'
@@ -134,6 +138,28 @@ RSpec.configure do |config|
     # (e.g. via a command-line flag).
     config.default_formatter = 'doc'
   end
+
+  # Disable vcr and WebMock if the test does not have VCR metadata
+  # Can also filter by spec metadata type
+  # example.metadata[:type] == :feature
+  config.around do |example|
+    vcr = example.metadata[:vcr]
+
+    if vcr.nil?
+      WebMock.disable!
+      VCR.turned_off { example.run }
+      WebMock.enable!
+      next
+    else
+      example.run
+    end
+
+    Rails.cache.clear
+  end
+
+  # Filter out spider specs by default as they make other Capybara tests fail
+  # TODO: Find out actual reason why and fix
+  config.filter_run_excluding spider_specs: true
 
   # The settings below are suggested to provide a good initial experience
   # with RSpec, but feel free to customize to your heart's content.

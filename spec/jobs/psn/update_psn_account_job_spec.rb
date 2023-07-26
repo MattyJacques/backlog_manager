@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PSN::UpdatePSNAccountJob do
   describe '#perform' do
-    let(:account) { instance_double(PSNAccount, account_id: '123456789') }
+    let(:account) { instance_double(PSNAccount, psn_id: 'Hakoom', account_id: '123456789') }
 
     context 'when the PSN account does not already exist' do
       let(:username) { 'Hakoom' }
@@ -33,10 +33,13 @@ RSpec.describe PSN::UpdatePSNAccountJob do
           'following' => false
         }
       end
+      let(:trophy_lists) { [instance_double(TrophyList), instance_double(TrophyList)] }
 
       before do
         allow(PSNAccount).to receive(:create).and_return(account)
         allow(PSN::Client::User).to receive(:get_profile_from_username).with(username).and_return(psn_response)
+        allow(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
+                                                                              .and_return(trophy_lists)
       end
 
       it 'imports the account, defined trophies and earned trophies' do
@@ -44,8 +47,9 @@ RSpec.describe PSN::UpdatePSNAccountJob do
         expect(PSNAccount).to receive(:create)
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
         expect(PSN::Services::UpdateAccountEarnedTrophies).to receive(:update).with(account.account_id)
+        expect(PSN::ScrapeProfileJob).to receive(:perform_now).with(account.psn_id, trophy_lists)
 
-        described_class.perform_now(username)
+        described_class.perform_now(username, should_scrape: true)
       end
     end
   end

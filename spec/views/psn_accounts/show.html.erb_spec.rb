@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'psn_accounts/show.html.erb' do
+  after { Capybara.reset_sessions! }
+
   before do
     assign(:account, PSNAccount.new(psn_id: 'Hakoom'))
     assign(:trophy_lists, [
