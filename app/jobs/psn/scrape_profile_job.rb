@@ -7,6 +7,11 @@ module PSN
     def perform(psn_id, trophy_lists)
       psnp_ids = Spiders::PSNPProfileSpider.process(psn_id)
       psntl_ids = Spiders::PSNTLProfileSpider.process(psn_id)
+
+      Rails.logger.info(
+        "Obtained #{psnp_ids.count} IDs from PSNP and #{psntl_ids.count} IDs from PSNTL for #{psn_id}"
+      )
+
       match_ids(trophy_lists, psnp_ids, psntl_ids) if psnp_ids.present? || psntl_ids.present?
     end
 
@@ -22,12 +27,12 @@ module PSN
         update_list(trophy_list, psnp_id, psntl_id) if psnp_id.present? || psntl_id.present?
       end
 
-      Rails.logger.info('Matched lists to PSNP')
+      Rails.logger.info('Matched lists to PSNP/PSNTL')
     end
 
     def update_list(trophy_list, psnp_id, psntl_id)
       Rails.logger.info(
-        "Matched #{trophy_list.name} to PSNP: #{psnp_id&.[](:psnp_id)} and  PSNTL: #{psntl_id&.[](:id)}"
+        "Matched #{trophy_list.name} to PSNP: #{psnp_id&.[](:psnp_id)} and PSNTL: #{psntl_id&.[](:id)}"
       )
 
       trophy_list.update!(psnp_id: psnp_id&.[](:psnp_id) || trophy_list.psnp_id,
