@@ -20,6 +20,8 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 15
+  Exclude:
+    - 'db/**/*'
 
 RSpec/AnyInstance:
   Enabled: false

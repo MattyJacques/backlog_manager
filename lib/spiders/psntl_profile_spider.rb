@@ -2,7 +2,7 @@
 
 module Spiders
   class PSNTLProfileSpider < Spiders::Base
-    @name = 'psn_trophy_leaders_profile'
+    @name = 'psntl_profile'
     @engine = :mechanize
 
     def self.process(psn_id)

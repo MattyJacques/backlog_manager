@@ -102,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
     t.string "trophy_group"
     t.string "reward_name"
     t.string "reward_url"
+    t.boolean "unobtainable", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["trophy_list_id", "psn_id"], name: "unique trophy index", unique: true
@@ -117,6 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_20_132457) do
     t.integer "region"
     t.decimal "version"
     t.string "icon_url", null: false
+    t.date "server_shutdown_date"
     t.string "psnp_id"
     t.string "psntl_id"
     t.datetime "created_at", null: false

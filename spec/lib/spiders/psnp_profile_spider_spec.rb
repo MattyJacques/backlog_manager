@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe Spiders::PSNPProfileSpider, spider_specs: true do
   let(:expected_result) do
     [
-      { name: 'Fallout 3', psnp_id: '48-fallout-3' },
-      { name: 'The Evil Within', psnp_id: '2978-the-evil-within' },
-      { name: 'Call of Duty: Black Ops', psnp_id: '436-call-of-duty-black-ops' }
+      { name: 'Fallout 3', psnp_id: '48' },
+      { name: 'The Evil Within', psnp_id: '2978' },
+      { name: 'Call of Duty: Black Ops', psnp_id: '436' }
     ]
   end
 

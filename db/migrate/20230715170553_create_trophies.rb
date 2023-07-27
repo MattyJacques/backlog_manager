@@ -12,6 +12,7 @@ class CreateTrophies < ActiveRecord::Migration[7.0]
       t.string :trophy_group
       t.string :reward_name
       t.string :reward_url
+      t.boolean :unobtainable, null: false, default: false
 
       t.timestamps
 

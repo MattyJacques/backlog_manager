@@ -2,7 +2,7 @@
 
 module Spiders
   class PSNPProfileSpider < Spiders::Base
-    @name = 'psn_profiles'
+    @name = 'psnp_profile'
     @engine = :mechanize
 
     def self.process(psn_id)
@@ -24,7 +24,7 @@ module Spiders
         page_num += 1
       end
 
-      games&.flatten!&.compact! || []
+      games&.flatten&.compact || []
     end
 
     def parse_games(response, url:, data: {})
@@ -32,8 +32,8 @@ module Spiders
 
       games&.map do |game|
         title_node = game.css('a.title')
-        if title_node&.attribute('href')&.value&.gsub!('/trophies/', '').present?
-          psnp_id = title_node.attribute('href').value.gsub!('/trophies/', '').split('/').first
+        if title_node&.attribute('href')&.value.present?
+          psnp_id = title_node.attribute('href').value.gsub!('/trophies/', '').split('-').first
 
           {
             psnp_id:,
