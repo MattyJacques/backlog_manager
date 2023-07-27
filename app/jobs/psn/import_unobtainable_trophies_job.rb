@@ -14,7 +14,9 @@ module PSN
 
       raise "PSNP+ returned an error: #{response}" unless response.success?
 
-      parse_lists(response.body['list'])
+      Rails.logger.debug { "PSNP+ response: #{response}" }
+
+      parse_lists(response['list'])
 
       Rails.logger.info('Updated unobtainable trophies')
     end
