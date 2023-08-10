@@ -30,11 +30,14 @@ module PSN
     end
 
     def update_list(list, trophy_ids)
-      # PSNP ids are one above what they are on PSN
-      psn_trophy_ids = trophy_ids.map { |id| id - 1 }
-
       ActiveRecord::Base.transaction do
-        list.trophies.where(psn_id: psn_trophy_ids).update!(unobtainable: true)
+        if trophy_ids == [0]
+          list.trophies.update!(unobtainable: true)
+        else
+          # PSNP ids are one above what they are on PSN
+          psn_trophy_ids = trophy_ids.map { |id| id - 1 }
+          list.trophies.where(psn_id: psn_trophy_ids).update!(unobtainable: true)
+        end
       end
     end
   end
