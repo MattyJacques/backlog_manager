@@ -7,11 +7,12 @@
       </a>
 
       <ul class="navbar-nav me-auto">
+        <!-- Also rendered in devise controllers so current_page? does not work -->
         <li class="nav-item">
-          <a class="nav-link <%= 'active' if current_page?(controller: 'psn_accounts') %>" href="/psn_accounts">Accounts</a>
+          <%= link_to 'Accounts', psn_accounts_path, class: "nav-link #{'active' if controller.controller_name == 'psn_accounts'}" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link <%= 'active' if current_page?(controller: 'trophy_lists') %>" href="/trophy_lists">Games</a>
+          <%= link_to 'Games', trophy_lists_path, class: "nav-link #{'active' if controller.controller_name == 'trophy_lists'}" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,12 +29,31 @@
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="disabled form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+        <input type="search"
+               class="disabled form-control form-control-dark text-bg-dark"
+               placeholder="Search..."
+               aria-label="Search">
       </form>
 
       <div class="text-end">
-        <button type="button" class="disabled btn btn-outline-light me-2">Login</button>
-        <button type="button" class="disabled btn btn-warning">Sign-up</button>
+        <% if user_signed_in? %>
+          <li class="navbar-nav me-auto nav-item dropdown">
+            <a class="nav-link dropdown-toggle profile-dropdown bg-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item disabled" href="#">My Profile</a></li>
+              <li><a class="dropdown-item disabled" href="#">Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        <% else %>
+          <div class="center">
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light me-2" %>
+            <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-warning" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </nav>
