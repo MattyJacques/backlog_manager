@@ -33,6 +33,9 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/views/**/*'
 
+RSpec/IndexedLet:
+  Enabled: false
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
@@ -45,7 +48,7 @@ RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
 
 Style/Documentation:
   Enabled: false

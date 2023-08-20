@@ -136,6 +136,8 @@ GEM
       webrick (~> 1.7)
       websocket-driver (>= 0.6, < 0.8)
     ffi (1.15.5)
+    font-awesome-sass (6.4.2)
+      sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -420,6 +422,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  font-awesome-sass
   httparty
   importmap-rails
   jbuilder

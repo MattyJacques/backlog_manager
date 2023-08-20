@@ -27,6 +27,9 @@ gem 'stimulus-rails'
 # Bootstrap CSS library
 gem 'bootstrap'
 
+# UI Icons
+gem 'font-awesome-sass'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
