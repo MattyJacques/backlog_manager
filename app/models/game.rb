@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   has_many :releases, dependent: :destroy
   has_many :platforms, through: :releases
   has_many :trophy_lists, through: :releases
+  has_many :game_statuses, dependent: :destroy
 
   FILTER_PARAMS = %i[name platform_id sort_by direction].freeze
 
