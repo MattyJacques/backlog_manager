@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Defines the root path route ("/")
-  root 'psn_accounts#index'
+  root 'games#index'
 
   devise_for :users
 

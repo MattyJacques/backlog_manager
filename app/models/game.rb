@@ -45,4 +45,8 @@ class Game < ApplicationRecord
   def self.handle_direction(games, sort_direction)
     sort_direction == 'asc' ? games : games.reverse!
   end
+
+  def status_for_user(user_id)
+    game_statuses.find_by(user_id:)
+  end
 end

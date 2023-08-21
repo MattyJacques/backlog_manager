@@ -30,6 +30,12 @@
           <%= build_order_link(label: "Platforms", sort_by: "platform") %>
           <%= sort_indicator if session.dig('game_filters', 'sort_by') == "platform" %>
         </th>
+        <% if user_signed_in? %>
+          <th scope="col">
+            <%= build_order_link(label: "Status", sort_by: "status") %>
+            <%= sort_indicator if session.dig('game_filters', 'sort_by') == "status" %>
+          </th>
+        <% end %>
       </tr>
     </thead>
     <tbody class="table-dark">
@@ -37,6 +43,16 @@
         <tr>
           <td><%= game.name %></td>
           <td><%= game.platforms.map { |l|  l.abbreviation }.join(", ") %></td>
+          <% if user_signed_in? %>
+            <td><%= select_tag(:status,
+                               options_for_select(
+                                 GameStatus.statuses
+                               ),
+                               {
+                                 include_blank: true,
+                                 class: "form-control-dark text-bg-dark form-select"
+                               }) %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
