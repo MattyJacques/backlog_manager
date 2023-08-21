@@ -10,6 +10,7 @@ RSpec.describe TrophyList do
   end
 
   it { is_expected.to have_many(:releases).dependent(:nullify) }
+  it { is_expected.to have_many(:platforms).through(:releases) }
   it { is_expected.to have_many(:trophies).dependent(:destroy) }
   it { is_expected.to have_many(:account_trophy_lists).dependent(:destroy) }
   it { is_expected.to have_many(:psn_accounts).through(:account_trophy_lists) }
