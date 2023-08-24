@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_104752) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
   create_table "account_trophy_lists", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_list_id", null: false
@@ -32,6 +32,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_104752) do
     t.index ["psn_account_id"], name: "index_earned_trophies_on_psn_account_id"
     t.index ["trophy_id"], name: "index_earned_trophies_on_trophy_id"
     t.index ["trophy_list_id"], name: "index_earned_trophies_on_trophy_list_id"
+  end
+
+  create_table "game_statuses", force: :cascade do |t|
+    t.integer "status"
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_statuses_on_game_id"
+    t.index ["user_id"], name: "index_game_statuses_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -164,6 +174,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_104752) do
   add_foreign_key "earned_trophies", "psn_accounts"
   add_foreign_key "earned_trophies", "trophies"
   add_foreign_key "earned_trophies", "trophy_lists"
+  add_foreign_key "game_statuses", "games"
+  add_foreign_key "game_statuses", "users"
   add_foreign_key "platforms", "platform_families"
   add_foreign_key "releases", "games"
   add_foreign_key "releases", "platforms"

@@ -5,5 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
-  validates :username, presence: true
+  has_many :game_statuses, dependent: :destroy
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
 end

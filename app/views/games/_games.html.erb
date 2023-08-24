@@ -30,6 +30,12 @@
           <%= build_order_link(label: "Platforms", sort_by: "platform") %>
           <%= sort_indicator if session.dig('game_filters', 'sort_by') == "platform" %>
         </th>
+        <% if user_signed_in? %>
+          <th scope="col">
+            <%= build_order_link(label: "Status", sort_by: "status") %>
+            <%= sort_indicator if session.dig('game_filters', 'sort_by') == "status" %>
+          </th>
+        <% end %>
       </tr>
     </thead>
     <tbody class="table-dark">
@@ -37,6 +43,22 @@
         <tr>
           <td><%= game.name %></td>
           <td><%= game.platforms.map { |l|  l.abbreviation }.join(", ") %></td>
+          <% if user_signed_in? %>
+            <td>
+              <%= form_with url: game_path(game.id),
+                            method: :patch,
+                            data: { controller: "update-game-status", update_game_status_target: "form", turbo_frame: "games" } do |f| %>
+                <%= f.select :status,
+                             options_for_select(
+                               GameStatus.statuses.keys,
+                               game.status_for_user(current_user.id)&.status
+                             ),
+                             { include_blank: true },
+                             data: { action: "change->update-game-status#update" },
+                             class: "form-control-dark text-bg-dark form-select" %>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

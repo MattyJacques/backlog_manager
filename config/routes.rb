@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # Defines the root path route ("/")
-  root 'psn_accounts#index'
+  root 'games#index'
 
   devise_for :users
 
-  resources :games, except: %i[new edit create update destroy] do
+  resources :games, except: %i[new edit create destroy] do
     collection do
       get 'list'
     end
