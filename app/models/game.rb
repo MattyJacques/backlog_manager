@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
+  FILTER_PARAMS = %i[name platform_id sort_by direction].freeze
+
   has_many :releases, dependent: :destroy
   has_many :platforms, through: :releases
   has_many :trophy_lists, through: :releases
   has_many :game_statuses, dependent: :destroy
-
-  FILTER_PARAMS = %i[name platform_id sort_by direction].freeze
 
   validates :name, presence: true
   validates :igdb_id, numericality: { only_integer: true }, uniqueness: true, allow_nil: true
@@ -17,7 +17,7 @@ class Game < ApplicationRecord
 
   class << self
     def filter(filters)
-      games = Game.includes(:releases, :platforms, :trophy_lists).by_name(filters['name'])
+      games = Game.includes(:releases, :platforms, :game_statuses).by_name(filters['name'])
       games = games.by_platform(filters['platform_id']) if filters['platform_id'].present?
 
       sort_list(games, filters['sort_by'], filters['direction'])
@@ -52,6 +52,6 @@ class Game < ApplicationRecord
   # class << self
 
   def status_for_user(user_id)
-    game_statuses.find_by(user_id:)
+    game_statuses.find(user_id:).first
   end
 end

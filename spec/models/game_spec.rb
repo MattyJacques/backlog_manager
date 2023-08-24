@@ -49,7 +49,7 @@ RSpec.describe Game do
     let(:game_relation) { ActiveRecord::Relation.new(described_class) }
 
     before do
-      allow(described_class).to receive(:includes).with(:releases, :platforms, :trophy_lists)
+      allow(described_class).to receive(:includes).with(:releases, :platforms, :game_statuses)
                                                   .and_return(game_relation)
     end
 
@@ -180,7 +180,7 @@ RSpec.describe Game do
     let(:game_status) { instance_double(GameStatus, status: :wishlist) }
 
     before do
-      allow(game_with_status.game_statuses).to receive(:find_by).and_return(game_status)
+      allow(game_with_status.game_statuses).to receive(:find).and_return([game_status])
     end
 
     it 'returns the status for the user' do
