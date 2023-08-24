@@ -172,4 +172,19 @@ RSpec.describe Game do
       end
     end
   end
+
+  describe '#status_for_user' do
+    let(:game_with_status) do
+      described_class.new(name: 'The Last of Us')
+    end
+    let(:game_status) { instance_double(GameStatus, status: :wishlist) }
+
+    before do
+      allow(game_with_status.game_statuses).to receive(:find_by).and_return(game_status)
+    end
+
+    it 'returns the status for the user' do
+      expect(game_with_status.status_for_user(1)).to eql(game_status)
+    end
+  end
 end

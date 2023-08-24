@@ -44,14 +44,20 @@
           <td><%= game.name %></td>
           <td><%= game.platforms.map { |l|  l.abbreviation }.join(", ") %></td>
           <% if user_signed_in? %>
-            <td><%= select_tag(:status,
-                               options_for_select(
-                                 GameStatus.statuses
-                               ),
-                               {
-                                 include_blank: true,
-                                 class: "form-control-dark text-bg-dark form-select"
-                               }) %></td>
+            <td>
+              <%= form_with url: game_path(game.id),
+                            method: :patch,
+                            data: { controller: "update-game-status", update_game_status_target: "form", turbo_frame: "games" } do |f| %>
+                <%= f.select :status,
+                             options_for_select(
+                               GameStatus.statuses.keys,
+                               game.status_for_user(current_user.id)&.status
+                             ),
+                             { include_blank: true },
+                             data: { action: "change->update-game-status#update" },
+                             class: "form-control-dark text-bg-dark form-select" %>
+              <% end %>
+            </td>
           <% end %>
         </tr>
       <% end %>
