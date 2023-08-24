@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'games/index.html.erb' do
   let(:best_game) do
-    instance_double(Game, id: 1, name: 'Best Game', platforms: [ps3], status_for_user: nil)
+    instance_double(Game, id: 1, name: 'Best Game', platforms: [ps3], game_statuses: [])
   end
   let(:second_best_game) do
-    instance_double(Game, id: 2, name: 'Second Best Game', platforms: [ps4], status_for_user: nil)
+    instance_double(Game, id: 2, name: 'Second Best Game', platforms: [ps4], game_statuses: [])
   end
   let(:ps3) do
     instance_double(Platform, id: 1, abbreviation: 'PS3')
@@ -35,10 +35,10 @@ RSpec.describe 'games/index.html.erb' do
 
   context 'when a user is logged in' do
     let(:user) { User.create!(email: 'testing@email.com', username: 'Tester123', password: 'password123') }
-    let(:best_game_status) { instance_double(GameStatus, status: :wishlist) }
+    let(:best_game_status) { instance_double(GameStatus, status: :wishlist, user_id: user.id) }
 
     before do
-      allow(best_game).to receive(:status_for_user).with(user.id).and_return(best_game_status)
+      allow(best_game).to receive(:game_statuses).and_return([best_game_status])
     end
 
     it 'renders a list of games with statuses' do

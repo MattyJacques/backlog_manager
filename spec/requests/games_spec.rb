@@ -40,15 +40,15 @@ RSpec.describe 'Games' do
   describe 'PATCH /update' do
     context 'when user is signed in' do
       let(:user) { User.create!(email: 'testing@email.com', username: 'Tester123', password: 'password123') }
-      let(:game_status) { instance_double(GameStatus, status:) }
+      let(:game_status) { instance_double(GameStatus, status:, user_id: user.id) }
       let(:status) { 'ready_to_play' }
 
       before do
         allow(Game).to receive(:find).with(best_game.id).and_return(best_game)
         allow(GameStatus).to receive(:find_or_initialize_by).with(game_id: best_game.id, user_id: user.id)
                                                             .and_return(game_status)
-        allow(best_game).to receive(:status_for_user).with(user.id).and_return(game_status)
-        allow(second_best_game).to receive(:status_for_user).with(user.id).and_return(nil)
+        allow(best_game).to receive(:game_statuses).and_return([game_status])
+        allow(second_best_game).to receive(:game_statuses).and_return([])
       end
 
       it 'returns http success and updates game' do
