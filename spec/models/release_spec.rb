@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Release do
-  subject(:release) { described_class.new }
+  subject(:release) { build(:release) }
 
   it { is_expected.to belong_to(:game) }
   it { is_expected.to belong_to(:platform) }

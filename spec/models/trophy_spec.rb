@@ -3,16 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Trophy do
-  subject(:trophy) do
-    described_class.new(psn_id: 0,
-                        name: 'So Shiny',
-                        detail: 'Earn it',
-                        icon_url: 'image.com/trophy',
-                        rank: 0,
-                        trophy_list_id: trophy_list.id)
-  end
-
-  let(:trophy_list) { TrophyList.create!(comm_id: 'NPWR12345_00', service: 'trophy2', icon_url: 'trophyicons.com') }
+  subject(:trophy) { build(:trophy) }
 
   it { is_expected.to belong_to(:trophy_list) }
   it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }

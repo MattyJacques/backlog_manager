@@ -52,6 +52,6 @@ class Game < ApplicationRecord
   # class << self
 
   def status_for_user(user_id)
-    game_statuses.find(user_id:).first
+    game_statuses.find(user_id:)
   end
 end

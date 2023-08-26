@@ -84,6 +84,9 @@ group :development, :test do
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+
+  # Easy test object setup
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -117,4 +120,7 @@ group :test do
 
   # Record responses to HTTP requests to avoid requests in tests
   gem 'vcr'
+
+  # Convient database cleaning strategy to help testing
+  gem 'database_cleaner-active_record'
 end

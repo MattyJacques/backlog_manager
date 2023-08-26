@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
   end
 
   create_table "game_statuses", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", null: false
     t.integer "user_id", null: false
     t.integer "game_id", null: false
     t.datetime "created_at", null: false
