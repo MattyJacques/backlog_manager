@@ -6,7 +6,7 @@ RSpec.describe 'psn_accounts/show.html.erb' do
   after { Capybara.reset_sessions! }
 
   before do
-    assign(:account, PSNAccount.new(psn_id: 'Hakoom'))
+    assign(:account, build(:psn_account))
     assign(:trophy_lists, [
              {
                id: 1,

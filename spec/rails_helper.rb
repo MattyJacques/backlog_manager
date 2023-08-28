@@ -67,6 +67,10 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include FactoryBot::Syntax::Methods
+
+  # Add local support files
+  config.extend ControllerMacros, type: :controller
+  config.extend ControllerMacros, type: :view
 end
 
 # Initialise shoulda matchers
