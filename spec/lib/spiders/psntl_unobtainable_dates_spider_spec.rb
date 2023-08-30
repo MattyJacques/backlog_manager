@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Spiders::PSNTLUnobtainableDatesSpider, spider_specs: true do
   describe '.process' do
     let(:psntl_id) { 'mag-ps3' }
-    let(:trophy_list) { instance_double(TrophyList) }
+    let(:trophy_list) { build(:trophy_list, psntl_id:) }
 
     before do
       allow(TrophyList).to receive(:find_by!).with(psntl_id:).and_return(trophy_list)
