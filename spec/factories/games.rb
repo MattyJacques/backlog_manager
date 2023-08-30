@@ -8,5 +8,13 @@ FactoryBot.define do
     factory :game_with_platform do
       platforms { [association(:platform)] }
     end
+
+    factory :released_game do
+      releases { [association(:release)] }
+    end
+
+    factory :game_with_trophies do
+      releases { [association(:release_with_trophies)] }
+    end
   end
 end

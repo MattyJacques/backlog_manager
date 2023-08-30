@@ -4,5 +4,9 @@ FactoryBot.define do
   factory :release do
     game { association(:game) }
     platform { association(:platform) }
+
+    factory :release_with_trophies do
+      trophy_list { association(:trophy_list) }
+    end
   end
 end

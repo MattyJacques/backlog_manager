@@ -7,8 +7,6 @@ FactoryBot.define do
     icon_url { 'trophyicons.com/image' }
     rank { Trophy.ranks[:bronze] }
 
-    trophy_list { association(:trophy_list) }
-
-    sequence(:psn_id) { |n| "NPWR#{format('%05d', n)}_00" }
+    sequence(:psn_id) { |n| n }
   end
 end

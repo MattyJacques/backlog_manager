@@ -3,19 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Games' do
-  let(:best_game) do
-    instance_double(Game, id: 1, name: 'Best Game', platforms: [ps3])
-  end
-  let(:second_best_game) do
-    instance_double(Game, id: 2, name: 'Second Best Game', platforms: [ps4])
-  end
-  let(:ps3) do
-    instance_double(Platform, id: 1, abbreviation: 'PS3')
-  end
-  let(:ps4) do
-    instance_double(Platform, id: 2, abbreviation: 'PS4')
-  end
-  let(:games) { [best_game, second_best_game] }
+  let(:game1) { build(:game) }
+  let(:game2) { build(:game) }
+  let(:games) { [game1, game2] }
 
   before do
     allow(Game).to receive(:filter).and_return(games)
@@ -39,23 +29,22 @@ RSpec.describe 'Games' do
 
   describe 'PATCH /update' do
     context 'when user is signed in' do
-      let(:user) { User.create!(email: 'testing@email.com', username: 'Tester123', password: 'password123') }
-      let(:game_status) { instance_double(GameStatus, status:, user_id: user.id) }
+      let(:game) { build(:game, game_statuses: [game_status]) }
+      let(:user) { create(:user) }
+      let(:game_status) { build(:game_status, :wishlist, user:) }
       let(:status) { 'ready_to_play' }
 
       before do
-        allow(Game).to receive(:find).with(best_game.id).and_return(best_game)
-        allow(GameStatus).to receive(:find_or_initialize_by).with(game_id: best_game.id, user_id: user.id)
+        allow(Game).to receive(:find).with(game.id).and_return(game)
+        allow(GameStatus).to receive(:find_or_initialize_by).with(game_id: game.id, user_id: user.id)
                                                             .and_return(game_status)
-        allow(best_game).to receive(:game_statuses).and_return([game_status])
-        allow(second_best_game).to receive(:game_statuses).and_return([])
       end
 
       it 'returns http success and updates game' do
         expect(game_status).to receive(:update!).with(status:)
 
         sign_in(user)
-        patch game_url(id: best_game.id, status:)
+        patch game_url(id: game.id, status:)
 
         expect(response).to have_http_status(:success)
       end
