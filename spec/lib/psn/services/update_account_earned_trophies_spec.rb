@@ -4,12 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
   describe '.update', :vcr do
-    let(:account) do
-      instance_double(PSNAccount,
-                      id: 1,
-                      account_id: '6796840136244039860',
-                      earned_trophies: instance_double(ActiveRecord::Relation))
-    end
+    let(:account) { build(:psn_account, :account_id) }
     let(:all_titles_response) do
       [
         {
@@ -31,8 +26,8 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
     end
     let(:np_comm_id) { 'NPWR00117_00' }
     let(:last_update_timestamp) { DateTime.now.to_s }
-    let(:trophy_list) { instance_double(TrophyList, id: 1, trophies: instance_double(ActiveRecord::Relation)) }
-    let(:trophy) { instance_double(Trophy) }
+    let(:trophy_list) { build(:trophy_list, trophy_count: 1) }
+    let(:trophy) { trophy_list.trophies.first }
 
     before do
       allow(PSNAccount).to receive(:find_by!).with(account_id: account.account_id).and_return(account)
@@ -55,8 +50,7 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
     end
 
     context 'when title has not been updated on psn' do
-      # instance_double does not seem to work alongside the touch method
-      let(:account_trophy_list) { AccountTrophyList.new(updated_at: DateTime.tomorrow) }
+      let(:account_trophy_list) { build(:account_trophy_list, updated_at: DateTime.tomorrow) }
 
       before do
         allow(AccountTrophyList).to receive(:find_by).and_return(account_trophy_list)
@@ -72,9 +66,8 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
     end
 
     context 'when a trophy timestamp has been updated to earlier time' do
-      # instance_double does not seem to work alongside the touch method
-      let(:account_trophy_list) { AccountTrophyList.new(updated_at: DateTime.yesterday) }
-      let(:earned_trophy) { instance_double(EarnedTrophy) }
+      let(:account_trophy_list) { build(:account_trophy_list, updated_at: DateTime.yesterday) }
+      let(:earned_trophy) { build(:earned_trophy) }
 
       before do
         allow(AccountTrophyList).to receive(:find_by).and_return(account_trophy_list)

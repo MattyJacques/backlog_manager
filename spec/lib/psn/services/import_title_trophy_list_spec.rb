@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PSN::Services::ImportTitleTrophyList do
   describe '.import', :vcr do
-    let(:trophy_list) { instance_double(TrophyList) }
+    let(:trophy_list) { build(:trophy_list) }
 
     before do
       allow(TrophyList).to receive(:create).and_return(trophy_list)

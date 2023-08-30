@@ -3,5 +3,9 @@
 FactoryBot.define do
   factory :psn_account do
     sequence(:psn_id) { |n| "PSN Player #{n}" }
+
+    trait :account_id do
+      account_id { '6796840136244039860' }
+    end
   end
 end

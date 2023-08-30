@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :trophy_list do
     transient do
-      trophy_count { 5 }
+      trophy_count { 0 }
     end
 
     service { 'trophy' }

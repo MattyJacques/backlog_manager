@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe PSN::Services::ImportPSNRelease do
   describe '.import', :vcr do
     let(:game_name) { 'LittleBigPlanet™' }
-    let(:game) { instance_double(Game) }
-    let(:trophy_list) { instance_double(TrophyList) }
-    let(:ps3_platform) { instance_double(Platform, abbreviation: 'PS3') }
-    let(:ps4_platform) { instance_double(Platform, abbreviation: 'PS4') }
+    let(:game) { build(:game) }
+    let(:trophy_list) { build(:trophy_list) }
+    let(:ps3_platform) { build(:platform, abbreviation: 'PS3') }
+    let(:ps4_platform) { build(:platform, abbreviation: 'PS4') }
     let(:psn_data) do
       {
         'trophyTitleName' => game_name,
