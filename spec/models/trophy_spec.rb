@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Trophy do
-  subject(:trophy) { build(:trophy) }
+  subject(:trophy) { build(:trophy_with_list) }
 
   it { is_expected.to belong_to(:trophy_list) }
   it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }
