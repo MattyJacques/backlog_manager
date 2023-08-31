@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PSN::ImportDefinedTrophiesJob do
-  let(:account) { instance_double(PSNAccount, psn_id: 'Hakoom', account_id: '6796840136244039860') }
+  let(:account) { build(:psn_account, psn_id: 'Hakoom', account_id: '6796840136244039860') }
 
   describe '#perform' do
     context 'when account_id exists in database' do
@@ -17,7 +17,7 @@ RSpec.describe PSN::ImportDefinedTrophiesJob do
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
         expect(PSN::ScrapeProfileJob).to receive(:perform_now)
 
-        described_class.perform_now('Hakoom', should_scrape: true)
+        described_class.perform_now(account.psn_id, should_scrape: true)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe PSN::ImportDefinedTrophiesJob do
         expect(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
         expect(PSN::ScrapeProfileJob).to receive(:perform_now)
 
-        described_class.perform_now('Hakoom', should_scrape: true)
+        described_class.perform_now(account.psn_id, should_scrape: true)
       end
     end
   end

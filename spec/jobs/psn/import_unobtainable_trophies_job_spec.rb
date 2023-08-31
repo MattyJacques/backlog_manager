@@ -19,17 +19,17 @@ RSpec.describe PSN::ImportUnobtainableTrophiesJob do
     end
 
     context 'when the PSNP+ list request is successful', :vcr do
-      let(:gta_iv_list) { instance_double(TrophyList, psnp_id: '13') }
-      let(:gta_v_list) { instance_double(TrophyList, psnp_id: '20') }
+      let(:trophy_list1) { build(:trophy_list, trophy_count: 1, psnp_id: '13') }
+      let(:trophy_list2) { build(:trophy_list, trophy_count: 1, psnp_id: '20') }
       let(:trophy_relation) { instance_double(ActiveRecord::Relation) }
-      let(:gta_iv_trophy) { instance_double(Trophy) }
-      let(:gta_v_trophy) { instance_double(Trophy) }
+      let(:trophy1) { trophy_list1.trophies.first }
+      let(:trophy2) { trophy_list2.trophies.first }
 
       before do
         allow(TrophyList).to receive(:where).with(psnp_id: anything)
-                                            .and_return([gta_iv_list, gta_v_list])
-        allow(gta_iv_list).to receive(:trophies).and_return(trophy_relation)
-        allow(gta_v_list).to receive(:trophies).and_return(trophy_relation)
+                                            .and_return([trophy_list1, trophy_list2])
+        allow(trophy_list1).to receive(:trophies).and_return(trophy_relation)
+        allow(trophy_list2).to receive(:trophies).and_return(trophy_relation)
         allow(trophy_relation).to receive(:where).with(psn_id: anything)
                                                  .and_return(trophy_relation)
         allow(trophy_relation).to receive(:where).with(psn_id: anything)

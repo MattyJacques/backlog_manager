@@ -14,7 +14,8 @@ FactoryBot.define do
     end
 
     factory :game_with_trophies do
-      releases { [association(:release_with_trophies)] }
+      releases { [association(:release_with_trophies, game: instance)] }
+      trophy_lists { releases.map(&:trophy_list) }
     end
   end
 end
