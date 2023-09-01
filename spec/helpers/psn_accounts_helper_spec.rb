@@ -3,27 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe PSNAccountsHelper do
-  let(:account) do
-    instance_double(PSNAccount,
-                    id: 700,
-                    psn_id: 'Hakoom',
-                    plus: false,
-                    account_trophy_lists:)
-  end
-  let(:account_trophy_lists) { instance_double(ActiveRecord::Relation, count: 1) }
-  let(:trophy_list) do
-    instance_double(TrophyList,
-                    id: 800,
-                    name: 'Trophy Clicker',
-                    detail: 'Click for instant Platinum!',
-                    comm_id: 'NPWR12345_00',
-                    service: 'trophy2',
-                    icon_url: 'trophyicons.com',
-                    platforms: [platform])
-  end
-  let(:account_list) { instance_double(AccountTrophyList, trophy_list:) }
-  let(:platform) { instance_double(Platform, name: 'Game Player', abbreviation: 'GP') }
-  let(:release) { instance_double(Release, game:, platform:) }
+  let(:account) { build(:psn_account, account_trophy_lists: [account_list]) }
+  let(:account_list) { build(:account_trophy_list, trophy_list:) }
+  let(:trophy_list) { build(:trophy_list, releases: [release], platforms: [platform]) }
+  let(:platform) { build(:platform) }
+  let(:release) { build(:release, platform:) }
   let(:earned_trophies) { instance_double(ActiveRecord::Relation, count: 1) }
   let(:earned_trophy) { instance_double(EarnedTrophy, psn_account: account, trophy_list:, trophy:) }
   let(:trophy) do
@@ -61,7 +45,8 @@ RSpec.describe PSNAccountsHelper do
     end
 
     before do
-      allow(account_trophy_lists).to receive(:preload).with(trophy_list: :platforms).and_return([account_list])
+      allow(account.account_trophy_lists).to receive(:preload).and_return(account.account_trophy_lists)
+      allow(account.account_trophy_lists).to receive(:count).and_return(1)
     end
 
     it 'retrurns a hash containing account data' do

@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :platform do
     sequence(:name) { |n| "GamePlayer #{n}" }
+    sequence(:abbreviation) { |n| "GP #{n}" }
 
     factory :platform_with_family do
       platform_family
