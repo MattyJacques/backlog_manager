@@ -54,12 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
     t.index ["igdb_id"], name: "unique game IGDB ID index", unique: true
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "platform_families", force: :cascade do |t|
     t.string "name", null: false
     t.integer "igdb_id"

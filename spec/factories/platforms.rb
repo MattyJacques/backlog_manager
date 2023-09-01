@@ -6,7 +6,7 @@ FactoryBot.define do
     sequence(:abbreviation) { |n| "GP #{n}" }
 
     factory :platform_with_family do
-      platform_family
+      platform_family { association(:platform_family) }
     end
   end
 end

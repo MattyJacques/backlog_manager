@@ -6,10 +6,9 @@ FactoryBot.define do
       trophy_count { 0 }
     end
 
+    sequence(:comm_id) { |n| "NPWR#{format('%05d', n)}_00" }
     service { 'trophy' }
     icon_url { 'trophyicons.com' }
-
-    sequence(:comm_id) { |n| "NPWR#{format('%05d', n)}_00" }
 
     trophies do
       Array.new(trophy_count) { association(:trophy, trophy_list: instance) }
