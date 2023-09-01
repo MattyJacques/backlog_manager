@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe TrophyList do
-  subject(:trophy_list) do
-    described_class.new(comm_id: 'NPWR12345_00',
-                        service: 'trophy2',
-                        icon_url: 'trophyicons.com')
-  end
+  subject(:trophy_list) { build(:trophy_list) }
 
   it { is_expected.to have_many(:releases).dependent(:nullify) }
   it { is_expected.to have_many(:platforms).through(:releases) }

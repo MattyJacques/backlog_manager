@@ -3,21 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe 'PSNAccounts' do
-  let(:account) { PSNAccount.new(psn_id: 'Hakoom', plus: false) }
-  let(:trophy_list) { TrophyList.create!(comm_id: 'NPWR12345_00', service: 'trophy2', icon_url: 'trophyicons.com') }
-
   describe 'GET /index' do
     context 'when some PSNAccount records exist' do
+      let(:account_no_lists) { create(:psn_account) }
+      let(:account_with_lists) { create(:psn_account) }
+      let(:game) { create(:game_with_trophies) }
+      let(:account_trophy_list) do
+        create(:account_trophy_list, psn_account: account_with_lists, trophy_list: game.trophy_lists.first)
+      end
+
       before do
-        game = Game.create!(name: 'Testing 1 2')
-        platform = Platform.create!(name: 'Game Player', abbreviation: 'GP')
-        Release.create!(game:, platform:)
-        AccountTrophyList.create!(psn_account: account, trophy_list:)
+        create_list(:earned_trophy,
+                    5,
+                    psn_account: account_trophy_list.psn_account,
+                    trophy_list: account_trophy_list.trophy_list)
       end
 
       it 'renders a successful response' do
-        account.save!
-
         get psn_accounts_url
 
         expect(response).to be_successful
@@ -35,23 +37,36 @@ RSpec.describe 'PSNAccounts' do
 
   describe 'GET /show' do
     context 'when the PSNAccount record exists' do
-      before do
-        AccountTrophyList.create!(psn_account: account, trophy_list:)
-        trophy = Trophy.create!(psn_id: 0,
-                                name: 'So Shiny',
-                                detail: 'Earn it',
-                                icon_url: 'image.com/trophy',
-                                rank: 0,
-                                trophy_list:)
-        EarnedTrophy.create!(psn_account: account, trophy_list:, trophy:)
+      let(:account) { create(:psn_account) }
+
+      context 'when PSNAccount has trophies' do
+        let(:game) { create(:game_with_trophies) }
+        let(:account_trophy_list) do
+          create(:account_trophy_list, psn_account: account, trophy_list: game.trophy_lists.first)
+        end
+
+        before do
+          create_list(:earned_trophy,
+                      5,
+                      psn_account: account_trophy_list.psn_account,
+                      trophy_list: account_trophy_list.trophy_list)
+        end
+
+        it 'renders a successful response' do
+          get psn_account_url(account_trophy_list.psn_account)
+
+          expect(response).to be_successful
+        end
       end
 
-      it 'renders a successful response' do
-        account.save!
+      context 'when PSNAccount has no trophies' do
+        let(:account) { create(:psn_account) }
 
-        get psn_account_url(account)
+        it 'renders a successful response' do
+          get psn_account_url(account)
 
-        expect(response).to be_successful
+          expect(response).to be_successful
+        end
       end
     end
 

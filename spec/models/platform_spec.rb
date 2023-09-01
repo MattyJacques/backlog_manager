@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Platform do
-  subject(:platform) do
-    described_class.new(name: 'PlayStation 5')
-  end
+  subject(:platform) { build(:platform) }
 
   it { is_expected.to have_many(:games).through(:releases) }
   it { is_expected.to have_many(:releases).dependent(:destroy) }

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PSN::Services::ImportAccountDefinedTrophies do
   describe '.import' do
-    let(:account) { instance_double(PSNAccount, account_id: '123456789') }
+    let(:account) { build(:psn_account, :account_id) }
     let(:psn_response) do
       [
         {
@@ -59,8 +59,6 @@ RSpec.describe PSN::Services::ImportAccountDefinedTrophies do
     end
 
     context 'when some titles are already imported' do
-      let(:trophy_list) { instance_double(TrophyList) }
-
       before do
         allow(TrophyList).to receive(:exists?).with(comm_id: psn_response.first['npCommunicationId'])
                                               .and_return(false)

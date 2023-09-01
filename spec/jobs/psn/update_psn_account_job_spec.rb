@@ -4,14 +4,13 @@ require 'rails_helper'
 
 RSpec.describe PSN::UpdatePSNAccountJob do
   describe '#perform' do
-    let(:account) { instance_double(PSNAccount, psn_id: 'Hakoom', account_id: '123456789') }
+    let(:account) { build(:psn_account, :account_id) }
 
     context 'when the PSN account does not already exist' do
-      let(:username) { 'Hakoom' }
       let(:psn_response) do
         {
-          'onlineId' => username,
-          'accountId' => '6796840136244039860',
+          'onlineId' => account.psn_id,
+          'accountId' => account.account_id,
           'npId' => 'SGFrb29tQGEyLnVz',
           'avatarUrls' => [
             { 'size' => 'l', 'avatarUrl' => 'http://static-resource.np.community.playstation.net/avatar/WWS_A/UP90001010001l.png' }
@@ -33,11 +32,11 @@ RSpec.describe PSN::UpdatePSNAccountJob do
           'following' => false
         }
       end
-      let(:trophy_lists) { [instance_double(TrophyList), instance_double(TrophyList)] }
+      let(:trophy_lists) { create_list(:trophy_list, 2) }
 
       before do
         allow(PSNAccount).to receive(:create).and_return(account)
-        allow(PSN::Client::User).to receive(:get_profile_from_username).with(username).and_return(psn_response)
+        allow(PSN::Client::User).to receive(:get_profile_from_username).with(account.psn_id).and_return(psn_response)
         allow(PSN::Services::ImportAccountDefinedTrophies).to receive(:import).with(account.account_id)
                                                                               .and_return(trophy_lists)
       end
@@ -49,7 +48,7 @@ RSpec.describe PSN::UpdatePSNAccountJob do
         expect(PSN::Services::UpdateAccountEarnedTrophies).to receive(:update).with(account.account_id)
         expect(PSN::ScrapeProfileJob).to receive(:perform_now).with(account.psn_id, trophy_lists)
 
-        described_class.perform_now(username, should_scrape: true)
+        described_class.perform_now(account.psn_id, should_scrape: true)
       end
     end
   end

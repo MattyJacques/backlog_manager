@@ -3,13 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'TrophyLists' do
-  let(:trophy_list) { TrophyList.create!(comm_id: 'NPWR12345_00', service: 'trophy2', icon_url: 'trophyicons.com') }
-
   describe 'GET /index' do
     context 'when some TrophyList records exist' do
-      it 'returns a successful response' do
-        trophy_list.save!
+      let(:trophy_list) { create(:trophy_list) }
 
+      it 'returns a successful response' do
         get trophy_lists_url
 
         expect(response).to be_successful
@@ -27,6 +25,8 @@ RSpec.describe 'TrophyLists' do
 
   describe 'GET /show' do
     context 'when the TrophyList record exists' do
+      let(:trophy_list) { create(:trophy_list) }
+
       it 'renders a successful response' do
         get trophy_list_url(trophy_list)
 

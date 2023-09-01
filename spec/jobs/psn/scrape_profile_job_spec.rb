@@ -5,10 +5,11 @@ require 'rails_helper'
 RSpec.describe PSN::ScrapeProfileJob do
   describe '#perform' do
     let(:psn_id) { 'TestingGame00' }
-    let(:account_list) { instance_double(AccountTrophyList, trophy_list:) }
-    let(:trophy_list) { instance_double(TrophyList, name: 'Testing12', releases: [release], psnp_id: nil) }
-    let(:release) { instance_double(Release, game:) }
-    let(:game) { instance_double(Game) }
+    let(:game) { build(:game_with_trophies) }
+    let(:release) { game.releases.first }
+    let(:trophy_list) { game.trophy_lists.first }
+    let(:account_list) { build(:account_trophy_list, trophy_list:) }
+
     let(:psnp_ids) do
       [
         {

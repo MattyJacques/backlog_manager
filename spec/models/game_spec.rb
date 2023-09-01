@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Game do
-  subject(:game) { described_class.new(name: 'The Last of Us') }
+  subject(:game) { build(:game) }
 
   it { is_expected.to have_many(:releases).dependent(:destroy) }
   it { is_expected.to have_many(:platforms).through(:releases) }
@@ -174,17 +174,14 @@ RSpec.describe Game do
   end
 
   describe '#status_for_user' do
-    let(:game_with_status) do
-      described_class.new(name: 'The Last of Us')
-    end
-    let(:game_status) { instance_double(GameStatus, status: :wishlist) }
+    let(:game_status) { build(:game_status) }
 
     before do
-      allow(game_with_status.game_statuses).to receive(:find).and_return([game_status])
+      allow(game.game_statuses).to receive(:find).and_return(game_status)
     end
 
     it 'returns the status for the user' do
-      expect(game_with_status.status_for_user(1)).to eql(game_status)
+      expect(game.status_for_user(1)).to eql(game_status)
     end
   end
 end

@@ -110,6 +110,10 @@ GEM
     cuprite (0.14.3)
       capybara (~> 3.0)
       ferrum (~> 0.13.0)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.3)
     debug (1.7.2)
       irb (>= 1.5.0)
@@ -126,6 +130,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.12.0)
     execjs (2.8.1)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faraday (2.7.4)
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
@@ -420,8 +429,10 @@ DEPENDENCIES
   brakeman
   bundler-audit
   capybara
+  database_cleaner-active_record
   debug
   devise
+  factory_bot_rails
   font-awesome-sass
   httparty
   importmap-rails
@@ -432,6 +443,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-capybara
+  rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
   selenium-webdriver

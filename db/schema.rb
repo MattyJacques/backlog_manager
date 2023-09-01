@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
   end
 
   create_table "game_statuses", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", null: false
     t.integer "user_id", null: false
     t.integer "game_id", null: false
     t.datetime "created_at", null: false
@@ -52,12 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
     t.datetime "updated_at", null: false
     t.index ["how_long_to_beat_id"], name: "unique game HLTB ID index", unique: true
     t.index ["igdb_id"], name: "unique game IGDB ID index", unique: true
-  end
-
-  create_table "lists", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "platform_families", force: :cascade do |t|

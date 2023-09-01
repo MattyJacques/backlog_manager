@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PSNAccount do
-  subject(:account) { described_class.new(psn_id: 'Hakoom') }
+  subject(:account) { build(:psn_account) }
 
   it { is_expected.to have_many(:account_trophy_lists).dependent(:destroy) }
   it { is_expected.to have_many(:trophy_lists).through(:account_trophy_lists) }

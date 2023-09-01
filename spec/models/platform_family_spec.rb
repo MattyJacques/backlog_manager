@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PlatformFamily do
-  subject(:family) { described_class.new(name: 'PlayStation') }
+  subject(:family) { build(:platform_family) }
 
   it { is_expected.to have_many(:platforms).dependent(:nullify) }
 
