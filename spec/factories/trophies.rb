@@ -9,8 +9,6 @@ FactoryBot.define do
 
     sequence(:psn_id) { |n| n }
 
-    factory :trophy_with_list do
-      trophy_list { association(:trophy_list, trophies: [instance]) }
-    end
+    trophy_list { association(:trophy_list, trophies: [instance]) }
   end
 end

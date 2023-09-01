@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :platform_family do
-    name { 'GamePlayers' }
-
+    sequence(:name) { |n| "GamePlayers #{n}" }
     sequence(:igdb_id) { |n| n }
   end
 end

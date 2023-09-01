@@ -20,9 +20,13 @@ jobs:
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
 
-      - name: Run linters
+      - name: Run rubocop
         run: |
           bundle exec rubocop --parallel
+
+      - name: Run FactoryBot linting
+        run: |
+          bundle exec rake factory_bot:lint
 
   tests:
     name: Tests
