@@ -15,6 +15,12 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+        run: |
+          bundle exec rails db:migrate
+
       - name: Run security checks
         run: |
           bundle exec bundler-audit --update
