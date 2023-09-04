@@ -26,14 +26,14 @@ module PSN
           account_trophy_list = AccountTrophyList.find_by(psn_account:, trophy_list:)
           list_updated_at = account_trophy_list&.updated_at
 
-          update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
+          account_trophy_list = update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
 
           return unless list_updated_at.nil? || list_updated_at < title['lastUpdatedDateTime'].to_datetime
 
           earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
                                                               title['npServiceName'],
                                                               psn_account.account_id)
-          update_earned_trophies(psn_account, trophy_list, earned_data)
+          update_earned_trophies(account_trophy_list, trophy_list, earned_data)
         end
 
         def update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
@@ -44,17 +44,17 @@ module PSN
           end
         end
 
-        def update_earned_trophies(psn_account, trophy_list, earned_data)
+        def update_earned_trophies(account_trophy_list, trophy_list, earned_data)
           earned_trophies(earned_data).each do |earned_trophy|
             trophy = trophy_list.trophies.find_by!(psn_id: earned_trophy['trophyId'])
             timestamp = earned_trophy['earnedDateTime']
 
-            next unless can_update_trophy(psn_account, trophy, timestamp)
+            next unless can_update_trophy(account_trophy_list, trophy, timestamp)
 
-            if psn_account.earned_trophies.exists?(trophy:)
-              psn_account.earned_trophies.find_by!(trophy:).update!(timestamp:)
+            if account_trophy_list.earned_trophies.exists?(trophy:)
+              account_trophy_list.earned_trophies.find_by!(trophy:).update!(timestamp:)
             else
-              EarnedTrophy.create!(psn_account:, trophy_list:, trophy:, timestamp:)
+              EarnedTrophy.create!(account_trophy_list:, trophy:, timestamp:)
             end
           end
         end
@@ -63,9 +63,9 @@ module PSN
           earned_data['trophies'].select { |t| t['earnedDateTime'].present? }
         end
 
-        def can_update_trophy(psn_account, trophy, timestamp)
+        def can_update_trophy(account_list, trophy, timestamp)
           timestamp.present? &&
-            !psn_account.earned_trophies.exists?(trophy:, timestamp:)
+            !account_list.earned_trophies.exists?(trophy:, timestamp:)
         end
       end
     end

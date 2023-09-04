@@ -5,7 +5,8 @@ class Trophy < ApplicationRecord
 
   belongs_to :trophy_list
   has_many :earned_trophies, dependent: :destroy
-  has_many :psn_accounts, through: :earned_trophies
+  has_many :account_trophy_lists, through: :earned_trophies
+  has_many :psn_accounts, through: :account_trophy_lists
 
   validates :psn_id, presence: true, uniqueness: { scope: :trophy_list_id }
   validates :name, presence: true

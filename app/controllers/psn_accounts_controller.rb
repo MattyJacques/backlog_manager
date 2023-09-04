@@ -10,8 +10,7 @@ class PSNAccountsController < ApplicationController
 
     if @account.present?
       @trophy_lists = @account.account_trophy_lists.map do |account_list|
-        earned_trophies = @account.earned_trophies.where(trophy_list: account_list.trophy_list)
-        helpers.get_trophy_list_data(account_list, earned_trophies)
+        helpers.get_trophy_list_data(account_list, account_list.earned_trophies)
       end
     else
       redirect_to(psn_accounts_path)

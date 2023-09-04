@@ -6,7 +6,7 @@ class CreateAccountTrophyLists < ActiveRecord::Migration[7.0]
 
       t.timestamps
 
-      t.index %i[psn_account_id trophy_list_id], unique: true, name: 'unique join account trophy lists'
+      t.index %i[psn_account_id trophy_list_id], unique: true, name: 'unique account trophy lists'
     end
   end
 end

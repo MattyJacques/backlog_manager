@@ -13,10 +13,7 @@ RSpec.describe 'PSNAccounts' do
       end
 
       before do
-        create_list(:earned_trophy,
-                    5,
-                    psn_account: account_trophy_list.psn_account,
-                    trophy_list: account_trophy_list.trophy_list)
+        create_list(:earned_trophy, 5, account_trophy_list:)
       end
 
       it 'renders a successful response' do
@@ -46,14 +43,11 @@ RSpec.describe 'PSNAccounts' do
         end
 
         before do
-          create_list(:earned_trophy,
-                      5,
-                      psn_account: account_trophy_list.psn_account,
-                      trophy_list: account_trophy_list.trophy_list)
+          create_list(:earned_trophy, 5, account_trophy_list:)
         end
 
         it 'renders a successful response' do
-          get psn_account_url(account_trophy_list.psn_account)
+          get psn_account_url(account)
 
           expect(response).to be_successful
         end

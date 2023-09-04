@@ -7,7 +7,7 @@ RSpec.describe PSNAccount do
 
   it { is_expected.to have_many(:account_trophy_lists).dependent(:destroy) }
   it { is_expected.to have_many(:trophy_lists).through(:account_trophy_lists) }
-  it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }
+  it { is_expected.to have_many(:earned_trophies).through(:account_trophy_lists) }
   it { is_expected.to have_many(:trophies).through(:earned_trophies) }
 
   context 'when validating presence' do

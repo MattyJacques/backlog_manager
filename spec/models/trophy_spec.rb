@@ -7,7 +7,8 @@ RSpec.describe Trophy do
 
   it { is_expected.to belong_to(:trophy_list) }
   it { is_expected.to have_many(:earned_trophies).dependent(:destroy) }
-  it { is_expected.to have_many(:psn_accounts).through(:earned_trophies) }
+  it { is_expected.to have_many(:account_trophy_lists).through(:earned_trophies) }
+  it { is_expected.to have_many(:psn_accounts).through(:account_trophy_lists) }
 
   it do
     expect(trophy).to define_enum_for(:rank).with_values(

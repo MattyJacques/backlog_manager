@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :earned_trophy do
-    psn_account { association(:psn_account) }
-    trophy_list { association(:trophy_list) }
-    trophy { association(:trophy, trophy_list:) }
+    account_trophy_list { association(:account_trophy_list) }
+    trophy { association(:trophy) }
   end
 end

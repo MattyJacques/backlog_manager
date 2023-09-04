@@ -9,7 +9,7 @@ RSpec.describe PSNAccountsHelper do
   let(:platform) { build(:platform) }
   let(:release) { build(:release, platform:) }
   let(:earned_trophies) { instance_double(ActiveRecord::Relation, count: 1) }
-  let(:earned_trophy) { instance_double(EarnedTrophy, psn_account: account, trophy_list:, trophy:) }
+  let(:earned_trophy) { instance_double(EarnedTrophy, account_trophy_list: account_list, trophy:) }
   let(:trophy) do
     instance_double(Trophy,
                     psn_id: 0,

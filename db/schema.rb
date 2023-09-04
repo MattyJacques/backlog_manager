@@ -16,22 +16,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
     t.integer "trophy_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["psn_account_id", "trophy_list_id"], name: "unique join account trophy lists", unique: true
+    t.index ["psn_account_id", "trophy_list_id"], name: "unique account trophy lists", unique: true
     t.index ["psn_account_id"], name: "index_account_trophy_lists_on_psn_account_id"
     t.index ["trophy_list_id"], name: "index_account_trophy_lists_on_trophy_list_id"
   end
 
   create_table "earned_trophies", force: :cascade do |t|
-    t.integer "psn_account_id", null: false
+    t.integer "account_trophy_list_id", null: false
     t.integer "trophy_id", null: false
-    t.integer "trophy_list_id", null: false
     t.datetime "timestamp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["psn_account_id", "trophy_id"], name: "unique join account trophies", unique: true
-    t.index ["psn_account_id"], name: "index_earned_trophies_on_psn_account_id"
+    t.index ["account_trophy_list_id", "trophy_id"], name: "unique account trophies", unique: true
+    t.index ["account_trophy_list_id"], name: "index_earned_trophies_on_account_trophy_list_id"
     t.index ["trophy_id"], name: "index_earned_trophies_on_trophy_id"
-    t.index ["trophy_list_id"], name: "index_earned_trophies_on_trophy_list_id"
   end
 
   create_table "game_statuses", force: :cascade do |t|
@@ -52,6 +50,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
     t.datetime "updated_at", null: false
     t.index ["how_long_to_beat_id"], name: "unique game HLTB ID index", unique: true
     t.index ["igdb_id"], name: "unique game IGDB ID index", unique: true
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "platform_families", force: :cascade do |t|
@@ -165,9 +169,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
 
   add_foreign_key "account_trophy_lists", "psn_accounts"
   add_foreign_key "account_trophy_lists", "trophy_lists"
-  add_foreign_key "earned_trophies", "psn_accounts"
+  add_foreign_key "earned_trophies", "account_trophy_lists"
   add_foreign_key "earned_trophies", "trophies"
-  add_foreign_key "earned_trophies", "trophy_lists"
   add_foreign_key "game_statuses", "games"
   add_foreign_key "game_statuses", "users"
   add_foreign_key "platforms", "platform_families"
