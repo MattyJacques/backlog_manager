@@ -37,8 +37,11 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
     end
 
     context 'when all trophies are new' do
+      let(:account_trophy_list) { build(:account_trophy_list) }
+
       before do
-        allow(account.earned_trophies).to receive(:exists?).and_return(false)
+        allow(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
+                                                     .and_return(account_trophy_list)
       end
 
       it 'creates records for all trophies' do
@@ -71,9 +74,11 @@ RSpec.describe PSN::Services::UpdateAccountEarnedTrophies do
 
       before do
         allow(AccountTrophyList).to receive(:find_by).and_return(account_trophy_list)
-        allow(account.earned_trophies).to receive(:find_by!).and_return(earned_trophy)
-        allow(account.earned_trophies).to receive(:exists?).with(trophy:, timestamp: anything).and_return(false)
-        allow(account.earned_trophies).to receive(:exists?).with(trophy:).and_return(true)
+        allow(account_trophy_list.earned_trophies).to receive(:find_by!).and_return(earned_trophy)
+        allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:, timestamp: anything)
+                                                                       .and_return(false)
+        allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:).and_return(true)
+        allow(account_trophy_list).to receive(:touch).and_return(account_trophy_list)
       end
 
       it 'updates the trophy timestamp' do
