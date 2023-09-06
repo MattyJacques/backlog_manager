@@ -27,6 +27,9 @@ gem 'stimulus-rails'
 # Bootstrap CSS library
 gem 'bootstrap'
 
+# Form helpers that use bootstrap
+gem 'bootstrap_form'
+
 # UI Icons
 gem 'font-awesome-sass'
 
