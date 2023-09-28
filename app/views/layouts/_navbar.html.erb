@@ -11,13 +11,16 @@
         <li class="nav-item">
           <%= link_to 'Accounts', psn_accounts_path, class: "nav-link #{'active' if controller.controller_name == 'psn_accounts'}" %>
         </li>
+
         <li class="nav-item">
           <%= link_to 'Games', games_path, class: "nav-link #{'active' if controller.controller_name == 'games'}" %>
         </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Import
           </a>
+
           <ul class="dropdown-menu">
             <li><a class="dropdown-item disabled" href="#">IGDB</a></li>
             <li><a class="dropdown-item disabled" href="#">PSN</a></li>
@@ -41,6 +44,7 @@
             <a class="nav-link dropdown-toggle profile-dropdown bg-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.username %>
             </a>
+
             <ul class="dropdown-menu">
               <li><a class="dropdown-item disabled">My Profile</a></li>
               <li><a class="dropdown-item" href=<%= edit_user_registration_path %>>Settings</a></li>
@@ -51,7 +55,7 @@
         <% else %>
           <div class="center">
             <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light me-2" %>
-            <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-warning" %>
+            <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-primary" %>
           </div>
         <% end %>
       </div>

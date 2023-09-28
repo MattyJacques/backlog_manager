@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
   end
 
   create_table "psn_accounts", force: :cascade do |t|
+    t.integer "user_id"
     t.string "psn_id"
     t.string "account_id"
     t.string "avatar"
@@ -88,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["psn_id"], name: "unique PSN ID", unique: true
+    t.index ["user_id"], name: "unique PSN Account", unique: true
   end
 
   create_table "releases", force: :cascade do |t|
@@ -174,6 +176,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_094502) do
   add_foreign_key "game_statuses", "games"
   add_foreign_key "game_statuses", "users"
   add_foreign_key "platforms", "platform_families"
+  add_foreign_key "psn_accounts", "users"
   add_foreign_key "releases", "games"
   add_foreign_key "releases", "platforms"
   add_foreign_key "releases", "trophy_lists"
