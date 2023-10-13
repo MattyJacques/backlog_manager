@@ -127,6 +127,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-specs (0.0.5)
+      devise (~> 4.8)
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -436,6 +438,7 @@ DEPENDENCIES
   database_cleaner-active_record
   debug
   devise
+  devise-specs
   factory_bot_rails
   font-awesome-sass
   httparty

@@ -1,0 +1,7 @@
+<div id='edit_accounts'>
+  <h3>Linked Accounts</h3>
+
+  <%= f.fields_for :psn_account do |psn_f| %>
+    <%= psn_f.text_field :psn_id, required: false %>
+  <% end %>
+</div>

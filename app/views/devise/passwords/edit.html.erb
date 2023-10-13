@@ -1,6 +1,6 @@
 <h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
@@ -13,7 +13,7 @@
                          label: 'Confirm new Password',
                          autocomplete: "new-password",
                          label_as_placeholder: true,
-                         help: "Must be at least <%= #{@minimum_password_length} characters long" %>
+                         help: "Must be at least #{@minimum_password_length} characters long" %>
   </div>
 
   <div class="actions">

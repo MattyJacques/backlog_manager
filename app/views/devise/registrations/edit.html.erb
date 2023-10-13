@@ -1,47 +1,44 @@
-<h2>Edit Profile</h2>
+<div class='container my-5'>
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, layout: :horizontal) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
 
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <nav class='navbar navbar-expand-lg navbar-dark justify-content-center'>
+      <div class='navbar-nav nav-tabs' id='nav-tab' role='tablist'>
+        <button class='nav-link bg-dark active' id='nav-accounts-tab' data-bs-toggle='tab' data-bs-target='#nav-accounts' type='button' role='tab' aria-controls='nav-accounts' aria-selected='true'>Linked Accounts</button>
+        <button class='nav-link bg-dark' id='nav-profile-tab' data-bs-toggle='tab' data-bs-target='#nav-security' type='button' role='tab' aria-controls='nav-security' aria-selected='false'>Password / Security</button>
+      </div>
+    </nav>
 
-  <h3>Change Email</h3>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", label_as_placeholder: true %>
-  </div>
+    <div class='tab-content' id='nav-tabContent'>
+      <div class='tab-pane fade show active p-3' id='nav-accounts' role='tabpanel' aria-labelledby='nav-accounts-tab'>
+        <%= render 'edit_accounts', f: %>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <div class='tab-pane fade p-3' id='nav-security' role='tabpanel' aria-labelledby='nav-security-tab'>
+        <%= render 'edit_security', f:, resource_name: %>
+      </div>
+    </div>
+
+    <div class='p-3'>
+      <br />
+      <h3>Save Changes</h3>
+      <div class="field">
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+
+      <div class='actions'>
+        <%= f.primary 'Update' %>
+      </div>
+    </div>
   <% end %>
 
-  <br />
-  <h3>Change Password</h3>
-  <div class="field">
-    <%= f.password_field :password,
-                         autocomplete: "new-password",
-                         label_as_placeholder: true %>
+  <div class='p-3'>
+    <br />
+    <h3>Delete account</h3>
+    <%= button_to 'Cancel my account',
+                  registration_path(resource_name),
+                  data: { confirm: 'Are you sure?', turbo_confirm: 'Are you sure?' },
+                  method: :delete,
+                  class: 'btn btn-danger' %>
   </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation,
-                         label: 'Confirm Password',
-                         autocomplete: "new-password",
-                         help: "Leave blank if you don\'t want to change it. Must be at least #{@minimum_password_length} characters long",
-                         label_as_placeholder: true %>
-  </div>
-
-  <h3>Save Changes</h3>
-  <div class="field">
-    <%= f.password_field :current_password, autocomplete: "current-password", label_as_placeholder: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.primary "Update" %>
-  </div>
-<% end %>
-
-<br />
-<h3>Delete account</h3>
-<%= button_to "Cancel my account",
-              registration_path(resource_name),
-              data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
-              method: :delete,
-              class: 'btn btn-danger' %>
+</div>

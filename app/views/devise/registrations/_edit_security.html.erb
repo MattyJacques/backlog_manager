@@ -1,0 +1,25 @@
+<div id='edit_security'>
+  <h3>Change Email</h3>
+
+  <div id='email' class='field'>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <br />
+  <h3>Change Password</h3>
+  <div id='new_password' class='field'>
+    <%= f.password_field :password,
+                        autocomplete: 'new-password' %>
+  </div>
+
+  <div id='confirm_new_pasword' class='field'>
+    <%= f.password_field :password_confirmation,
+                        label: 'Confirm Password',
+                        autocomplete: 'new-password',
+                        help: "Leave blank if you don\'t want to change it. Must be at least #{@minimum_password_length} characters long" %>
+  </div>
+</div>
