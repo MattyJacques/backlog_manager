@@ -1,4 +1,6 @@
-# README
+# Backlog Manager
+
+[![CI](https://github.com/MattyJacques/backlog_manager/actions/workflows/ci.yml/badge.svg?branch=develop)][ci_link]
 
 You need to run rails dev:cache as caching is used for access tokens.
 
@@ -24,3 +26,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+[ci_link]: https://github.com/MattyJacques/backlog_manager/actions/workflows/ci.yml
