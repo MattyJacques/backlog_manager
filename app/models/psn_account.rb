@@ -7,4 +7,12 @@ class PSNAccount < ApplicationRecord
   has_many :trophies, through: :earned_trophies
 
   validates :psn_id, presence: true, uniqueness: { case_sensitive: false }
+
+  after_commit :update_trophies, if: proc { |object| object.previous_changes.include?('psn_id') }
+
+  private
+
+  def update_trophies
+    PSN::UpdatePSNAccountJob.perform_later(id, should_scrape: true)
+  end
 end
