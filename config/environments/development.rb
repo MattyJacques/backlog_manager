@@ -84,4 +84,8 @@ Rails.application.configure do
   config.generators do |g|
     g.test_framework :rspec
   end
+
+  Tanakai.configure do |config|
+    config.logger = Rails.logger
+  end
 end
