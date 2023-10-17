@@ -103,6 +103,9 @@ group :development do
   # Generate specs for devise flows
   gem 'devise-specs'
 
+  # Quickly login as any registered user
+  gem 'any_login'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem 'rack-mini-profiler'
 
