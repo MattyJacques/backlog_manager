@@ -7,7 +7,7 @@ RSpec.describe 'PSNAccounts' do
     context 'when some PSNAccount records exist' do
       let(:account_no_lists) { create(:psn_account) }
       let(:account_with_lists) { create(:psn_account) }
-      let(:game) { create(:game_with_trophies) }
+      let(:game) { create(:game, :trophies) }
       let(:account_trophy_list) do
         create(:account_trophy_list, psn_account: account_with_lists, trophy_list: game.trophy_lists.first)
       end
@@ -37,7 +37,7 @@ RSpec.describe 'PSNAccounts' do
       let(:account) { create(:psn_account) }
 
       context 'when PSNAccount has trophies' do
-        let(:game) { create(:game_with_trophies) }
+        let(:game) { create(:game, :trophies) }
         let(:account_trophy_list) do
           create(:account_trophy_list, psn_account: account, trophy_list: game.trophy_lists.first)
         end

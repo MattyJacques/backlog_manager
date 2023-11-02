@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'games/index.html.erb' do
-  let(:game1) { build(:game_with_platform) }
-  let(:game2) { build(:game_with_platform) }
+  let(:game1) { build(:game_with_platform, :trophies) }
+  let(:game2) { build(:game_with_platform, :trophies) }
 
   before do
     assign(:games, [game1, game2])
@@ -25,7 +25,7 @@ RSpec.describe 'games/index.html.erb' do
   context 'when a user is logged in' do
     let(:user) { create(:user) }
     let(:game1_status) { build(:game_status, user:) }
-    let(:game1) { build(:game_with_platform, game_statuses: [game1_status]) }
+    let(:game1) { build(:game_with_platform, :trophies, game_statuses: [game1_status]) }
 
     it 'renders a list of games with statuses' do
       sign_in(user)

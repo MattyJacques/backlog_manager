@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe PSN::ScrapeProfileJob do
   describe '#perform' do
     let(:psn_id) { 'TestingGame00' }
-    let(:game) { build(:game_with_trophies) }
+    let(:game) { build(:game, :trophies) }
     let(:release) { game.releases.first }
     let(:trophy_list) { game.trophy_lists.first }
     let(:account_list) { build(:account_trophy_list, trophy_list:) }

@@ -19,9 +19,10 @@
   <% end %>
 </div>
 <%= turbo_frame_tag "games" do %>
-  <table id="games_table" class="table table-striped table-hover">
-    <thead class="table-dark">
+  <table id="games_table" class="table table-striped table-hover table-dark">
+    <thead>
       <tr>
+        </th scope="col">
         <th scope="col">
           <%= build_order_link(label: "Name", sort_by: "name") %>
           <%= sort_indicator if session.dig('game_filters', 'sort_by') == "name" %>
@@ -38,9 +39,10 @@
         <% end %>
       </tr>
     </thead>
-    <tbody class="table-dark">
+    <tbody>
       <% games.each do |game| %>
         <tr>
+          <td><%= image_tag(game.trophy_lists.first.icon_url, width: 107, height: 59) %></td>
           <td><%= game.name %></td>
           <td><%= game.platforms.map { |l|  l.abbreviation }.join(", ") %></td>
           <% if user_signed_in? %>
