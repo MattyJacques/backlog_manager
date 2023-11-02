@@ -15,7 +15,7 @@
         <tr>
           <td><%= image_tag(trophy.icon_url, width: 56, height: 56) %></td>
           <td>
-            <%== "<b>#{trophy.name}</b>" %>
+            <b><%= trophy.name %></b>
             <p class='fw-light'><%= trophy.detail %></p>
           </td>
           <td><%= trophy_rank_icon(trophy.rank) %></td>
