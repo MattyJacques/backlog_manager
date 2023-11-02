@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Games' do
-  let(:game1) { build(:game) }
-  let(:game2) { build(:game) }
+  let(:game1) { build(:game, :trophies) }
+  let(:game2) { build(:game, :trophies) }
   let(:games) { [game1, game2] }
 
   before do

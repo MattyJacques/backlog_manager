@@ -17,6 +17,11 @@
 @import 'font-awesome';
 @import 'mixins/navbar';
 
+:root {
+  --bs-body-font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.05rem;
+}
+
 th, td {
   padding-top: 5px;
   padding-bottom: 5px;

@@ -1,5 +1,5 @@
-if defined?(Anylogin)
-  AnyLogin.setup do |config|
+if Rails.env.development?
+  AnyLogin&.setup do |config|
     # provider (:devise, :authlogic, sorcery, clearance). Provider can be identified automatically based on your Gemfile
     # config.provider = nil
 

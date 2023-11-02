@@ -1,27 +1,28 @@
 <div>
   <h2><%= @list.name %></h2>
-  <table>
+  <table id="trophies_table" class="table table-striped table-hover table-dark">
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Detail</th>
-        <th scope="col">Rank</th>
-        <th scope="col">Hidden</th>
-        <th scope="col">Progress</th>
-        <th scope="col">Reward</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <% @list.trophies.each do |trophy| %>
         <tr>
-          <td><%= image_tag(trophy.icon_url, width: "56", height: "56") %></td>
-          <td><%= trophy.name %></td>
-          <td><%= trophy.detail %></td>
-          <td><%= trophy.rank %></td>
-          <td><%= trophy.hidden %></td>
+          <td><%= image_tag(trophy.icon_url, width: 56, height: 56) %></td>
+          <td>
+            <%== "<b>#{trophy.name}</b>" %>
+            <p class='fw-light'><%= trophy.detail %></p>
+          </td>
+          <td><%= trophy_rank_icon(trophy.rank) %></td>
+          <td>
+            <%== hidden_icon if trophy.hidden %>
+          </td>
           <td><%= trophy.progress_target %></td>
-          <td><%= trophy.reward_name %></td>
         </tr>
       <% end %>
     </tbody>
