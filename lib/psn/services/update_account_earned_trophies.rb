@@ -5,68 +5,64 @@ module PSN
     class UpdateAccountEarnedTrophies
       class << self
         def update(account_id)
-          Rails.logger.info("Updating earned trophies for #{account_id}")
+          new(account_id).update
+        end
+      end
 
-          account = PSNAccount.find_by!(account_id:)
-          titles = PSN::Client::Trophy.all_account_titles(account_id)
+      def initialize(account_id)
+        @account = PSNAccount.find_by!(account_id:)
+      end
+
+      def update
+        Rails.logger.info("Updating earned trophies for #{@account.psn_id}")
+
+        if should_update
+          update_trophy_counts
+
+          titles = PSN::Client::Trophy.all_account_titles(@account.account_id)
 
           Rails.logger.info("Retrieved #{titles.count} titles")
 
-          titles&.map do |title|
-            ActiveRecord::Base.transaction do
-              update_title(account, title)
-            end
+          update_titles(titles)
+
+          Rails.logger.info("Updated earned trophies for #{@account.psn_id}")
+        else
+          Rails.logger.info('Update not needed')
+        end
+      end
+
+      private
+
+      def should_update
+        trophy_count_increased? || title_count_increased?
+      end
+
+      def trophy_count_increased?
+        @account.earned_trophies.count < earned_trophy_counts.values.sum
+      end
+
+      def title_count_increased?
+        @account.account_trophy_lists.count <
+          PSN::Client::Trophy.account_title_count(@account.account_id)
+      end
+
+      def update_trophy_counts
+        @account.update!(earned_bronze: earned_trophy_counts['bronze'],
+                         earned_silver: earned_trophy_counts['silver'],
+                         earned_gold: earned_trophy_counts['gold'],
+                         earned_platinum: earned_trophy_counts['platinum'])
+      end
+
+      def update_titles(titles)
+        titles&.map do |title|
+          ActiveRecord::Base.transaction do
+            PSN::Services::UpdateAccountTitle.update(@account, title)
           end
         end
+      end
 
-        private
-
-        def update_title(psn_account, title)
-          trophy_list = TrophyList.find_by!(comm_id: title['npCommunicationId'])
-          account_trophy_list = AccountTrophyList.find_by(psn_account:, trophy_list:)
-          list_updated_at = account_trophy_list&.updated_at
-
-          account_trophy_list = update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
-
-          return unless list_updated_at.nil? || list_updated_at < title['lastUpdatedDateTime'].to_datetime
-
-          earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
-                                                              title['npServiceName'],
-                                                              psn_account.account_id)
-          update_earned_trophies(account_trophy_list, trophy_list, earned_data)
-        end
-
-        def update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
-          if account_trophy_list.present?
-            account_trophy_list.touch # rubocop:disable Rails/SkipsModelValidations
-          else
-            AccountTrophyList.create!(psn_account:, trophy_list:)
-          end
-        end
-
-        def update_earned_trophies(account_trophy_list, trophy_list, earned_data)
-          earned_trophies(earned_data).each do |earned_trophy|
-            trophy = trophy_list.trophies.find_by!(psn_id: earned_trophy['trophyId'])
-            timestamp = earned_trophy['earnedDateTime']
-
-            next unless can_update_trophy(account_trophy_list, trophy, timestamp)
-
-            if account_trophy_list.earned_trophies.exists?(trophy:)
-              account_trophy_list.earned_trophies.find_by!(trophy:).update!(timestamp:)
-            else
-              EarnedTrophy.create!(account_trophy_list:, trophy:, timestamp:)
-            end
-          end
-        end
-
-        def earned_trophies(earned_data)
-          earned_data['trophies'].select { |t| t['earnedDateTime'].present? }
-        end
-
-        def can_update_trophy(account_list, trophy, timestamp)
-          timestamp.present? &&
-            !account_list.earned_trophies.exists?(trophy:, timestamp:)
-        end
+      def earned_trophy_counts
+        @earned_trophy_counts ||= PSN::Client::Trophy.account_summary(@account.account_id)['earnedTrophies']
       end
     end
   end

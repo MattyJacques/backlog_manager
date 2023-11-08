@@ -3,6 +3,11 @@ class CreateAccountTrophyLists < ActiveRecord::Migration[7.0]
     create_table :account_trophy_lists do |t|
       t.belongs_to :psn_account, null: false, foreign_key: true
       t.belongs_to :trophy_list, null: false, foreign_key: true
+      t.integer :earned_bronze, null: false, default: 0
+      t.integer :earned_silver, null: false, default: 0
+      t.integer :earned_gold, null: false, default: 0
+      t.integer :earned_platinum, null: false, default: 0
+      t.datetime :psn_updated_at, null: false
 
       t.timestamps
 

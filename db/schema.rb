@@ -14,6 +14,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_140916) do
   create_table "account_trophy_lists", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_list_id", null: false
+    t.integer "earned_bronze", default: 0, null: false
+    t.integer "earned_silver", default: 0, null: false
+    t.integer "earned_gold", default: 0, null: false
+    t.integer "earned_platinum", default: 0, null: false
+    t.datetime "psn_updated_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["psn_account_id", "trophy_list_id"], name: "unique account trophy lists", unique: true
@@ -67,12 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_140916) do
     t.index ["igdb_id"], name: "unique game IGDB ID index", unique: true
   end
 
-  create_table "lists", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "platform_families", force: :cascade do |t|
     t.string "name", null: false
     t.integer "igdb_id"
@@ -100,6 +99,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_140916) do
     t.string "account_id"
     t.string "avatar"
     t.boolean "plus", default: false, null: false
+    t.integer "earned_bronze", default: 0, null: false
+    t.integer "earned_silver", default: 0, null: false
+    t.integer "earned_gold", default: 0, null: false
+    t.integer "earned_platinum", default: 0, null: false
     t.text "about_me"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

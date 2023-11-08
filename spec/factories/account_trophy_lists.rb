@@ -2,6 +2,8 @@
 
 FactoryBot.define do
   factory :account_trophy_list do
+    psn_updated_at { DateTime.now }
+
     psn_account { association(:psn_account) }
     trophy_list { association(:trophy_list) }
   end

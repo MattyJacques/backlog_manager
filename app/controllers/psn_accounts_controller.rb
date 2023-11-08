@@ -9,7 +9,8 @@ class PSNAccountsController < ApplicationController
     @account = PSNAccount.find_by(id: params[:id])
 
     if @account.present?
-      @trophy_lists = @account.account_trophy_lists.map do |account_list|
+      @trophy_lists = @account.account_trophy_lists.joins(:earned_trophies)
+                              .merge(EarnedTrophy.order(timestamp: :desc).limit(1)).map do |account_list|
         helpers.get_trophy_list_data(account_list, account_list.earned_trophies)
       end
     else

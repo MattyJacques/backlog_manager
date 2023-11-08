@@ -10,6 +10,10 @@ class PSNAccount < ApplicationRecord
 
   after_commit :update_trophies, if: proc { |object| object.previous_changes.include?('psn_id') }
 
+  def earned_trophy_count
+    earned_bronze + earned_silver + earned_gold + earned_platinum
+  end
+
   private
 
   def update_trophies
