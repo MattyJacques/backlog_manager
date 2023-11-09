@@ -19,6 +19,13 @@ module PSN
           send_get("/trophy/v1/users/#{account_id}/trophySummary")
         end
 
+        # Get the amount of titles synced to the given account
+        #
+        # account_id [String] PSN account ID, use 'me' for authenticating account
+        def account_title_count(account_id)
+          account_titles(account_id, limit: 1)['totalItemCount']
+        end
+
         # Get synced trophy titles for the given account
         # https://andshrew.github.io/PlayStation-Trophies/#/APIv2?id=_2-retrieve-the-trophies-for-a-title
         #
