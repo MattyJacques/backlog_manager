@@ -25,22 +25,18 @@ RSpec.describe PSN::Services::UpdateAccountTitle do
     let(:np_comm_id) { 'NPWR00117_00' }
     let(:last_update_timestamp) { DateTime.now }
     let(:trophy_list) { build(:trophy_list, trophy_count: 1) }
+    let(:account_trophy_list) { build(:account_trophy_list, psn_updated_at: 1.minute.ago) }
     let(:trophy) { trophy_list.trophies.first }
 
     before do
       allow(TrophyList).to receive(:find_by!).with(comm_id: np_comm_id).and_return(trophy_list)
+      allow(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
+                                                   .and_return(account_trophy_list)
+      allow(account_trophy_list).to receive(:update!)
       allow(trophy_list.trophies).to receive(:find_by!).and_return(trophy)
     end
 
     context 'when all trophies are new' do
-      let(:account_trophy_list) { build(:account_trophy_list) }
-
-      before do
-        allow(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
-                                                     .and_return(account_trophy_list)
-        allow(account_trophy_list).to receive(:update!)
-      end
-
       it 'creates records for all trophies' do
         expect(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
         expect(EarnedTrophy).to receive(:create!).exactly(17).times
@@ -55,14 +51,9 @@ RSpec.describe PSN::Services::UpdateAccountTitle do
     end
 
     context 'when title has not been updated on psn' do
-      let(:account_trophy_list) { build(:account_trophy_list, updated_at: DateTime.tomorrow) }
-
-      before do
-        allow(AccountTrophyList).to receive(:find_by).and_return(account_trophy_list)
-      end
+      let(:account_trophy_list) { build(:account_trophy_list, psn_updated_at: DateTime.tomorrow) }
 
       it 'does not import/update any trophies' do
-        expect(account_trophy_list).to receive(:touch)
         expect(EarnedTrophy).not_to receive(:create!)
         expect_any_instance_of(EarnedTrophy).not_to receive(:update!)
         expect(account_trophy_list).not_to receive(:update!)
@@ -72,20 +63,17 @@ RSpec.describe PSN::Services::UpdateAccountTitle do
     end
 
     context 'when a trophy timestamp has been updated to earlier time' do
-      let(:account_trophy_list) { build(:account_trophy_list, updated_at: DateTime.yesterday) }
+      let(:account_trophy_list) { build(:account_trophy_list, psn_updated_at: DateTime.yesterday) }
       let(:earned_trophy) { build(:earned_trophy) }
 
       before do
-        allow(AccountTrophyList).to receive(:find_by).and_return(account_trophy_list)
         allow(account_trophy_list.earned_trophies).to receive(:find_by!).and_return(earned_trophy)
         allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:, timestamp: anything)
                                                                        .and_return(false)
         allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:).and_return(true)
-        allow(account_trophy_list).to receive(:touch).and_return(account_trophy_list)
       end
 
       it 'updates the trophy timestamp' do
-        expect(account_trophy_list).to receive(:touch)
         expect(earned_trophy).to receive(:update!).with(timestamp: anything).exactly(17).times
         expect(account_trophy_list).to receive(:update!).with(earned_bronze: title['earnedTrophies']['bronze'],
                                                               earned_silver: title['earnedTrophies']['silver'],

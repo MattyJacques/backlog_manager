@@ -6,12 +6,9 @@ module PSN
       class << self
         def update(psn_account, title)
           trophy_list = TrophyList.find_by!(comm_id: title['npCommunicationId'])
-          account_trophy_list = AccountTrophyList.find_by(psn_account:, trophy_list:)
-          list_updated_at = account_trophy_list&.updated_at
+          account_trophy_list = AccountTrophyList.find_or_create_by!(psn_account:, trophy_list:)
 
-          account_trophy_list = update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
-
-          return unless list_updated_at.nil? || list_updated_at < title['lastUpdatedDateTime'].to_datetime
+          return unless account_trophy_list.psn_updated_at < title['lastUpdatedDateTime'].to_datetime
 
           earned_data = PSN::Client::Trophy.title_trophy_list(title['npCommunicationId'],
                                                               title['npServiceName'],
@@ -24,14 +21,6 @@ module PSN
         def update_earned_data(account_trophy_list, trophy_list, title_data, earned_data)
           update_earned_trophies(account_trophy_list, trophy_list, earned_data)
           update_account_data(account_trophy_list, title_data)
-        end
-
-        def update_account_trophy_list(account_trophy_list, psn_account, trophy_list)
-          if account_trophy_list.present?
-            account_trophy_list.touch # rubocop:disable Rails/SkipsModelValidations
-          else
-            AccountTrophyList.create!(psn_account:, trophy_list:)
-          end
         end
 
         def update_earned_trophies(account_trophy_list, trophy_list, earned_data)
