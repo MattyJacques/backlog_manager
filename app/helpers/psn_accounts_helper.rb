@@ -17,9 +17,9 @@ module PSNAccountsHelper
 
     {
       id: trophy_list.id,
+      icon_url: trophy_list.icon_url,
       name: trophy_list.name,
       detail: trophy_list.detail,
-      comm_id: trophy_list.comm_id,
       progress: "#{earned_trophies.count}/#{trophy_list.trophies.count}"
     }.merge(trophy_counts(earned_trophies))
   end

@@ -30,15 +30,14 @@ RSpec.describe PSN::Services::UpdateAccountTitle do
 
     before do
       allow(TrophyList).to receive(:find_by!).with(comm_id: np_comm_id).and_return(trophy_list)
-      allow(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
-                                                   .and_return(account_trophy_list)
+      allow(AccountTrophyList).to receive(:find_or_initialize_by).with(psn_account: account, trophy_list:)
+                                                                 .and_return(account_trophy_list)
       allow(account_trophy_list).to receive(:update!)
       allow(trophy_list.trophies).to receive(:find_by!).and_return(trophy)
     end
 
     context 'when all trophies are new' do
       it 'creates records for all trophies' do
-        expect(AccountTrophyList).to receive(:create!).with(psn_account: account, trophy_list:)
         expect(EarnedTrophy).to receive(:create!).exactly(17).times
         expect(account_trophy_list).to receive(:update!).with(earned_bronze: title['earnedTrophies']['bronze'],
                                                               earned_silver: title['earnedTrophies']['silver'],
@@ -75,6 +74,76 @@ RSpec.describe PSN::Services::UpdateAccountTitle do
 
       it 'updates the trophy timestamp' do
         expect(earned_trophy).to receive(:update!).with(timestamp: anything).exactly(17).times
+        expect(account_trophy_list).to receive(:update!).with(earned_bronze: title['earnedTrophies']['bronze'],
+                                                              earned_silver: title['earnedTrophies']['silver'],
+                                                              earned_gold: title['earnedTrophies']['gold'],
+                                                              earned_platinum: title['earnedTrophies']['platinum'],
+                                                              psn_updated_at: last_update_timestamp)
+
+        described_class.update(account, title)
+      end
+    end
+
+    context 'when a trophy is earned but missing a timestamp' do
+      let(:earned_trophy) { build(:earned_trophy) }
+      let(:earned_data_response) do
+        {
+          'trophySetVersion' => '01.12',
+          'hasTrophyGroups' => false,
+          'lastUpdatedDateTime' => '2008-07-16T10:59:08Z',
+          'trophies' => [
+            {
+              'trophyId' => 0,
+              'trophyHidden' => false,
+              'earned' => true,
+              'earnedDateTime' => '2008-07-02T13:16:12Z',
+              'trophyType' => 'bronze',
+              'trophyRare' => 2,
+              'trophyEarnedRate' => '38.6'
+            },
+            {
+              'trophyId' => 1,
+              'trophyHidden' => false,
+              'earned' => true,
+              'trophyType' => 'bronze',
+              'trophyRare' => 2,
+              'trophyEarnedRate' => '47.3'
+            },
+            {
+              'trophyId' => 2,
+              'trophyHidden' => false,
+              'earned' => false,
+              'trophyType' => 'bronze',
+              'trophyRare' => 2,
+              'trophyEarnedRate' => '23.7'
+            }
+          ],
+          'rarestTrophies' => [
+            {
+              'trophyId' => 0,
+              'trophyHidden' => false,
+              'earned' => true,
+              'earnedDateTime' => '2008-07-02T13:16:12Z',
+              'trophyType' => 'bronze',
+              'trophyRare' => 2,
+              'trophyEarnedRate' => '38.6'
+            }
+          ],
+          'totalItemCount' => 17
+        }
+      end
+
+      before do
+        allow(PSN::Client::Trophy).to receive(:title_trophy_list).and_return(earned_data_response)
+        allow(account_trophy_list.earned_trophies).to receive(:find_by!).and_return(earned_trophy)
+        allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:, timestamp: anything)
+                                                                       .and_return(false)
+        allow(account_trophy_list.earned_trophies).to receive(:exists?).with(trophy:).and_return(true)
+      end
+
+      it 'creates the earned trophy with a nil timestamp' do
+        expect(earned_trophy).to receive(:update!).with(timestamp: '2008-07-02T13:16:12Z')
+        expect(earned_trophy).to receive(:update!).with(timestamp: nil)
         expect(account_trophy_list).to receive(:update!).with(earned_bronze: title['earnedTrophies']['bronze'],
                                                               earned_silver: title['earnedTrophies']['silver'],
                                                               earned_gold: title['earnedTrophies']['gold'],

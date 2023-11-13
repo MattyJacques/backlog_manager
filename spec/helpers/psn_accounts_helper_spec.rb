@@ -60,7 +60,7 @@ RSpec.describe PSNAccountsHelper do
         id: trophy_list.id,
         name: trophy_list.name,
         detail: trophy_list.detail,
-        comm_id: trophy_list.comm_id,
+        icon_url: trophy_list.icon_url,
         progress: '1/1',
         trophy_count: 1,
         bronze_count: 1,

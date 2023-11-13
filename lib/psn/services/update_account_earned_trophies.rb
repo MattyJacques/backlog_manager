@@ -38,7 +38,7 @@ module PSN
       end
 
       def trophy_count_increased?
-        @account.earned_trophies.count < earned_trophy_counts.values.sum
+        @account.earned_trophies.count < (earned_trophy_counts&.values&.sum || 0)
       end
 
       def title_count_increased?
@@ -54,11 +54,7 @@ module PSN
       end
 
       def update_titles(titles)
-        titles&.map do |title|
-          ActiveRecord::Base.transaction do
-            PSN::Services::UpdateAccountTitle.update(@account, title)
-          end
-        end
+        titles&.each { |title| PSN::Services::UpdateAccountTitle.update(@account, title) }
       end
 
       def earned_trophy_counts
