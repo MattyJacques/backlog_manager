@@ -12,7 +12,7 @@ RSpec.describe 'psn_accounts/show.html.erb' do
                id: 1,
                name: 'Trophy Clicker',
                detail: 'Click for trophies!',
-               comm_id: 'NPWR12345_00',
+               icon_url: 'site_logo.png',
                progress: '46/46',
                trophy_count: 46,
                bronze_count: 30,
@@ -24,7 +24,7 @@ RSpec.describe 'psn_accounts/show.html.erb' do
                id: 2,
                name: 'Trophy Clicker 2',
                detail: 'Back by popular demand!',
-               comm_id: 'NPWR12346_00',
+               icon_url: 'site_logo.png',
                progress: '460/460',
                trophy_count: 460,
                bronze_count: 300,
@@ -39,7 +39,6 @@ RSpec.describe 'psn_accounts/show.html.erb' do
     render
 
     expect(rendered).to have_selector('tr>td', text: 'Trophy Clicker')
-    expect(rendered).to have_selector('tr>td', text: 'NPWR12345_00')
     expect(rendered).to have_selector('tr>td', text: '46/46')
     expect(rendered).to have_selector('tr>td', text: '46')
     expect(rendered).to have_selector('tr>td', text: '30')
@@ -47,7 +46,6 @@ RSpec.describe 'psn_accounts/show.html.erb' do
     expect(rendered).to have_selector('tr>td', text: '5')
     expect(rendered).to have_selector('tr>td', text: '1')
     expect(rendered).to have_selector('tr>td', text: 'Trophy Clicker 2')
-    expect(rendered).to have_selector('tr>td', text: 'NPWR12346_00')
     expect(rendered).to have_selector('tr>td', text: '460/460')
     expect(rendered).to have_selector('tr>td', text: '300')
     expect(rendered).to have_selector('tr>td', text: '100')

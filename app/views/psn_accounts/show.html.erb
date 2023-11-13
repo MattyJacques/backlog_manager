@@ -3,8 +3,8 @@
   <table>
     <thead>
       <tr>
+        <th scope="col"></th>
         <th scope="col">Name</th>
-        <th scope="col">NPCommID</th>
         <th scope="col">Progress</th>
         <th scope="col">Bronze</th>
         <th scope="col">Silver</th>
@@ -15,8 +15,8 @@
     <tbody>
       <% @trophy_lists.each do |list| %>
         <tr>
+          <td><%= image_tag(list[:icon_url], width: 107, height: 59) %></td>
           <td><%= link_to(list[:name], trophy_list_path(list[:id]), action: 'show', class: 'nav-link') %></td>
-          <td><%= list[:comm_id] %></td>
           <td><%= list[:progress] %></td>
           <td><%= list[:bronze_count] %></td>
           <td><%= list[:silver_count] %></td>

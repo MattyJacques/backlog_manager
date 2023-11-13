@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PSNAccount < ApplicationRecord
+  belongs_to :user, optional: true
   has_many :account_trophy_lists, dependent: :destroy
   has_many :trophy_lists, through: :account_trophy_lists
   has_many :earned_trophies, through: :account_trophy_lists
