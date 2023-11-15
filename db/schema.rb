@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_14_140916) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_14_195001) do
   create_table "account_trophy_lists", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_list_id", null: false
@@ -194,6 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_14_140916) do
   add_foreign_key "game_statuses", "games"
   add_foreign_key "game_statuses", "users"
   add_foreign_key "platforms", "platform_families"
+  add_foreign_key "psn_accounts", "users"
   add_foreign_key "psn_accounts", "users"
   add_foreign_key "releases", "games"
   add_foreign_key "releases", "platforms"
