@@ -39,7 +39,7 @@ Rails.application.configure do
   # Action Mailer
   config.action_mailer.default_url_options = { host: Rails.application.credentials.action_mailer.host! }
   config.action_mailer.perform_caching = false
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false # Enable this to send emails in development
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
