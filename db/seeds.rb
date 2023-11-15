@@ -17,3 +17,10 @@ Platform.create!([{ name: 'PlayStation 3', abbreviation: 'PS3', igdb_id: 9, plat
                   { name: 'Xbox Series X|S', igdb_id: 169, platform_family_id: 2 },
                   { name: 'Google Stadia', igdb_id: 170 },
                   { name: 'Nintendo Switch', igdb_id: 130, platform_family_id: 3 }])
+User.create!([{ username: 'LetsDeleteThis01', email: 'iftw+letsdeletethis01@live.co.uk', password: 'letsdeletethis01' },
+              { username: 'NeonFishy', email: 'iftw+neonfishy@live.co.uk', password: 'neonfishy' },
+              { username: 'exoticCentipede', email: 'iftw+exoticcentipede@live.co.uk', password: 'exoticcentipede' },
+              { username: 'Toxic-Prosperity', email: 'iftw+toxic-prosperity@live.co.uk', password: 'toxic-prosperity' },
+              { username: 'ToxicProsperity', email: 'iftw+toxicprosperity@live.co.uk', password: 'toxicprosperity' },
+              { username: 'ToxicProsperity-', email: 'iftw+toxicprosperity-@live.co.uk', password: 'toxicprosperity-' }])
+PSNAccount.create!([{ user: User.find_by!(username: 'LetsDeleteThis01'), psn_id: 'LetsDeleteThis01' }])
