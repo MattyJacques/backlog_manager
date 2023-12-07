@@ -1,3 +1,5 @@
+# rubocop:disable RSpec/ExampleLength
+# rubocop:disable RSpec/MultipleExpectations
 # frozen_string_literal: true
 
 require 'rails_helper'
@@ -32,4 +34,44 @@ RSpec.describe PSN::Client::User do
       expect(response['avatars'].first.values_at(*expected_avatars_keys)).not_to include(nil)
     end
   end
+
+  describe '.played_data', :vcr do
+    it 'returns the played data for the authorised account' do
+      response = described_class.played_data.first
+
+      expect(response.key?('__typename')).to be(true)
+      expect(response.key?('conceptId')).to be(true)
+      expect(response.key?('entitlementId')).to be(true)
+      expect(response.key?('image')).to be(true)
+      expect(response.key?('isActive')).to be(true)
+      expect(response.key?('lastPlayedDateTime')).to be(true)
+      expect(response.key?('membership')).to be(true)
+      expect(response.key?('name')).to be(true)
+      expect(response.key?('platform')).to be(true)
+      expect(response.key?('productId')).to be(true)
+      expect(response.key?('titleId')).to be(true)
+    end
+  end
+
+  describe '.purchased_data', :vcr do
+    it 'returns the played data for the authorised account' do
+      response = described_class.purchased_data.first
+
+      expect(response.key?('__typename')).to be(true)
+      expect(response.key?('conceptId')).to be(true)
+      expect(response.key?('entitlementId')).to be(true)
+      expect(response.key?('image')).to be(true)
+      expect(response.key?('isActive')).to be(true)
+      expect(response.key?('isDownloadable')).to be(true)
+      expect(response.key?('isPreOrder')).to be(true)
+      expect(response.key?('membership')).to be(true)
+      expect(response.key?('name')).to be(true)
+      expect(response.key?('platform')).to be(true)
+      expect(response.key?('productId')).to be(true)
+      expect(response.key?('titleId')).to be(true)
+    end
+  end
 end
+
+# rubocop:enable RSpec/ExampleLength
+# rubocop:enable RSpec/MultipleExpectations
