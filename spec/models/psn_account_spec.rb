@@ -17,4 +17,17 @@ RSpec.describe PSNAccount do
   context 'when validating uniqueness' do
     it { is_expected.to validate_uniqueness_of(:psn_id).case_insensitive }
   end
+
+  describe '#earned_trophy_count' do
+    subject(:account) { build(:psn_account, earned_bronze:, earned_silver:, earned_gold:, earned_platinum:) }
+
+    let(:earned_bronze) { 123 }
+    let(:earned_silver) { 321 }
+    let(:earned_gold) { 999 }
+    let(:earned_platinum) { 12 }
+
+    it 'returns the total earned trophy count' do
+      expect(account.earned_trophy_count).to be(earned_bronze + earned_silver + earned_gold + earned_platinum)
+    end
+  end
 end

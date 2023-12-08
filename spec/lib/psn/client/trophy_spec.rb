@@ -18,6 +18,41 @@ RSpec.describe PSN::Client::Trophy do
     end
   end
 
+  describe '.account_title_count' do
+    let(:account_id) { '6796840136244039860' }
+    let(:psn_response) do
+      {
+        'trophyTitles' => [
+          {
+            'npServiceName' => 'trophy',
+            'npCommunicationId' => 'NPWR06221_00',
+            'trophySetVersion' => '01.05',
+            'trophyTitleName' => 'Grand Theft Auto V',
+            'trophyTitleDetail' => 'Grand Theft Auto V',
+            'trophyTitleIconUrl' => 'https://image.api.playstation.com/trophy/np/NPWR06221_00_00943B71B23B3A5D98EB6CA419684E0F0A07FA8707/A3E52C438318CCEC6346EB2A31DBF31164A95A25.PNG',
+            'trophyTitlePlatform' => 'PS4',
+            'hasTrophyGroups' => true,
+            'definedTrophies' => { 'bronze' => 59, 'silver' => 15, 'gold' => 3, 'platinum' => 1 },
+            'progress' => 2,
+            'earnedTrophies' => { 'bronze' => 3, 'silver' => 0, 'gold' => 0, 'platinum' => 0 },
+            'hiddenFlag' => false,
+            'lastUpdatedDateTime' => '2023-06-14T11:07:58Z'
+          }
+        ],
+        'nextOffset' => 1,
+        'totalItemCount' => 114
+      }
+    end
+
+    before do
+      allow(described_class).to receive(:account_titles).with(account_id, limit: 1).and_return(psn_response)
+    end
+
+    it 'returns the title count for the PSN account' do
+      expect(described_class.account_title_count(account_id)).to be(114)
+    end
+  end
+
   describe '.account_titles', :vcr do
     let(:expected_result) do
       {
