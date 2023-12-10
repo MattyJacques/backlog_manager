@@ -22,7 +22,7 @@
   <table id="games_table" class="table table-striped table-hover table-dark">
     <thead>
       <tr>
-        </th scope="col">
+        <th scope="col"></th>
         <th scope="col">
           <%= build_order_link(label: "Name", sort_by: "name") %>
           <%= sort_indicator if session.dig('game_filters', 'sort_by') == "name" %>
@@ -55,7 +55,7 @@
                                GameStatus.statuses.keys,
                                game.game_statuses.select { |status| status.user_id == current_user.id }&.first&.status
                              ),
-                             { include_blank: true },
+                             { },
                              data: { action: "change->update-game-status#update" },
                              class: "form-control-dark text-bg-dark form-select" %>
               <% end %>
