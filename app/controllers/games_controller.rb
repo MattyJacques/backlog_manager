@@ -15,7 +15,7 @@ class GamesController < ApplicationController
   def update
     game = Game.find(game_params[:id].to_i)
 
-    update_game_status(game) if game_params[:status].present?
+    update_game_status(game)
 
     games = filter!(Game)
     render(partial: 'games', locals: { games: })
@@ -25,7 +25,12 @@ class GamesController < ApplicationController
 
   def update_game_status(game)
     status = GameStatus.find_or_initialize_by(game_id: game.id, user_id: current_user.id)
-    status.update!(status: game_params[:status])
+
+    if game_params[:status].empty?
+      status.destroy!
+    else
+      status.update!(status: game_params[:status])
+    end
   end
 
   def game_params
