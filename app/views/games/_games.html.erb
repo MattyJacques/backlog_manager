@@ -52,8 +52,8 @@
                             data: { controller: "update-game-status", update_game_status_target: "form", turbo_frame: "games" } do |f| %>
                 <%= f.select :status,
                              options_for_select(
-                               GameStatus.statuses.keys,
-                               game.game_statuses.select { |status| status.user_id == current_user.id }&.first&.status
+                               [nil] + GameStatus.statuses.keys, # Bootstrap include blank option doesn't have normal height for some reason
+                               current_user.game_statuses.select { |status| game.id == status.game_id}&.first&.status
                              ),
                              { },
                              data: { action: "change->update-game-status#update" },
