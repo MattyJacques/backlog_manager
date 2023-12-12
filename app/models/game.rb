@@ -17,7 +17,7 @@ class Game < ApplicationRecord
 
   class << self
     def filter(filters)
-      games = Game.includes(:releases, :platforms, :game_statuses).by_name(filters['name'])
+      games = Game.includes(:releases, :trophy_lists, :platforms).by_name(filters['name'])
       games = games.by_platform(filters['platform_id']) if filters['platform_id'].present?
 
       sort_list(games, filters['sort_by'], filters['direction'])
@@ -37,7 +37,7 @@ class Game < ApplicationRecord
     end
 
     def sort_by_name(games, direction)
-      games.order(Arel.sql("lower(name) #{direction == 'asc' ? 'asc' : 'desc'}"))
+      games.order(Arel.sql("lower(games.name) #{direction == 'asc' ? 'asc' : 'desc'}"))
     end
 
     def sort_by_platform(games, direction)
