@@ -13,12 +13,17 @@ class Game < ApplicationRecord
   validates :how_long_to_beat_id, numericality: { only_integer: true }, uniqueness: true, allow_nil: true
 
   scope :by_name, ->(query) { where('games.name like ?', "%#{query}%") }
-  scope :by_platform, ->(platform_id) { where(releases: { platform_id: }) }
+  scope :by_platform, ->(platform_id) { includes(:releases).where(releases: { platform_id: }) }
 
   class << self
     def filter(filters)
       games = Game.includes(:releases, :trophy_lists, :platforms).by_name(filters['name'])
-      games = games.by_platform(filters['platform_id']) if filters['platform_id'].present?
+
+      # This nonsense is due to the scope only showing the filtered for platform even if the game has multple
+      if filters['platform_id'].present?
+        platform = Platform.find(filters['platform_id'])
+        games = games.select { |game| game.platforms.include?(platform) }
+      end
 
       sort_list(games, filters['sort_by'], filters['direction'])
     end
