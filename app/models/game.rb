@@ -17,7 +17,7 @@ class Game < ApplicationRecord
 
   class << self
     def filter(filters)
-      games = Game.includes(:releases, :trophy_lists, :platforms).by_name(filters['name'])
+      games = Game.includes(:trophy_lists, :platforms).by_name(filters['name'])
 
       # This nonsense is due to the scope only showing the filtered for platform even if the game has multple
       if filters['platform_id'].present?
