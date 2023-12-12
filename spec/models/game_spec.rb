@@ -49,7 +49,7 @@ RSpec.describe Game do
     let(:game_relation) { ActiveRecord::Relation.new(described_class) }
 
     before do
-      allow(described_class).to receive(:includes).with(:releases, :platforms, :game_statuses)
+      allow(described_class).to receive(:includes).with(:trophy_lists, :platforms)
                                                   .and_return(game_relation)
     end
 
@@ -87,7 +87,8 @@ RSpec.describe Game do
 
         before do
           allow(game_relation).to receive(:by_name).with(filters['name']).and_return(game_relation)
-          allow(game_relation).to receive(:by_platform).with(filters['platform_id']).and_return(filtered_games)
+          allow(Platform).to receive(:find).with(ps4.id.to_s).and_return(ps4)
+          allow(game_relation).to receive(:select).and_return(filtered_games)
         end
 
         it 'returns the games that match the term and on the platform' do
@@ -102,7 +103,8 @@ RSpec.describe Game do
 
       before do
         allow(game_relation).to receive(:by_name).with(filters['name']).and_return(game_relation)
-        allow(game_relation).to receive(:by_platform).with(filters['platform_id']).and_return(filtered_games)
+        allow(Platform).to receive(:find).with(ps4.id.to_s).and_return(ps4)
+        allow(game_relation).to receive(:select).and_return(filtered_games)
       end
 
       it 'returns the games that match the term and on the platform' do
@@ -124,7 +126,7 @@ RSpec.describe Game do
           let(:filters) { { 'sort_by' => 'name', 'direction' => 'asc' } }
 
           before do
-            allow(game_relation).to receive(:order).with(Arel.sql('lower(name) asc'))
+            allow(game_relation).to receive(:order).with(Arel.sql('lower(games.name) asc'))
                                                    .and_return(sorted_games)
           end
 
@@ -137,7 +139,7 @@ RSpec.describe Game do
           let(:filters) { { 'sort_by' => 'name', 'direction' => 'desc' } }
 
           before do
-            allow(game_relation).to receive(:order).with(Arel.sql('lower(name) desc'))
+            allow(game_relation).to receive(:order).with(Arel.sql('lower(games.name) desc'))
                                                    .and_return(sorted_games.reverse!)
           end
 
