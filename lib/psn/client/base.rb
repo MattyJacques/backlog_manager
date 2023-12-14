@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'httparty'
-
 module PSN
   module Client
     # Handle sending requests to the PSN API
