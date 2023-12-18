@@ -19,9 +19,9 @@ RSpec.describe 'Games' do
     end
   end
 
-  describe 'GET /list' do
+  describe 'GET /search' do
     it 'returns http success' do
-      get list_games_url
+      get search_games_url
 
       expect(response).to have_http_status(:success)
     end

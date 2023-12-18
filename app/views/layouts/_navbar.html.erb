@@ -31,12 +31,19 @@
         </li>
       </ul>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search"
-               class="disabled form-control form-control-dark text-bg-dark"
-               placeholder="Search..."
-               aria-label="Search">
-      </form>
+      <div id="search" class="text-end">
+        <%= form_with url: games_path,
+                      method: :get,
+                      data: { controller: "search-form", search_form_target: "form" },
+                      class: 'col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3' do |f| %>
+          <%= f.text_field :name,
+                            placeholder: "Search...",
+                            value: session.dig('game_filters', 'name'),
+                            autocomplete: "off",
+                            data: { action: "input->search-form#search"},
+                            class: "form-control form-control-dark text-bg-dark" %>
+        <% end %>
+      </div>
 
       <div class="text-end">
         <% if user_signed_in? %>

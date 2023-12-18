@@ -16,7 +16,7 @@ RSpec.describe GamesHelper do
   describe '.build_order_link' do
     context 'when session sort_by is empty' do
       let(:expected_link) do
-        '<a class="table-dark" href="/games/list?direction=asc&amp;sort_by=name">name</a>'
+        '<a class="table-dark" href="/games/search?direction=asc&amp;sort_by=name">name</a>'
       end
 
       it 'returns a link that sorts in ascending order' do
@@ -26,7 +26,7 @@ RSpec.describe GamesHelper do
 
     context 'when session sort_by has a value' do
       let(:expected_link) do
-        '<a class="table-dark" href="/games/list?direction=desc&amp;sort_by=name">name</a>'
+        '<a class="table-dark" href="/games/search?direction=desc&amp;sort_by=name">name</a>'
       end
 
       before do

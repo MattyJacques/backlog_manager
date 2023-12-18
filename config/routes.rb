@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :games, except: %i[new edit create destroy] do
     collection do
-      get 'list'
+      get 'search'
     end
   end
   resources :psn_accounts, except: %i[new edit create update destroy]

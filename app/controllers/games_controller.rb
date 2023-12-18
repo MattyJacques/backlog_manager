@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     @games = filter!(Game)
   end
 
-  def list
+  def search
     games = filter!(Game)
     render(partial: 'games', locals: { games: })
   end

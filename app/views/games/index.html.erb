@@ -1,4 +1,24 @@
 <div>
   <h2>Games</h2>
+  <div id="search" class="text-end">
+    <%= form_with url: games_path,
+                  method: :get,
+                  data: { controller: "search-form", search_form_target: "form", turbo_frame: "games" } do |f| %>
+      <%= f.text_field :name,
+                        placeholder: "Search...",
+                        value: session.dig('game_filters', 'name'),
+                        autocomplete: "off",
+                        data: { action: "input->search-form#search"},
+                        class: "form-control form-control-dark text-bg-dark" %>
+      <%= f.select :platform_id,
+                  options_for_select(
+                    Platform.all.pluck(:name, :id),
+                    session.dig('game_filters', 'platform_id')
+                  ),
+                  { include_blank: 'All Platforms' },
+                  data: { action: "change->search-form#search" },
+                  class: "form-control form-control-dark text-bg-dark form-select" %>
+    <% end %>
+  </div>
   <%= render 'games', games: @games %>
 </div>
