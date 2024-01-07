@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_110732) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_06_095817) do
   create_table "account_trophy_lists", force: :cascade do |t|
     t.integer "psn_account_id", null: false
     t.integer "trophy_list_id", null: false
@@ -70,6 +70,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_110732) do
     t.datetime "updated_at", null: false
     t.index ["how_long_to_beat_id"], name: "unique game HLTB ID index", unique: true
     t.index ["igdb_id"], name: "unique game IGDB ID index", unique: true
+  end
+
+  create_table "games_genres", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "genre_id", null: false
+    t.index ["game_id", "genre_id"], name: "index_games_genres_on_game_id_and_genre_id"
   end
 
   create_table "genres", force: :cascade do |t|
