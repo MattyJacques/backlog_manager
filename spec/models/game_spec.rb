@@ -9,6 +9,7 @@ RSpec.describe Game do
   it { is_expected.to have_many(:platforms).through(:releases) }
   it { is_expected.to have_many(:trophy_lists).through(:releases) }
   it { is_expected.to have_many(:game_statuses).dependent(:destroy) }
+  it { is_expected.to have_and_belong_to_many(:genres) }
 
   context 'when validating everything' do
     it 'is valid with valid attributes' do

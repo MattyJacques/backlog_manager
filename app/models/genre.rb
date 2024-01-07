@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Genre < ApplicationRecord
+  has_and_belongs_to_many :games
+
   after_create :import_igdb_genre
 
   private

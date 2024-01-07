@@ -8,6 +8,8 @@ class Game < ApplicationRecord
   has_many :trophy_lists, through: :releases
   has_many :game_statuses, dependent: :destroy
 
+  has_and_belongs_to_many :genres
+
   validates :name, presence: true
   validates :igdb_id, numericality: { only_integer: true }, uniqueness: true, allow_nil: true
   validates :how_long_to_beat_id, numericality: { only_integer: true }, uniqueness: true, allow_nil: true

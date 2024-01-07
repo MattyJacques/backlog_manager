@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Genre do
+  it { is_expected.to have_and_belong_to_many(:games) }
+
   describe '#import_igdb_genre' do
     subject(:genre) { described_class.new(igdb_id:) }
 
