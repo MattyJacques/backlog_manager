@@ -7,13 +7,14 @@ module IGDB
 
       class << self
         # Search IGDB for a game with the given name
-        def search(name, limit = 20)
+        def search(name, platform = nil, full_data: false, limit: 20)
           raise 'Search query should not be blank' if name.blank?
 
           Rails.logger.info("Searching IGDB for #{name}")
 
-          params = { fields: 'name, platforms.name, genres.name' }
+          params = full_data ? import_param_fields : search_param_fields
           params[:search] = "\"#{name}\""
+          params[:where] = "platforms = (#{platform.igdb_id})" if platform.present?
           params[:limit] = limit
 
           post(ENDPOINT, params)
@@ -38,6 +39,12 @@ module IGDB
         end
 
         private
+
+        def search_param_fields
+          {
+            fields: 'name, platforms.name, genres.name'
+          }
+        end
 
         def import_param_fields
           {

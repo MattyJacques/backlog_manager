@@ -9,7 +9,7 @@ PlatformFamily.create!([{ name: 'PlayStation', igdb_id: 1 },
                         { name: 'Xbox', igdb_id: 2 },
                         { name: 'Nintendo', igdb_id: 5 }])
 Platform.create!([{ name: 'PlayStation 3', abbreviation: 'PS3', igdb_id: 9, platform_family_id: 1 },
-                  { name: 'Playstation Vita', abbreviation: 'PSVITA', platform_family_id: 1 },
+                  { name: 'Playstation Vita', abbreviation: 'PSVITA', igdb: 46, platform_family_id: 1 },
                   { name: 'PlayStation 4', abbreviation: 'PS4', igdb_id: 48, platform_family_id: 1 },
                   { name: 'PlayStation 5', abbreviation: 'PS5', igdb_id: 167, platform_family_id: 1 },
                   { name: 'PC (Microsoft Windows)', igdb_id: 6 },

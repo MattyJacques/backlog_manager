@@ -5,12 +5,24 @@ require 'rails_helper'
 RSpec.describe IGDB::Client::Games do
   describe '.search', :vcr do
     context 'when arguments are valid' do
+      let(:ps4) { build(:ps4) }
+
       it 'returns the search results of the name' do
         results = described_class.search('The Last of Us')
 
         expect(results.count).to be_positive
         results.each do |result|
           expect(result['name']).to include('The Last of Us')
+        end
+      end
+
+      it 'returns the search results that match name and platform' do
+        results = described_class.search('The Last of Us', ps4)
+
+        expect(results.count).to be_positive
+        results.each do |result|
+          expect(result['name']).to include('The Last of Us')
+          expect(result['platforms'].pluck('id')).to include(ps4.igdb_id)
         end
       end
     end
