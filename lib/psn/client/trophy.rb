@@ -77,9 +77,7 @@ module PSN
 
           send_get("/trophy/v1/#{account_path(account_id)}" \
                    "npCommunicationIds/#{comm_id}/trophyGroups/#{group_id}/trophies",
-                   query: {
-                     npServiceName: service_name
-                   })
+                   query: { npServiceName: service_name })
         end
 
         # Get a trophy summary for the given titles
@@ -92,9 +90,7 @@ module PSN
           raise 'title_ids size must be less than or equal to 5' unless title_ids.length.between?(1, 5)
 
           send_get("/trophy/v1/users/#{account_id}/titles/trophyTitles",
-                   query: {
-                     npTitleIds: title_ids.join(',')
-                   })
+                   query: { npTitleIds: title_ids.join(',') })
         end
 
         # Get the data for a specific trophy, can be earned status or general
@@ -107,9 +103,7 @@ module PSN
           raise 'service_name should be \'trophy\' or \'trophy2\'' unless NP_SERVICE_NAMES.include?(service_name)
 
           send_get("/trophy/v1/#{account_path(account_id)}npCommunicationIds/#{comm_id}/trophies/#{trophy_id}",
-                   query: {
-                     npServiceName: service_name
-                   })
+                   query: { npServiceName: service_name })
         end
 
         # Get data on the trophy groups (main list and DLCs etc) for a title.
@@ -122,9 +116,7 @@ module PSN
           raise 'service_name should be \'trophy\' or \'trophy2\'' unless NP_SERVICE_NAMES.include?(service_name)
 
           send_get("/trophy/v1/#{account_path(account_id)}npCommunicationIds/#{comm_id}/trophyGroups",
-                   query: {
-                     npServiceName: service_name
-                   })
+                   query: { npServiceName: service_name })
         end
 
         private
