@@ -3,8 +3,8 @@
 class Game < ApplicationRecord
   FILTER_PARAMS = %i[name platform_id sort_by direction].freeze
 
-  has_many :releases, dependent: :destroy
-  has_many :platforms, through: :releases
+  has_many :releases, dependent: :destroy, autosave: true
+  has_many :platforms, through: :releases, autosave: true
   has_many :trophy_lists, through: :releases
   has_many :game_statuses, dependent: :destroy
 
