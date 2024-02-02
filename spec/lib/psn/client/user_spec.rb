@@ -35,9 +35,22 @@ RSpec.describe PSN::Client::User do
     end
   end
 
-  describe '.played_data', :vcr do
+  describe '.played_game_data', :vcr do
+    let(:expected_keys) do
+      %w[titleId name localizedName imageUrl localizedImageUrl category service playCount concept media
+         firstPlayedDateTime lastPlayedDateTime playDuration]
+    end
+
+    it 'returns the played game data for the given account' do
+      response = described_class.played_game_data('5340552997727798155')
+
+      expect(response['titles'].last.values_at(*expected_keys)).not_to include(nil)
+    end
+  end
+
+  describe '.self_played_data', :vcr do
     it 'returns the played data for the authorised account' do
-      response = described_class.played_data.first
+      response = described_class.self_played_data.first
 
       expect(response.key?('__typename')).to be(true)
       expect(response.key?('conceptId')).to be(true)
@@ -53,9 +66,9 @@ RSpec.describe PSN::Client::User do
     end
   end
 
-  describe '.purchased_data', :vcr do
+  describe '.self_purchased_data', :vcr do
     it 'returns the played data for the authorised account' do
-      response = described_class.purchased_data.first
+      response = described_class.self_purchased_data.first
 
       expect(response.key?('__typename')).to be(true)
       expect(response.key?('conceptId')).to be(true)
