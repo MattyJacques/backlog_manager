@@ -30,8 +30,16 @@ module PSN
           get("#{BASE_PATH}/userProfile/v1/internal/users/#{account_id}/profiles")
         end
 
+        # Get a list of the played game data for the given account
+        # This only lists PS4 and PS5 games
+        #
+        # account_id [String] PSN Account ID
+        def played_game_data(account_id)
+          get("#{BASE_PATH}/gamelist/v2/users/#{account_id}/titles")
+        end
+
         # Get the recently played data for the authourised PSN account
-        def played_data
+        def self_played_data
           response = get("#{GRAPHQL_BASE_PATH}getUserGameList" \
                          '&variables={"categories":"ps4_game,ps5_native_game","limit":50}' \
                          '&extensions={"persistedQuery":{"version":1,' \
@@ -41,7 +49,7 @@ module PSN
         end
 
         # Get the purchase data for the authourised PSN account
-        def purchased_data
+        def self_purchased_data
           response = get("#{GRAPHQL_BASE_PATH}getPurchasedGameList" \
                          '&variables={"isActive":true,"platform":["ps4","ps5"],' \
                          '"size":1000,"start":0,"sortBy":"ACTIVE_DATE","sortDirection":"desc"}' \
