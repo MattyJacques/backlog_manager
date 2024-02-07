@@ -89,22 +89,27 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_095817) do
   create_table "platform_families", force: :cascade do |t|
     t.string "name", null: false
     t.integer "igdb_id"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "unique family IGDB ID index", unique: true
     t.index ["name"], name: "unique family name index", unique: true
+    t.index ["slug"], name: "unique family slug index", unique: true
   end
 
   create_table "platforms", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "abbreviation"
+    t.string "ps_abbreviation"
     t.integer "igdb_id"
+    t.string "slug"
     t.integer "platform_family_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "unique platform IGDB ID index", unique: true
     t.index ["name"], name: "unique platform name index", unique: true
     t.index ["platform_family_id"], name: "index_platforms_on_platform_family_id"
+    t.index ["slug"], name: "unique platform slug index", unique: true
   end
 
   create_table "psn_accounts", force: :cascade do |t|
@@ -132,7 +137,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_095817) do
     t.integer "trophy_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id", "platform_id", "region"], name: "unique release index", unique: true
     t.index ["game_id"], name: "index_releases_on_game_id"
     t.index ["platform_id"], name: "index_releases_on_platform_id"
     t.index ["trophy_list_id"], name: "index_releases_on_trophy_list_id"

@@ -20,13 +20,22 @@ module PSN
         private
 
         def import_title(title)
+          return if list_exists?(title['npCommunicationId'])
+
           ActiveRecord::Base.transaction do
-            PSN::Services::ImportPSNRelease.import(title) unless list_exists?(title['npCommunicationId'])
+            game = IGDB::Services::ImportGame.import(title['trophyTitleName'], platform(title['trophyTitlePlatform']))
+            PSN::Services::ImportPSNRelease.import(title, game)
+          rescue RuntimeError
+            PSN::Services::ImportPSNRelease.import(title, Game.new(name: title['trophyTitleName']))
           end
         end
 
         def list_exists?(comm_id)
           TrophyList.exists?(comm_id:)
+        end
+
+        def platform(platforms_string)
+          Platform.find_by(abbreviation: platforms_string.split(',').first)
         end
       end
     end
