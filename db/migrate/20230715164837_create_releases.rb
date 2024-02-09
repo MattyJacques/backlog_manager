@@ -8,8 +8,6 @@ class CreateReleases < ActiveRecord::Migration[7.0]
       t.belongs_to :trophy_list, foreign_key: true
 
       t.timestamps
-
-      t.index %i[game_id platform_id region], unique: true, name: 'unique release index'
     end
   end
 end

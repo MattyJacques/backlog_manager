@@ -4,8 +4,11 @@ module IGDB
   module Services
     class ImportGame
       class << self
-        def import(title, platforms = [])
-          result = IGDB::Client::Games.search(title, platforms, full_data: true, limit: 1)
+        def import(title, platform = nil)
+          title = title.gsub(Regexp.union('®', '™', ' Trophies'), '')
+          result = IGDB::Client::Games.search(title, platform, full_data: true, limit: 1)
+
+          raise 'No search results from IGDB' if result.blank?
 
           import_from_data(result.first)
         end
@@ -21,6 +24,8 @@ module IGDB
           game.genres = import_genres(igdb_data['genres'])
           game.releases = import_releases(game, platforms, igdb_data['release_dates'])
           game.save!
+
+          game
         end
 
         def import_genres(genres)
@@ -32,16 +37,15 @@ module IGDB
         def import_platforms(platforms)
           return [] if platforms.blank?
 
-          platforms.map do |platform|
-            family = import_platform_family(platform['platform_family'])
-            Platform.find_or_initialize_by(name: platform['name'], igdb_id: platform['id'], platform_family: family)
+          platforms.uniq.map do |platform|
+            Platform.find_or_create_by!(igdb_id: platform['id'])
           end
         end
 
         def import_platform_family(family_data)
           return nil if family_data.blank?
 
-          PlatformFamily.find_or_initialize_by(igdb_id: family_data['id'], name: family_data['name'])
+          PlatformFamily.find_or_create_by!(igdb_id: family_data['id'], name: family_data['name'])
         end
 
         def import_releases(game, platforms, dates)
