@@ -1,0 +1,50 @@
+<%= turbo_frame_tag "games" do %>
+  <table id="games_table" class="table table-striped table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">
+          <%= build_order_link(label: "Name", sort_by: "name") %>
+          <%= sort_indicator if session.dig('game_filters', 'sort_by') == "name" %>
+        </th>
+        <th scope="col">
+          <%= build_order_link(label: "Platforms", sort_by: "platform") %>
+          <%= sort_indicator if session.dig('game_filters', 'sort_by') == "platform" %>
+        </th>
+        <% if user_signed_in? %>
+          <th scope="col">
+            <%= build_order_link(label: "Status", sort_by: "status") %>
+            <%= sort_indicator if session.dig('game_filters', 'sort_by') == "status" %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% games.each do |game| %>
+        <%= turbo_frame_tag "game" do %>
+          <tr>
+            <td><%= image_tag(game.trophy_lists.first.icon_url, width: 107, height: 59) %></td>
+            <td><%= game.name %></td>
+            <td><%= game.platforms.map { |l|  l.abbreviation }.join(', ') %></td>
+            <% if user_signed_in? %>
+              <td>
+                <%= form_with url: game_path(game.id),
+                              method: :patch,
+                              data: { controller: "update-game-status", update_game_status_target: "form", turbo_frame: "games" } do |f| %>
+                  <%= f.select :status,
+                               options_for_select(
+                                 [nil] + GameStatus.statuses.keys, # Bootstrap include blank option doesn't have normal height for some reason
+                                 current_user.game_statuses.select { |status| game.id == status.game_id}&.first&.status
+                               ),
+                               { },
+                               data: { action: "change->update-game-status#update" },
+                               class: "form-control-dark text-bg-dark form-select" %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

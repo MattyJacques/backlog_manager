@@ -11,6 +11,11 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :psn_games, except: %i[new edit create update destroy] do
+    collection do
+      get 'search'
+    end
+  end
   resources :psn_accounts, except: %i[new edit create update destroy]
   resources :trophy_lists, except: %i[new edit create update destroy]
 end

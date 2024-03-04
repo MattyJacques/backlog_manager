@@ -14,7 +14,7 @@ module IGDB
 
           params = full_data ? import_param_fields : search_param_fields
           params[:search] = "\"#{name}\""
-          params[:where] = "platforms = (#{platform.igdb_id})" if platform.present?
+          params[:where] = "#{platform_string(platforms)} & category = (0,8,9,10,11) & version_parent = null"
           params[:limit] = limit
 
           post(ENDPOINT, params)
@@ -40,9 +40,17 @@ module IGDB
 
         private
 
+        def platform_string(platforms)
+          if platforms.present?
+            "platforms = (#{platforms.map(&:igdb_id)})"
+          else
+            ''
+          end
+        end
+
         def search_param_fields
           {
-            fields: 'name, platforms.name, genres.name'
+            fields: 'name, platforms.name, genres.name, category, parent_game'
           }
         end
 
