@@ -2,7 +2,7 @@
 
 module PSN
   class ImportUnobtainableTrophiesJob < ApplicationJob
-    PSNP_LIST_URL = 'https://psnp-plus.netlify.app/list.min.json'
+    PSNP_LIST_URL = 'https://psnp-plus.huskycode.dev/list.min.json'
 
     queue_as :PSN
 

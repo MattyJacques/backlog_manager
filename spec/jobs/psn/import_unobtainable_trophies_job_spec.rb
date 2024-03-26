@@ -9,7 +9,7 @@ RSpec.describe PSN::ImportUnobtainableTrophiesJob do
     let(:gta_iv_psntl) { 'grand-theft-auto-iv-ps3' }
     let(:gta_v_psntl) { 'grand-theft-auto-v-ps4' }
     let(:psntl_ids) { [gta_iv_psntl, gta_v_psntl] }
-    let(:psnp_list_url) { 'https://psnp-plus.netlify.app/list.min.json' }
+    let(:psnp_list_url) { 'https://psnp-plus.huskycode.dev/list.min.json' }
 
     before do
       allow(TrophyList).to receive(:where).and_return(trophy_list_query)
