@@ -62,4 +62,8 @@ group :development do
   # gem 'spring'
 
   gem 'error_highlight', '>= 0.4.0', platforms: [:ruby]
+
+  # Static analysis for Ruby code style
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
 end

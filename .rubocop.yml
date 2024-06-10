@@ -1,0 +1,23 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+  Exclude:
+    - 'db/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'db/**/*'
+
+Style/Documentation:
+  Enabled: false
