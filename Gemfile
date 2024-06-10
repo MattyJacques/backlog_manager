@@ -66,4 +66,10 @@ group :development do
   # Static analysis for Ruby code style
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
+group :test do
+  # # Use RSpec as testing framework
+  gem 'rspec-rails'
 end
