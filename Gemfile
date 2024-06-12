@@ -72,4 +72,7 @@ end
 group :test do
   # # Use RSpec as testing framework
   gem 'rspec-rails'
+
+  # Report test coverage
+  gem 'simplecov', require: false
 end

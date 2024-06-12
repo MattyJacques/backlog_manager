@@ -15,6 +15,21 @@
 # it.
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# simplecov code coverage needs to be configured before anything else in this file,
+# otherwise it will not give proper coverage reports.
+require 'simplecov'
+SimpleCov.start 'rails' do
+  # These files have not been touched yet, filtering until they are actually used
+  add_filter '/app/controllers/'
+  add_filter '/app/channels/'
+  add_filter '/app/models/'
+  add_filter '/app/mailers/'
+  add_filter '/app/helpers/'
+  add_filter '/app/jobs/'
+  add_filter 'lib'
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
