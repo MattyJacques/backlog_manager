@@ -20,5 +20,11 @@ Metrics/MethodLength:
   Exclude:
     - 'db/**/*'
 
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Max: 10
+
 Style/Documentation:
   Enabled: false
