@@ -21,7 +21,6 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
   # These files have not been touched yet, filtering until they are actually used
-  add_filter '/app/controllers/'
   add_filter '/app/channels/'
   add_filter '/app/models/'
   add_filter '/app/mailers/'
