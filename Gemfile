@@ -53,6 +53,9 @@ gem 'httparty'
 gem 'oauth2'
 
 group :development, :test do
+  # Audit Gemfile for vulnerable gems
+  gem 'bundler-audit', require: false
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
 
