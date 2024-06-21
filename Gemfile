@@ -91,4 +91,7 @@ group :test do
 
   # Report test coverage
   gem 'simplecov', require: false
+
+  # Add should matchers to testing framework
+  gem 'shoulda-matchers'
 end
