@@ -53,6 +53,9 @@ gem 'httparty'
 gem 'oauth2'
 
 group :development, :test do
+  # Static analysis for security vulnerabilities
+  gem 'brakeman', require: false
+
   # Audit Gemfile for vulnerable gems
   gem 'bundler-audit', require: false
 
