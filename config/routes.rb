@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   root 'igdb#index'
 
   resources :igdb, only: %i[index]
+  resources :games
 end
