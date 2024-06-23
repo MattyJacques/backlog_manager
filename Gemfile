@@ -56,6 +56,9 @@ group :development, :test do
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false
 
+  # Audit for N+1 queries
+  gem 'bullet'
+
   # Audit Gemfile for vulnerable gems
   gem 'bundler-audit', require: false
 
