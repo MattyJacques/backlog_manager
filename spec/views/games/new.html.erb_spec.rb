@@ -14,6 +14,7 @@ RSpec.describe 'games/new' do
 
     assert_select 'form[action=?][method=?]', games_path, 'post' do
       assert_select 'input[name=?]', 'game[name]'
+      assert_select 'input[name=?]', 'game[igdb_id]'
     end
   end
 end
