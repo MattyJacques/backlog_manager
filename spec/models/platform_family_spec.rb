@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe PlatformFamily do
   subject(:family) { build(:platform_family) }
 
+  it { is_expected.to have_many(:platforms).dependent(:nullify).autosave(true) }
+
   context 'when validating presence' do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:igdb_id) }
