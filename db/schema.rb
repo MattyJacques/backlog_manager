@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_103137) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_145545) do
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -61,5 +61,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_103137) do
     t.index ["slug"], name: "unique platform slug", unique: true
   end
 
+  create_table "releases", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "platform_id", null: false
+    t.integer "region"
+    t.date "date"
+    t.integer "igdb_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_releases_on_game_id"
+    t.index ["igdb_id"], name: "unique release igdb_id", unique: true
+    t.index ["platform_id"], name: "index_releases_on_platform_id"
+  end
+
   add_foreign_key "platforms", "platform_families"
+  add_foreign_key "releases", "games"
+  add_foreign_key "releases", "platforms"
 end
