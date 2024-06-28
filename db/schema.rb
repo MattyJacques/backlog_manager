@@ -10,13 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_25_211540) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_27_194741) do
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "igdb_id"
     t.index ["igdb_id"], name: "unique game igdb_id", unique: true
+  end
+
+  create_table "games_genres", id: false, force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.integer "genre_id", null: false
+    t.index ["game_id", "genre_id"], name: "index_games_genres_on_game_id_and_genre_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "igdb_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["igdb_id"], name: "unique genre igdb_id", unique: true
+    t.index ["name"], name: "unique genre name", unique: true
+    t.index ["slug"], name: "unique genre slug", unique: true
   end
 
 end

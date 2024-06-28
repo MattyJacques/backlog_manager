@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Game do
   subject(:game) { build(:game) }
 
+  it { is_expected.to have_and_belong_to_many(:genres) }
+
   context 'when validating everything' do
     it 'is valid with valid attributes' do
       expect(game).to be_valid
