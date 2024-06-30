@@ -27,6 +27,14 @@ module IGDB
             fields: 'name, platforms.name, genres.name, category, parent_game'
           }
         end
+
+        def import_param_fields
+          {
+            fields: 'name, genres.name, platforms.platform_family.name,
+                     platforms.name, release_dates.date, release_dates.game,
+                     release_dates.platform, release_dates.region'
+          }
+        end
       end
     end
   end
