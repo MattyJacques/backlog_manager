@@ -23,6 +23,7 @@ module IGDB
         game.name = igdb_data['name']
         game.genres = update_genres(igdb_data['genres'])
         game.platforms = update_platforms(igdb_data['platforms'])
+        game.releases = update_releases(igdb_data['release_dates'])
         game.save!
       end
 
