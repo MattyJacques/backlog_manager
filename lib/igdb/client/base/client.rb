@@ -10,7 +10,9 @@ module IGDB
         class << self
           def post(endpoint, params = { fields: '*' })
             uri = URI.parse(URL + endpoint)
-            do_post_request(uri, params)
+            response = do_post_request(uri, params)
+
+            handle_response(response)
           end
 
           private
@@ -22,6 +24,12 @@ module IGDB
                                        'Authorization' => "Bearer #{token}" },
                             body: convert_post_body(params))
             end
+          end
+
+          def handle_response(response)
+            raise IGDB::Client::Errors::NotFound if response.blank?
+
+            response
           end
 
           def with_retry_on_auth_error

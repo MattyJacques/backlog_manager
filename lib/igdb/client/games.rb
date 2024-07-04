@@ -20,11 +20,27 @@ module IGDB
           post(ENDPOINT, params)
         end
 
+        def get_by_id(igdb_id)
+          raise 'IGDB ID should not be blank' if igdb_id.blank?
+
+          params = import_param_fields
+          params[:where] = "id = #{igdb_id}"
+
+          post(ENDPOINT, params).first
+        end
+
         private
 
         def search_param_fields
           {
             fields: 'name, platforms.name, genres.name, category, parent_game'
+          }
+        end
+
+        def import_param_fields
+          {
+            fields: 'name, genres, platforms, platforms.platform_family, release_dates.date, ' \
+                    'release_dates.game, release_dates.platform, release_dates.region'
           }
         end
       end
