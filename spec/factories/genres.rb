@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :genre do
-    name { 'Real Time Strategy (RTS)' }
-    slug { 'real-time-strategy-rts' }
-    igdb_id { 11 }
+    sequence(:name) { |n| "Genre #{n}" }
+    sequence(:slug) { |n| " genre-#{n}" }
+    sequence(:igdb_id) { |n| n }
   end
 end
