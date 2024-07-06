@@ -60,11 +60,18 @@ module IGDB
 
       def build_release(game, platform, release_data)
         Release.find_or_initialize_by(igdb_id: release_data['id']).tap do |r|
-          r.date = release_data['date']
+          r.date = seconds_to_date(release_data['date'])
           r.region = release_data['region']
           r.platform = platform
           r.game = game
         end
+      end
+
+      def seconds_to_date(timestamp)
+        timestamp = 0 if timestamp.blank?
+
+        time = Time.at(timestamp).utc
+        Date.new(time.year, time.month, time.day)
       end
 
       def get_igdb_data(igdb_id)

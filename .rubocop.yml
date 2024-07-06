@@ -24,6 +24,9 @@ Metrics/MethodLength:
 Rails/HasAndBelongsToMany:
   Enabled: false
 
+RSpec/ExampleLength:
+  Max: 10
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
