@@ -5,7 +5,11 @@ require 'rails_helper'
 RSpec.describe '/games' do
   let(:game) { build(:game, id: 7) }
   let(:valid_attributes) { attributes_for(:game) }
-  let(:invalid_attributes) { { name: '' } }
+  let(:invalid_attributes) { { igdb_id: 0 } }
+
+  before do
+    allow(IGDB::Services::ImportGame).to receive(:import)
+  end
 
   describe 'GET /index' do
     context 'when there are no games' do
@@ -38,6 +42,65 @@ RSpec.describe '/games' do
       get game_url(game)
 
       expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /search' do
+    context 'when format is HTML' do
+      context 'when there is no search parameter' do
+        it 'renders a successful response' do
+          get search_games_url
+
+          expect(response).to be_successful
+        end
+      end
+
+      context 'when there is a search parameter' do
+        before do
+          allow(IGDB::Client::Games).to receive(:search).with('The Last of Us').and_return([game])
+        end
+
+        it 'renders a successful response' do
+          get search_games_url(search: 'The Last of Us')
+
+          expect(response).to be_successful
+        end
+
+        context 'when there is no game found' do
+          before do
+            allow(IGDB::Client::Games).to receive(:search).with('The Last of Us')
+                                                          .and_raise(IGDB::Client::Errors::NotFound)
+          end
+
+          it 'renders a successful response' do
+            get search_games_url(search: 'The Last of Us')
+
+            expect(response).to be_successful
+          end
+        end
+      end
+    end
+
+    context 'when format is JSON' do
+      context 'when there is no search parameter' do
+        it 'renders a successful response' do
+          get search_games_url(format: :json)
+
+          expect(response).to be_successful
+        end
+      end
+
+      context 'when there is a search parameter' do
+        before do
+          allow(IGDB::Client::Games).to receive(:search).with('The Last of Us').and_return([game])
+        end
+
+        it 'renders a successful response' do
+          get search_games_url(search: 'The Last of Us', format: :json)
+
+          expect(response).to be_successful
+        end
+      end
     end
   end
 

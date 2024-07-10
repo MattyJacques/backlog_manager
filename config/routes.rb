@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ('/')
-  root 'igdb#index'
+  root 'games#index'
 
   resources :igdb, only: %i[index]
-  resources :games
+  resources :games do
+    collection do
+      get :search
+    end
+  end
 end

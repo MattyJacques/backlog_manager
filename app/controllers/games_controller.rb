@@ -11,6 +11,11 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show; end
 
+  # GET /games/search or /games/search.json
+  def search
+    @games = search_igdb(params[:search])
+  end
+
   # GET /games/new
   def new
     @game = Game.new
@@ -58,6 +63,12 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def search_igdb(game_name)
+    game_name.present? ? IGDB::Client::Games.search(game_name) : []
+  rescue IGDB::Client::Errors::NotFound
+    []
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game

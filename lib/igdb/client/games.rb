@@ -33,7 +33,7 @@ module IGDB
 
         def search_param_fields
           {
-            fields: 'name, platforms.name, genres.name, category, parent_game'
+            fields: 'name, genres.name, platforms.name, platforms.platform_family.name'
           }
         end
 

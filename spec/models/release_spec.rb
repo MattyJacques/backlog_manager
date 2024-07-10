@@ -15,15 +15,25 @@ RSpec.describe Release do
     ).with_prefix
   end
 
-  context 'when validating presence' do
-    it { is_expected.to validate_presence_of(:igdb_id) }
-  end
+  describe 'validations' do
+    before do
+      Game.skip_callback(:create, :after, :import_igdb_data)
+    end
 
-  context 'when validating numericality' do
-    it { is_expected.to validate_numericality_of(:igdb_id) }
-  end
+    after do
+      Game.set_callback(:create, :after, :import_igdb_data)
+    end
 
-  context 'when validating uniqueness' do
-    it { is_expected.to validate_uniqueness_of(:igdb_id) }
+    context 'when validating presence' do
+      it { is_expected.to validate_presence_of(:igdb_id) }
+    end
+
+    context 'when validating numericality' do
+      it { is_expected.to validate_numericality_of(:igdb_id) }
+    end
+
+    context 'when validating uniqueness' do
+      it { is_expected.to validate_uniqueness_of(:igdb_id) }
+    end
   end
 end

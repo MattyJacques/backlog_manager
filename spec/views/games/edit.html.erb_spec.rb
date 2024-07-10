@@ -3,14 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'games/edit' do
-  let(:game) do
-    Game.create!(
-      name: 'The Last Of Us'
-    )
-  end
+  let(:game) { create(:game) }
 
   before do
+    Game.skip_callback(:create, :after, :import_igdb_data)
+
     assign(:game, game)
+  end
+
+  after do
+    Game.set_callback(:create, :after, :import_igdb_data)
   end
 
   it 'renders the edit game form' do

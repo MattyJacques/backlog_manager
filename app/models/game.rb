@@ -6,6 +6,14 @@ class Game < ApplicationRecord
 
   has_and_belongs_to_many :genres, autosave: true
 
-  validates :name, presence: true
-  validates :igdb_id, numericality: { only_integer: true }, uniqueness: true, allow_nil: true
+  validates :name, presence: { unless: :igdb_id }
+  validates :igdb_id, numericality: { only_integer: true, greater_than: 0 }, uniqueness: true, allow_nil: true
+
+  after_create :import_igdb_data
+
+  private
+
+  def import_igdb_data
+    IGDB::Services::ImportGame.import(igdb_id)
+  end
 end
