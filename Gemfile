@@ -52,6 +52,9 @@ gem 'httparty'
 # Handle OAuth authorisation
 gem 'oauth2'
 
+# Background job worker
+gem 'delayed_job_active_record'
+
 group :development, :test do
   # Static analysis for security vulnerabilities
   gem 'brakeman', require: false

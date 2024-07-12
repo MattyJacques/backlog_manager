@@ -12,6 +12,6 @@ class Platform < ApplicationRecord
   private
 
   def import_igdb_data
-    IGDB::Services::ImportPlatform.import(igdb_id)
+    IGDB::ImportPlatformJob.perform_later(igdb_id)
   end
 end

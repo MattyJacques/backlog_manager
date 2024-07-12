@@ -12,6 +12,6 @@ class Genre < ApplicationRecord
   private
 
   def import_igdb_data
-    IGDB::Services::ImportGenre.import(igdb_id)
+    IGDB::ImportGenreJob.perform_later(igdb_id)
   end
 end

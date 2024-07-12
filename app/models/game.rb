@@ -14,6 +14,6 @@ class Game < ApplicationRecord
   private
 
   def import_igdb_data
-    IGDB::Services::ImportGame.import(igdb_id)
+    IGDB::ImportGameJob.perform_later(igdb_id)
   end
 end

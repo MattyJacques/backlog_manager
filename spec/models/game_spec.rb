@@ -50,4 +50,16 @@ RSpec.describe Game do
       it { is_expected.to validate_uniqueness_of(:igdb_id) }
     end
   end
+
+  describe '#import_igdb_data' do
+    subject(:only_igdb_game) { described_class.new(igdb_id:) }
+
+    let(:igdb_id) { 26192 }
+
+    it 'queues the import game from IGDB job' do
+      expect(IGDB::ImportGameJob).to receive(:perform_later).with(igdb_id)
+
+      only_igdb_game.run_callbacks(:create)
+    end
+  end
 end

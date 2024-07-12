@@ -37,7 +37,7 @@ RSpec.describe Genre do
     let(:igdb_id) { 7 }
 
     it 'queues the import genre from IGDB job' do
-      expect(IGDB::Services::ImportGenre).to receive(:import).with(igdb_id)
+      expect(IGDB::ImportGenreJob).to receive(:perform_later).with(igdb_id)
 
       genre.run_callbacks(:create)
     end
