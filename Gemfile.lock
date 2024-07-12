@@ -76,11 +76,16 @@ GEM
       mutex_m
       tzinfo (~> 2.0)
     ast (2.4.2)
+    autoprefixer-rails (10.4.16.0)
+      execjs (~> 2)
     base64 (0.2.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    bootstrap (5.3.3)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     brakeman (6.1.2)
       racc
     builder (3.2.4)
@@ -110,6 +115,7 @@ GEM
       railties (>= 6.1)
     drb (2.2.1)
     erubi (1.12.0)
+    execjs (2.9.1)
     factory_bot (6.4.6)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
@@ -119,6 +125,7 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    ffi (1.17.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -181,6 +188,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    popper_js (2.11.8)
     psych (5.1.2)
       stringio
     puma (6.4.2)
@@ -276,6 +284,14 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
     simplecov (0.22.0)
@@ -300,6 +316,7 @@ GEM
     stringio (3.1.0)
     strscan (3.1.0)
     thor (1.3.1)
+    tilt (2.4.0)
     timeout (0.4.1)
     turbo-rails (2.0.5)
       actionpack (>= 6.0.0)
@@ -326,6 +343,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap
   brakeman
   bullet
   bundler-audit
@@ -345,6 +363,7 @@ DEPENDENCIES
   rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
+  sassc-rails
   shoulda-matchers
   simplecov
   sprockets-rails
