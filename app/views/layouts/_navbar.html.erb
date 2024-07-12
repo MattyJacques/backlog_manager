@@ -1,0 +1,30 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary p-3">
+    <div class='container'>
+      <a class="navbar-brand pt-1" href="/">
+        BacklogManager
+      </a>
+
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to 'Games', games_path, class: "nav-link #{'active' if controller.controller_name == 'games'}" %>
+        </li>
+
+        <!-- I have a history of popper not working properly after I think everything is setup.
+             Testing dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Test Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item disabled" href="#">Item 1</a></li>
+            <li><a class="dropdown-item disabled" href="#">Item 2</a></li>
+            <li><a class="dropdown-item disabled" href="#">Item 2</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item disabled" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
