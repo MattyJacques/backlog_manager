@@ -37,9 +37,9 @@ RSpec.describe Platform do
     let(:igdb_id) { 7 }
 
     it 'queues the import platform from IGDB job' do
-      expect(IGDB::ImportPlatformJob).to receive(:perform_later).with(igdb_id)
-
       platform.run_callbacks(:create)
+
+      expect(IGDB::ImportPlatformJob).to have_been_enqueued.with(igdb_id)
     end
   end
 end

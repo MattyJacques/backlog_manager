@@ -57,9 +57,9 @@ RSpec.describe Game do
     let(:igdb_id) { 26192 }
 
     it 'queues the import game from IGDB job' do
-      expect(IGDB::ImportGameJob).to receive(:perform_later).with(igdb_id)
-
       only_igdb_game.run_callbacks(:create)
+
+      expect(IGDB::ImportGameJob).to have_been_enqueued.with(igdb_id)
     end
   end
 end
