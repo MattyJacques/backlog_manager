@@ -1,14 +1,30 @@
+<head>
+  <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+</head>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Games</h1>
 
-<div id="games">
-  <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
-  <% end %>
-</div>
-
 <%= link_to "New game", new_game_path %>
+
+<div id="games">
+  <table id="games_table" class="table table-dark">
+    <thead>
+      <th scope="col" id="games_name">
+        <%= sort_link(column: "name", label: "Name") %>
+        <%= show_sort_indicator("name") %>
+      </th>
+      <th scope="col" id="games_platforms">
+        <%= sort_link(column: "platforms.name", label: "Platforms") %>
+        <%= show_sort_indicator("platforms.name") %>
+      </th>
+    </thead>
+
+    <tbody>
+      <% @games.each do |game| %>
+        <%= render game %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

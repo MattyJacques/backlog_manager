@@ -5,7 +5,8 @@ class GamesController < ApplicationController
 
   # GET /games or /games.json
   def index
-    @games = Game.all
+    @games = Game.includes(:platforms)
+    @games = @games.order(params.slice('order', 'direction').values.join(' '))
   end
 
   # GET /games/1 or /games/1.json
