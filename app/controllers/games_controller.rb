@@ -2,11 +2,13 @@
 
 class GamesController < ApplicationController
   before_action :set_game, only: %i[show edit update destroy]
+  before_action :set_session_filters, only: %i[index]
 
   # GET /games or /games.json
   def index
     @games = Game.includes(:platforms)
-    @games = @games.order(params.slice('order', 'direction').values.join(' '))
+    @games = @games.where('name like ?', "%#{session['filters']['name']}%") if session['filters']['name'].present?
+    @games = @games.order(session['filters'].slice('order', 'direction').values.join(' '))
   end
 
   # GET /games/1 or /games/1.json
@@ -76,8 +78,19 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def set_session_filters
+    session['filters'] ||= {}
+    session['filters'].merge!(filter_params)
+
+    Rails.logger.debug { "Filters: #{session['filters']}" }
+  end
+
   # Only allow a list of trusted parameters through.
   def game_params
     params.require(:game).permit(:name, :igdb_id)
+  end
+
+  def filter_params
+    params.permit(:name, :order, :direction)
   end
 end

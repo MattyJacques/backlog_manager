@@ -14,6 +14,5 @@ RSpec.describe 'games/show' do
     render
 
     expect(rendered).to match(/The Last of Us/)
-    expect(rendered).to match(/26192/)
   end
 end

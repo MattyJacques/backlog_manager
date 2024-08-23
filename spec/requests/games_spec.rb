@@ -21,8 +21,11 @@ RSpec.describe '/games' do
     end
 
     context 'when some games exist' do
+      let(:games) { [game] }
+
       before do
-        allow(Game).to receive(:all).and_return([game])
+        allow(Game).to receive(:includes).and_return(Game)
+        allow(Game).to receive(:order).and_return(games)
       end
 
       it 'renders a successful response' do

@@ -8,6 +8,16 @@
 
 <%= link_to "New game", new_game_path %>
 
+<div>
+  <%= form_with url: games_path, method: :get, data: { turbo_action: "replace", controller: "auto-submit", turbo_permanent: "" } do |form| %>
+    <%= form.text_field :name,
+                        placeholder: "Search by name",
+                        value: session.dig('filters', 'name'),
+                        data: { action: "auto-submit#submit" },
+                        class: "form-control form-control-dark text-bg-dark" %>
+  <% end %>
+</div>
+
 <div id="games">
   <table id="games_table" class="table table-dark">
     <thead>
