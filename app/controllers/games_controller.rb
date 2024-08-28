@@ -7,8 +7,9 @@ class GamesController < ApplicationController
   # GET /games or /games.json
   def index
     @games = Game.includes(:platforms)
-    @games = @games.where('name like ?', "%#{session['filters']['name']}%") if session['filters']['name'].present?
-    @games = @games.order(session['filters'].slice('order', 'direction').values.join(' '))
+                 .then { search_by_name _1 }
+                 .then { filter_by_platform _1 }
+                 .then { apply_order _1 }
   end
 
   # GET /games/1 or /games/1.json
@@ -67,6 +68,22 @@ class GamesController < ApplicationController
 
   private
 
+  def search_by_name(scope)
+    session['filters']['name'].present? ? scope.where('name like ?', "%#{session['filters']['name']}%") : scope
+  end
+
+  def filter_by_platform(scope)
+    if session['filters']['platform'].present?
+      scope.where(platforms: { id: session['filters']['platform'] })
+    else
+      scope
+    end
+  end
+
+  def apply_order(scope)
+    scope.order(session['filters'].slice('order', 'direction').values.join(' '))
+  end
+
   def search_igdb(game_name)
     game_name.present? ? IGDB::Client::Games.search(game_name) : []
   rescue IGDB::Client::Errors::NotFound
@@ -91,6 +108,6 @@ class GamesController < ApplicationController
   end
 
   def filter_params
-    params.permit(:name, :order, :direction)
+    params.permit(:name, :platform, :order, :direction)
   end
 end

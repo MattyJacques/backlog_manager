@@ -22,16 +22,63 @@ RSpec.describe '/games' do
 
     context 'when some games exist' do
       let(:games) { [game] }
+      let(:search_term) { 'The Last of Us' }
+      let(:platform_id) { '3' }
+      let(:column_name) { 'name' }
+      let(:direction) { 'asc' }
 
       before do
         allow(Game).to receive(:includes).and_return(Game)
         allow(Game).to receive(:order).and_return(games)
+        allow(Game).to receive(:where).with('name like ?', "%#{search_term}%").and_return(Game)
+        allow(Game).to receive(:where).with(platforms: { id: platform_id }).and_return(Game)
+        allow(Game).to receive(:order).with("#{column_name} #{direction}").and_return(games)
       end
 
       it 'renders a successful response' do
         get games_url
 
         expect(response).to be_successful
+      end
+
+      context 'when there is a name filter' do
+        it 'renders a successful response' do
+          get games_url(name: search_term)
+
+          expect(response).to be_successful
+          expect(session['filters']['name']).to eql(search_term)
+        end
+      end
+
+      context 'when there is a platform filter' do
+        it 'renders a successful response' do
+          get games_url(platform: platform_id)
+
+          expect(response).to be_successful
+          expect(session['filters']['platform']).to eql(platform_id)
+        end
+      end
+
+      context 'when there is a order filter' do
+        it 'renders a successful response' do
+          get games_url(order: column_name, direction:)
+
+          expect(response).to be_successful
+          expect(session['filters']['order']).to eql(column_name)
+          expect(session['filters']['direction']).to eql(direction)
+        end
+      end
+
+      context 'when there is a name, platform and order filter' do
+        it 'renders a successful response' do
+          get games_url(name: search_term, platform: platform_id, order: column_name, direction:)
+
+          expect(response).to be_successful
+          expect(session['filters']['name']).to eql(search_term)
+          expect(session['filters']['platform']).to eql(platform_id)
+          expect(session['filters']['order']).to eql(column_name)
+          expect(session['filters']['direction']).to eql(direction)
+        end
       end
     end
   end
