@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_11_174802) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -24,6 +24,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_174802) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "game_statuses", force: :cascade do |t|
+    t.integer "status", null: false
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_statuses_on_game_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -89,6 +97,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_174802) do
     t.index ["platform_id"], name: "index_releases_on_platform_id"
   end
 
+  add_foreign_key "game_statuses", "games"
   add_foreign_key "platforms", "platform_families"
   add_foreign_key "releases", "games"
   add_foreign_key "releases", "platforms"

@@ -23,6 +23,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @game.build_game_status
   end
 
   # GET /games/1/edit
@@ -45,8 +46,11 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1 or /games/1.json
   def update
+    result = @game.update(game_params)
+    destroy_status_if_blank
+
     respond_to do |format|
-      if @game.update(game_params)
+      if result
         format.html { redirect_to game_url(@game), notice: t('.success') }
         format.json { render :show, status: :ok, location: @game }
       else
@@ -90,6 +94,10 @@ class GamesController < ApplicationController
     []
   end
 
+  def destroy_status_if_blank
+    @game.game_status.destroy if @game.game_status.present? && @game.game_status.status.blank?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_game
     @game = Game.find(params[:id])
@@ -104,7 +112,7 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :igdb_id)
+    params.require(:game).permit(:name, :igdb_id, game_status_attributes: [:status])
   end
 
   def filter_params

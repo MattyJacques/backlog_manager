@@ -4,7 +4,13 @@ class Game < ApplicationRecord
   has_many :releases, dependent: :destroy, autosave: true
   has_many :platforms, through: :releases, autosave: true
 
+  has_one :game_status, dependent: :destroy, autosave: true
+
   has_and_belongs_to_many :genres, autosave: true
+
+  accepts_nested_attributes_for :game_status,
+                                reject_if: ->(attributes) { attributes['status'].blank? },
+                                allow_destroy: true
 
   validates :name, presence: { unless: :igdb_id }
   validates :igdb_id, numericality: { only_integer: true, greater_than: 0 }, uniqueness: true, allow_nil: true

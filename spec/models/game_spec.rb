@@ -7,7 +7,22 @@ RSpec.describe Game do
 
   it { is_expected.to have_many(:releases).dependent(:destroy).autosave(true) }
   it { is_expected.to have_many(:platforms).through(:releases).autosave(true) }
+  it { is_expected.to have_one(:game_status).dependent(:destroy) }
   it { is_expected.to have_and_belong_to_many(:genres) }
+
+  describe 'nested attributes' do
+    describe 'game_status' do
+      it { is_expected.to accept_nested_attributes_for(:game_status).allow_destroy(true) }
+
+      context 'when game_status.status is blank' do
+        it 'rejects the game_status' do
+          game_attributes = attributes_for(:game, game_status_attributes: { status: nil })
+
+          expect(described_class.build(game_attributes).game_status).to be_nil
+        end
+      end
+    end
+  end
 
   describe 'validations' do
     before do
