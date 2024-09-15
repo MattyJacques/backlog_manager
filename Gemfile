@@ -98,6 +98,9 @@ group :development do
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+
+  # Generate dockerfile for app
+  gem 'dockerfile-rails'
 end
 
 group :test do
