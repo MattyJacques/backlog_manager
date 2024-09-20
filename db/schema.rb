@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -28,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
 
   create_table "game_statuses", force: :cascade do |t|
     t.integer "status", null: false
-    t.integer "game_id", null: false
+    t.bigint "game_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_game_statuses_on_game_id"
@@ -43,8 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
   end
 
   create_table "games_genres", id: false, force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "genre_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "genre_id", null: false
     t.index ["game_id", "genre_id"], name: "index_games_genres_on_game_id_and_genre_id"
   end
 
@@ -75,7 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
     t.string "abbreviation"
     t.string "slug"
     t.integer "igdb_id", null: false
-    t.integer "platform_family_id"
+    t.bigint "platform_family_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["igdb_id"], name: "unique platform igdb_id", unique: true
@@ -85,8 +88,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
   end
 
   create_table "releases", force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "platform_id", null: false
+    t.bigint "game_id", null: false
+    t.bigint "platform_id", null: false
     t.integer "region"
     t.date "date"
     t.integer "igdb_id", null: false
