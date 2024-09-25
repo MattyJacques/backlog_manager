@@ -2,14 +2,14 @@
   <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 </head>
 
-<div class="container row">
-    <div class="col">
-      <h1>Games</h1>
-    </div>
+<div class="container row mt-2">
+  <div class="col">
+    <h1>Games</h1>
+  </div>
 
-    <div class="col col-lg-2">
-      <%= link_to "New game", new_game_path, class: "btn btn-primary" %>
-    </div>
+  <div class="col col-lg-2 col-md-7 justify-content-center">
+    <%= link_to "New game", new_game_path, class: "btn btn-primary mt-2" %>
+  </div>
 </div>
 
 <div>
