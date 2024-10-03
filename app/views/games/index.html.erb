@@ -19,12 +19,12 @@
                           placeholder: "Search by name",
                           value: session.dig('filters', 'name'),
                           data: { action: "auto-submit#submit" },
-                          class: "col form-control form-control-dark text-bg-dark me-3" %>
+                          class: "col form-control form-control-dark text-bg-dark me-3 col" %>
       <%= form.select :platform,
                       options_for_select(Platform.all.pluck(:name, :id), session.dig('filters', 'platform')),
                       { include_blank: 'All Platforms' },
                       data: { action: "auto-submit#submit" },
-                      class: "col form-control form-control-dark text-bg-dark form-select" %>
+                      class: "col form-control form-control-dark text-bg-dark form-select col" %>
     </div>
   <% end %>
 </div>

@@ -13,7 +13,11 @@ class GamesController < ApplicationController
   end
 
   # GET /games/1 or /games/1.json
-  def show; end
+  def show
+    IGDB::ImportGameJob.perform_now(params[:id]) if @game.nil?
+
+    set_game
+  end
 
   # GET /games/search or /games/search.json
   def search
@@ -22,8 +26,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
-    @game.build_game_status
+    @search_params = params.key?(:search) ? search_params : {}
+    @igdb_results = search_igdb(@search_params[:name]) if @search_params[:name].present?
   end
 
   # GET /games/1/edit
@@ -100,7 +104,7 @@ class GamesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_game
-    @game = Game.find(params[:id])
+    @game = Game.find_by(igdb_id: params[:id])
   end
 
   def set_session_filters
@@ -117,5 +121,9 @@ class GamesController < ApplicationController
 
   def filter_params
     params.permit(:name, :platform, :order, :direction)
+  end
+
+  def search_params
+    params.require(:search).permit(:name, :platform)
   end
 end

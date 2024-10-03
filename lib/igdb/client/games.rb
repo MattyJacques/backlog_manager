@@ -33,7 +33,7 @@ module IGDB
 
         def search_param_fields
           {
-            fields: 'name, genres.name, platforms.name, platforms.platform_family.name'
+            fields: 'cover.image_id, name, genres.name, platforms.name, platforms.platform_family.name'
           }
         end
 

@@ -1,6 +1,6 @@
 <div id="<%= dom_id game %>">
   <tr>
-    <td><%= link_to(game.name, game, class: 'nav-link') %></td>
+    <td><%= link_to(game.name, game_path(game.igdb_id), class: 'nav-link') %></td>
     <td><%= game.platforms.uniq.map { |platform|  platform.abbreviation || platform.name }.join(', ') %></td>
   </tr>
 </div>

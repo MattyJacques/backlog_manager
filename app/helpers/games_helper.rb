@@ -10,6 +10,10 @@ module GamesHelper
     sort_indicator if session.dig('filters', 'order') == column
   end
 
+  def cover_url(image_id)
+    return "https://images.igdb.com/igdb/image/upload/t_cover_big/#{image_id}.webp" if image_id.present?
+  end
+
   private
 
   def next_direction

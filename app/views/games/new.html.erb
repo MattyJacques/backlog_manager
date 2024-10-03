@@ -1,3 +1,44 @@
 <h1>New game</h1>
 
-<%= render "form", game: @game %>
+<div id='igdb_search' class='container row'>
+  <div id='filters' class='col col-lg-2'>
+    <%= form_with(scope: :search,
+                  url: new_game_path,
+                  method: :get,
+                  data: { turbo_action: 'replace',
+                          controller: 'auto-submit',
+                          turbo_frame: 'igdb_results' }) do |form| %>
+      <div id='search_fields'>
+        <%= form.label :name, for: 'search_name' %>
+        <%= form.text_field :name,
+                            value: @search_params[:name] || nil,
+                            data: { action: 'auto-submit#submit' },
+                            class: 'col form-control form-control-dark text-bg-dark mb-2' %>
+
+        <%= form.label :platform, for: 'search_platform' %>
+        <%= form.select :platform,
+                        options_for_select(Platform.all.pluck(:name, :id), @search_params[:platform]),
+                        { include_blank: 'All Platforms' },
+                        data: { action: 'auto-submit#submit' },
+                        class: 'col form-control form-control-dark text-bg-dark form-select' %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag 'igdb_results', class: 'col' do %>
+    <div class='row row-cols-1 row-cols-md-2 ms-2'>
+      <% @igdb_results&.each do |game| %>
+        <div data-controller='nav'
+             data-nav-url-value='<%= game_path(game['id']) %>'
+             data-action="click->nav#goToUrl"
+             class='col card text-bg-dark border-secondary p-0 m-1'
+             style='width: 200px;'>
+          <img src='<%= cover_url(game.dig('cover', 'image_id')) %>' class='card-img-top' alt='<%= game['name'] %> art'>
+          <div class='card-body m-0'>
+            <p class='card-text'><%= game['platforms']&.map{ |platform| platform['name'] }&.join(', ') %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
