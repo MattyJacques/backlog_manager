@@ -9,3 +9,6 @@
 #   ['Action', 'Comedy', 'Drama', 'Horror'].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Rake::Task['data_setup:igdb_import:platforms'].invoke
+Rake::Task['data_setup:igdb_import:genres'].invoke
