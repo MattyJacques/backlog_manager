@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for backlog-manager on 2024-09-20T16:32:16+01:00
+# fly.toml app configuration file generated for backlog-manager on 2024-10-14T22:19:36+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -13,8 +13,8 @@ console_command = '/rails/bin/rails console'
   release_command = './bin/rails db:prepare'
 
 [processes]
-app = "bin/rails server"
-worker = "bundle exec rake delayed_job:start"
+  app = 'bin/rails server'
+  worker = 'bundle exec rake delayed_job:start'
 
 [http_service]
   internal_port = 3000
@@ -25,9 +25,12 @@ worker = "bundle exec rake delayed_job:start"
   processes = ['app']
 
 [[services]]
+  protocol = ''
+  internal_port = 0
   auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
+  ports = []
   processes = ['worker']
 
 [checks]
@@ -46,9 +49,7 @@ worker = "bundle exec rake delayed_job:start"
       X-Forwarded-Proto = 'https'
 
 [[vm]]
-  memory = '512mb'
-  cpu_kind = 'shared'
-  cpus = 1
+  size = 'shared-cpu-1x'
 
 [[statics]]
   guest_path = '/rails/public'
