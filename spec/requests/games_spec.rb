@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe '/games' do
-  let(:game) { build(:game, id: 7) }
+  let(:game) { build(:game, id: 7, igdb_id: 77) }
   let(:valid_attributes) { attributes_for(:game) }
   let(:invalid_attributes) { { igdb_id: 0 } }
 
@@ -85,7 +85,7 @@ RSpec.describe '/games' do
 
   describe 'GET /show' do
     before do
-      allow(Game).to receive(:find).with('7').and_return(game)
+      allow(Game).to receive(:find_by).with(igdb_id: '7').and_return(game)
     end
 
     it 'renders a successful response' do
@@ -155,16 +155,91 @@ RSpec.describe '/games' do
   end
 
   describe 'GET /new' do
-    it 'renders a successful response' do
-      get new_game_url
+    context 'when there is no search parameter' do
+      it 'renders a successful response' do
+        get new_game_url
 
-      expect(response).to be_successful
+        expect(response).to be_successful
+      end
+    end
+
+    context 'when there is a search parameter' do
+      let(:search_result) do
+        [
+          {
+            'id' => 7291,
+            'cover' => {
+              'id' => 404622,
+              'image_id' => 'co8o7i'
+            },
+            'genres' => [
+              {
+                'id' => 5,
+                'name' => 'Shooter'
+              },
+              {
+                'id' => 13,
+                'name' => 'Simulator'
+              }
+            ],
+            'name' => 'Hunt: Showdown 1896',
+            'platforms' => [
+              {
+                'id' => 6,
+                'name' => 'PC (Microsoft Windows)'
+              },
+              {
+                'id' => 48,
+                'name' => 'PlayStation 4',
+                'platform_family' => {
+                  'id' => 1,
+                  'name' => 'PlayStation'
+                }
+              },
+              {
+                'id' => 49,
+                'name' => 'Xbox One',
+                'platform_family' => {
+                  'id' => 2,
+                  'name' => 'Xbox'
+                }
+              },
+              {
+                'id' => 167,
+                'name' => 'PlayStation 5',
+                'platform_family' => {
+                  'id' => 1,
+                  'name' => 'PlayStation'
+                }
+              },
+              {
+                'id' => 169,
+                'name' => 'Xbox Series X|S',
+                'platform_family' => {
+                  'id' => 2,
+                  'name' => 'Xbox'
+                }
+              }
+            ]
+          }
+        ]
+      end
+
+      before do
+        allow(IGDB::Client::Games).to receive(:search).with('The Last of Us').and_return(search_result)
+      end
+
+      it 'renders a successful response' do
+        get new_game_url(search: { name: 'The Last of Us' })
+
+        expect(response).to be_successful
+      end
     end
   end
 
   describe 'GET /edit' do
     before do
-      allow(Game).to receive(:find).with('7').and_return(game)
+      allow(Game).to receive(:find_by).with(igdb_id: '7').and_return(game)
     end
 
     it 'renders a successful response' do
@@ -242,7 +317,7 @@ RSpec.describe '/games' do
         let(:new_attributes) { { name: 'The Last of Us Part II', igdb_id: 26192 } }
 
         it 'updates the requested game' do
-          patch game_url(game), params: { game: new_attributes }
+          patch game_url(game.igdb_id), params: { game: new_attributes }
 
           game.reload
 
@@ -250,7 +325,7 @@ RSpec.describe '/games' do
         end
 
         it 'redirects to the game' do
-          patch game_url(game), params: { game: new_attributes }
+          patch game_url(game.igdb_id), params: { game: new_attributes }
 
           expect(response).to redirect_to(game_url(game))
         end
@@ -258,7 +333,7 @@ RSpec.describe '/games' do
 
       context 'with invalid parameters' do
         it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-          patch game_url(game), params: { game: invalid_attributes }
+          patch game_url(game.igdb_id), params: { game: invalid_attributes }
 
           expect(response).to have_http_status(:unprocessable_content)
         end
@@ -270,7 +345,7 @@ RSpec.describe '/games' do
         let(:new_attributes) { { name: 'The Last of Us Part II', igdb_id: 26192 } }
 
         it 'updates the requested game' do
-          patch game_url(game, format: :json), params: { game: new_attributes }
+          patch game_url(game.igdb_id, format: :json), params: { game: new_attributes }
 
           game.reload
 
@@ -278,7 +353,7 @@ RSpec.describe '/games' do
         end
 
         it 'returns the all game attributes' do
-          patch game_url(game, format: :json), params: { game: new_attributes }
+          patch game_url(game.igdb_id, format: :json), params: { game: new_attributes }
 
           expect(response.parsed_body.keys).to eq(Game.new.attributes.keys + ['url'])
         end
@@ -286,7 +361,7 @@ RSpec.describe '/games' do
 
       context 'with invalid parameters' do
         it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-          patch game_url(game, format: :json), params: { game: invalid_attributes }
+          patch game_url(game.igdb_id, format: :json), params: { game: invalid_attributes }
 
           expect(response).to have_http_status(:unprocessable_content)
         end
@@ -301,12 +376,12 @@ RSpec.describe '/games' do
 
     it 'destroys the requested game' do
       expect do
-        delete game_url(game)
+        delete game_url(game.igdb_id)
       end.to change(Game, :count).by(-1)
     end
 
     it 'redirects to the games list' do
-      delete game_url(game)
+      delete game_url(game.igdb_id)
 
       expect(response).to redirect_to(games_url)
     end

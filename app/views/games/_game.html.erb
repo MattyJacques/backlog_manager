@@ -1,6 +1,11 @@
-<div id="<%= dom_id game %>">
-  <tr>
-    <td><%= link_to(game.name, game_path(game.igdb_id), class: 'nav-link') %></td>
-    <td><%= game.platforms.uniq.map { |platform|  platform.abbreviation || platform.name }.join(', ') %></td>
-  </tr>
+<div id='<%= dom_id game %>' class='container row mt-4'>
+  <div id='cover' class='col-sm-3'>
+    <img src='<%= cover_url(game.image_id) %>' class='img-fluid' alt='<%= game.name %> art'>
+  </div>
+
+  <div id='game_details' class='col'>
+    <h1><%= game.name %></h1>
+    <p><%= game.genres.map(&:name).join(', ') %></p>
+    <p><%= game.platforms.uniq.map { |platform|  platform.abbreviation || platform.name }.join(', ') %></p>
+  </div>
 </div>

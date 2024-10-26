@@ -44,7 +44,7 @@
 
     <tbody>
       <% @games&.each do |game| %>
-        <%= render game %>
+        <%= render 'game_row', game: %>
       <% end %>
     </tbody>
   </table>

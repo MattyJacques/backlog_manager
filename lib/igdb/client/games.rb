@@ -39,7 +39,7 @@ module IGDB
 
         def import_param_fields
           {
-            fields: 'name, genres, platforms, platforms.platform_family, release_dates.date, ' \
+            fields: 'cover.image_id, name, genres, platforms, platforms.platform_family, release_dates.date, ' \
                     'release_dates.game, release_dates.platform, release_dates.region'
           }
         end

@@ -11,13 +11,13 @@
       <div id='search_fields'>
         <%= form.label :name, for: 'search_name' %>
         <%= form.text_field :name,
-                            value: @search_params[:name] || nil,
+                            value: @search_params&.dig(:name),
                             data: { action: 'auto-submit#submit' },
                             class: 'col form-control form-control-dark text-bg-dark mb-2' %>
 
         <%= form.label :platform, for: 'search_platform' %>
         <%= form.select :platform,
-                        options_for_select(Platform.all.pluck(:name, :id), @search_params[:platform]),
+                        options_for_select(Platform.all.pluck(:name, :id), @search_params&.dig(:platform)),
                         { include_blank: 'All Platforms' },
                         data: { action: 'auto-submit#submit' },
                         class: 'col form-control form-control-dark text-bg-dark form-select' %>

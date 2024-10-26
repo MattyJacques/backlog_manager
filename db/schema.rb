@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_17_073502) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_163211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "igdb_id"
+    t.string "image_id"
     t.index ["igdb_id"], name: "unique game igdb_id", unique: true
   end
 

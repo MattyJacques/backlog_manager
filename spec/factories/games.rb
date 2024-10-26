@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :game do
     sequence(:name) { |n| "Call of Testing #{n}" }
+    sequence(:igdb_id)
   end
 end

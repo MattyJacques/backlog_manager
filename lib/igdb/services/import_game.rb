@@ -27,6 +27,7 @@ module IGDB
 
       def import_game(game, igdb_data)
         game.name = igdb_data['name']
+        game.image_id = igdb_data.dig('cover', 'image_id')
         game.genres = get_genres(igdb_data['genres'])
 
         platforms = get_platforms(igdb_data['platforms'])

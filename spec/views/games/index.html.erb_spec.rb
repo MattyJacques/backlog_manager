@@ -3,20 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'games/index' do
+  let(:games) { [build(:game), build(:game)] }
+
   before do
-    Game.skip_callback(:create, :after, :import_igdb_data)
-
-    assign(:games, [Game.create!(name: 'Game 1'), Game.create!(name: 'Game 2')])
-  end
-
-  after do
-    Game.set_callback(:create, :after, :import_igdb_data)
+    assign(:games, games)
   end
 
   it 'renders a list of games' do
     render
 
-    assert_select 'tr>td', text: 'Game 1'
-    assert_select 'tr>td', text: 'Game 2'
+    assert_select 'tr>td', text: games[0].name
+    assert_select 'tr>td', text: games[1].name
   end
 end
