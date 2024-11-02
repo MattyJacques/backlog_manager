@@ -49,5 +49,10 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+        run: bundle exec rails db:migrate
+
       - name: Run FactoryBot Lint
         run: bundle exec rails factory_bot:lint
