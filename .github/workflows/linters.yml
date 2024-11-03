@@ -1,0 +1,58 @@
+name: Linters
+
+on: push
+
+jobs:
+  rubocop:
+    name: RuboCop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+  factory_bot_lint:
+    name: FactoryBot Lint
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        env:
+          POSTGRES_DB: backlog_manager_test
+          POSTGRES_USER: backlog_manager
+          POSTGRES_PASSWORD: postgres_admin
+
+        image: postgres:14.13-alpine
+        ports:
+          - 5432:5432
+        # Needed because the postgres container does not provide a healthcheck
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+        run: bundle exec rails db:migrate
+
+      - name: Run FactoryBot Lint
+        run: bundle exec rails factory_bot:lint
