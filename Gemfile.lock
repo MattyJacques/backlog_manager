@@ -127,7 +127,7 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
-    ffi (1.17.0)
+    ffi (1.17.0-x86_64-linux-gnu)
     font-awesome-sass (6.5.2)
       sassc (~> 2.0)
     globalid (1.2.1)
@@ -381,7 +381,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.1p18
+   ruby 3.3.6p108
 
 BUNDLED WITH
    2.4.15
