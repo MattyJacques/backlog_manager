@@ -2,6 +2,7 @@
 
 You need to run rails dev:cache as caching is used for access tokens.
 
+Copy .env.sample to .env and populate the fields
 
 
 This README would normally document whatever steps are necessary to get the
