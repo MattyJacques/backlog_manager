@@ -6,6 +6,9 @@ jobs:
   tests:
     name: RSpec
     runs-on: ubuntu-latest
+    env:
+      IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+      IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
 
     services:
       postgres:
@@ -39,7 +42,4 @@ jobs:
         run: bundle exec rails db:migrate
 
       - name: Run tests
-        env:
-          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
-          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
         run: bundle exec rspec
