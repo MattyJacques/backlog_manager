@@ -50,13 +50,22 @@ module IGDB
         end
       end
 
-      def import_releases(game, platforms, releases)
-        releases&.map do |release|
+      def import_releases(game, platforms, release_data)
+        releases = []
+
+        release_data&.each do |release|
           Rails.logger.info("Release found: #{release}")
 
+          if release['status'] == 36
+            Rails.logger.warn('Ignoring Optimization Patch Release')
+            next
+          end
+
           platform = platforms.detect { |plat| plat.igdb_id == release['platform'] }
-          build_release(game, platform, release)
+          releases << build_release(game, platform, release)
         end
+
+        releases
       end
 
       def build_release(game, platform, release_data)
